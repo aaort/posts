@@ -26,7 +26,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
   return (
     <Container>
       <Row css={{ gap: '$1' }}>
-        <Title>{post.title}</Title> | <Username>{user.username}</Username>
+        <Title>{post.title}</Title> | <Username>{`@${user.username}`}</Username>
       </Row>
       <p>{post.body}</p>
       <div
