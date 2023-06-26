@@ -5,4 +5,11 @@ type Post = {
   body: string;
 };
 
-export type { Post };
+type User = {
+  id: number;
+  name: string;
+  username: string;
+  address: string;
+};
+
+export type { Post, User };
