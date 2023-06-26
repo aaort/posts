@@ -4,6 +4,7 @@ import type { Post as PostType } from '../../types';
 import { fetcher } from '../../utils';
 import Post from '../cards/Post';
 import { Column } from '../common';
+import Loading from '../common/Loading';
 
 type PostsProps = {};
 
@@ -15,7 +16,7 @@ const Posts: React.FC<PostsProps> = () => {
   );
 
   if (isLoading) {
-    return <div></div>;
+    return <Loading />;
   }
 
   if (error) {
