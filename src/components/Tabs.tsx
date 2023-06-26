@@ -26,19 +26,16 @@ const Tabs: React.FC<TabsProps> = (props) => {
   );
 };
 
-const Root = styled(NavigationMenu.Root, {
-  display: 'flex',
-  justifyContent: 'center',
-  width: '20rem',
-});
+const Root = styled(NavigationMenu.Root, {});
 
 const List = styled(NavigationMenu.List, {
   display: 'flex',
-  width: '20rem',
   justifyContent: 'center',
-  gap: '$3',
+  gap: '$4',
   listStyle: 'none',
-  padding: 0,
+  padding: 'calc($2 - 0.8rem) $3',
+  borderRadius: '50rem',
+  backgroundColor: '$gray3',
 });
 
 export default Tabs;
