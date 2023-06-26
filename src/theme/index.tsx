@@ -13,8 +13,8 @@ export const {
 } = createStitches({
   theme: {
     colors: {
-      gray400: 'gainsboro',
-      gray500: 'lightgray',
+      background: '#f8f9fa',
+      card: '#adb5bd',
     },
     space: {
       1: '0.5rem',
