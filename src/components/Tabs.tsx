@@ -1,7 +1,9 @@
 import { styled } from '@/theme';
 import type { Tab as TabType } from '@/types';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
+import PostLimit from './PostLimit';
 import Tab from './Tab';
+import Row from './common/Row';
 
 type TabsProps = {
   selectedTab: TabType;
@@ -12,23 +14,32 @@ const tabs: TabType[] = ['posts', 'photos', 'todos'];
 
 const Tabs: React.FC<TabsProps> = (props) => {
   return (
-    <Root>
-      <List>
-        {tabs.map((tab) => (
-          <Tab
-            key={tab}
-            title={tab}
-            setSelectedTab={props.setSelectedTab}
-            selected={props.selectedTab === tab}
-          />
-        ))}
-      </List>
-    </Root>
+    <HeaderRow>
+      <Root>
+        <List>
+          {tabs.map((tab) => (
+            <Tab
+              key={tab}
+              title={tab}
+              setSelectedTab={props.setSelectedTab}
+              selected={props.selectedTab === tab}
+            />
+          ))}
+        </List>
+      </Root>
+      <PostLimit />
+    </HeaderRow>
   );
 };
 
 const Root = styled(NavigationMenu.Root, {
   my: '$2',
+});
+
+const HeaderRow = styled(Row, {
+  width: '100%',
+  justifyContent: 'center',
+  gap: '$2',
 });
 
 const List = styled(NavigationMenu.List, {
