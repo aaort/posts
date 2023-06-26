@@ -7,7 +7,6 @@ const Box: React.FC<BoxTypes> = ({ children }) => {
 };
 
 const Container = styled('div', {
-  display: 'flex',
   padding: '$2',
   backgroundColor: '$card',
 });
