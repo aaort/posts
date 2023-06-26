@@ -1,20 +1,15 @@
-import { Tabs } from '../components';
-import Posts from '../components/lists/Posts';
+import TabsContainer from '../components/TabsContainer';
 import { styled } from '../theme';
 
 const Home = () => {
   return (
     <Container>
-      <Tabs />
-      <Posts />
+      <TabsContainer />
     </Container>
   );
 };
 
 const Container = styled('div', {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
   height: '100svh',
 });
 
