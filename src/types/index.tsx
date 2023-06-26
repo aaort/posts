@@ -12,4 +12,6 @@ type User = {
   address: string;
 };
 
-export type { Post, User };
+type Tab = 'posts' | 'photos' | 'tasks';
+
+export type { Post, Tab, User };
