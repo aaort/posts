@@ -51,6 +51,7 @@ const Container = styled(Box, {
   flexDirection: 'column',
   gap: '$2',
   color: '$background',
+  width: '100%',
 });
 
 const Title = styled('span', {
