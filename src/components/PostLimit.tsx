@@ -16,7 +16,6 @@ const PostLimit: React.FC<{}> = () => {
   const handleToggle = (value: boolean) => setIsOpen(!value);
 
   const handleLimitChange = (newLimit: Limit) => {
-    console.log('setting limit', newLimit);
     sessionStorage.setItem('limit', newLimit);
   };
 
