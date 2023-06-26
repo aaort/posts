@@ -1,10 +1,9 @@
+import useSWR from 'swr';
 import { styled } from '../../theme';
-import type { Post as PostType } from '../../types';
+import type { Post as PostType, User } from '../../types';
 import { fetcher } from '../../utils';
 import Box from '../Box';
 import { Row } from '../common';
-import useSWR from 'swr';
-import type { User } from '../../types';
 
 type PostProps = {
   post: PostType;
