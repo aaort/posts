@@ -1,4 +1,4 @@
-import { Box, Button, Row } from '@/components/common';
+import { Box, Button, Error, Loading, Row } from '@/components/common';
 import { styled } from '@/theme';
 import type { Post as PostType, User } from '@/types';
 import { fetcher } from '@/utils';
@@ -13,6 +13,14 @@ const Post: React.FC<PostProps> = ({ post }) => {
   const { data, error, isLoading } = useSWR(`api/user/${post.userId}`, () =>
     fetcher(endpoint)
   );
+
+  if (error) {
+    return <Error />;
+  }
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   const user: User = data;
 
