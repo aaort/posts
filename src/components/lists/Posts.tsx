@@ -7,7 +7,7 @@ import { Column } from '../common';
 
 type PostsProps = {};
 
-const endpoint = `${process.env.REACT_APP_API_BASE_URL}users/1/posts`;
+const endpoint = `${process.env.REACT_APP_API_BASE_URL}posts`;
 
 const Posts: React.FC<PostsProps> = () => {
   const { data, error, isLoading } = useSWR('/api/posts', () =>
@@ -25,7 +25,7 @@ const Posts: React.FC<PostsProps> = () => {
   return (
     <Container>
       {(data as PostType[]).map((post) => (
-        <Post post={post} />
+        <Post key={post.id} post={post} />
       ))}
     </Container>
   );
