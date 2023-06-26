@@ -1,3 +1,4 @@
+// Types of data returned from API calls
 type Post = {
   userId: number;
   id: number;
@@ -12,6 +13,9 @@ type User = {
   address: string;
 };
 
+type Album = Omit<Post, 'body'> & {};
+
+// Custom types used in the project
 type Tab = 'posts' | 'photos' | 'tasks';
 
-export type { Post, Tab, User };
+export type { Post, Tab, Album, User };
