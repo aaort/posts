@@ -2,17 +2,15 @@ import Album from '@/components/cards/Album';
 import { Column, Error, Loading } from '@/components/common';
 import { styled } from '@/theme';
 import type { Album as AlbumType } from '@/types';
-import { fetcher } from '@/utils';
+import { fetcher, getUrlFromEndpoint } from '@/utils';
 import useSWR from 'swr';
 
 type PhotosProps = {};
 
-const endpoint = `${process.env.REACT_APP_API_BASE_URL}albums`;
-
 const Photos: React.FC<PhotosProps> = () => {
-  const { data, error, isLoading } = useSWR('/api/albums', () =>
-    fetcher(endpoint)
-  );
+  const limit = sessionStorage.getItem('limit');
+  const url = getUrlFromEndpoint('albums', limit);
+  const { data, error, isLoading } = useSWR('/api/albums', () => fetcher(url));
 
   if (error) {
     return <Error />;
