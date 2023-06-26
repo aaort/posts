@@ -3,6 +3,7 @@ import { styled } from '../../theme';
 import type { Post as PostType, User } from '../../types';
 import { fetcher } from '../../utils';
 import Box from '../Box';
+import Button from '../Button';
 import { Row } from '../common';
 
 type PostProps = {
@@ -36,10 +37,10 @@ const Post: React.FC<PostProps> = ({ post }) => {
           justifyContent: 'flex-end',
         }}
       >
-        <span>Comment</span>
-        <span>Edit</span>
-        <span>Favorite</span>
-        <span>Delete</span>
+        <Button handleClick={() => {}} title={'Comment'}></Button>
+        <Button handleClick={() => {}} title={'Edit'}></Button>
+        <Button handleClick={() => {}} title={'Favorite'}></Button>
+        <Button handleClick={() => {}} title={'Delete'}></Button>
       </div>
     </Container>
   );
