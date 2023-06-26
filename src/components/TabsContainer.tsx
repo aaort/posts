@@ -1,9 +1,12 @@
-import { useState } from 'react';
+import { Suspense, lazy, useState } from 'react';
 import { styled } from '../theme';
 import { Tab } from '../types';
 import Tabs from './Tabs';
 import { Column } from './common';
-import Posts from './lists/Posts';
+
+const Posts = lazy(() => import('./lists/Posts'));
+const Photos = lazy(() => import('./lists/Photos'));
+const Tasks = lazy(() => import('./lists/Tasks'));
 
 const TabsContainer: React.FC<{}> = () => {
   const [selectedTab, setSelectedTab] = useState<Tab>('posts');
@@ -11,7 +14,15 @@ const TabsContainer: React.FC<{}> = () => {
   return (
     <Container>
       <Tabs selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
-      <Posts />
+      <Suspense fallback={'Loading'}>
+        {selectedTab === 'posts' ? (
+          <Posts />
+        ) : selectedTab === 'photos' ? (
+          <Photos />
+        ) : (
+          <Tasks />
+        )}
+      </Suspense>
     </Container>
   );
 };
