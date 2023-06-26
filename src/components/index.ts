@@ -1,4 +1,4 @@
-import Box from './Box';
+import Box from './common/Box';
 import Tab from './Tab';
 import Tabs from './Tabs';
 

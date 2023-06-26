@@ -1,4 +1,4 @@
-import { styled } from '../theme';
+import { styled } from '../../theme';
 
 const Box = styled('div', {
   padding: '$2',

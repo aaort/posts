@@ -1,4 +1,4 @@
-import Box from '../Box';
+import Box from '../common/Box';
 
 const Task: React.FC<{}> = () => {
   return <Box>Hello World </Box>;

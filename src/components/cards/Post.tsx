@@ -2,8 +2,8 @@ import useSWR from 'swr';
 import { styled } from '../../theme';
 import type { Post as PostType, User } from '../../types';
 import { fetcher } from '../../utils';
-import Box from '../Box';
-import Button from '../Button';
+import Box from '../common/Box';
+import Button from '../common/Button';
 import { Row } from '../common';
 
 type PostProps = {
