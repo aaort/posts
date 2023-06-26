@@ -1,3 +1,4 @@
+import { Limit } from '@/types';
 import { getLimit } from '@/utils';
 import { ChevronDownIcon } from '@radix-ui/react-icons';
 import * as Select from '@radix-ui/react-select';
@@ -6,8 +7,6 @@ import { useState } from 'react';
 
 const limits = ['10', '20', '50', '100'] as const;
 const initialLimit = getLimit();
-
-type Limit = typeof limits[number];
 
 // Component to control the displayed posts count
 const PostLimit: React.FC<{}> = () => {
