@@ -38,6 +38,11 @@ export const {
       5: '3.4rem',
       6: '4rem',
     },
+    radii: {
+      small: '0.5rem',
+      medium: '1rem',
+      large: '1.5rem',
+    },
   },
   media: {
     bp1: '(min-width: 480px)',
@@ -53,6 +58,9 @@ export const {
 });
 
 export const globalStyles = globalCss({
+  ':root': {
+    '--border-radius:': '1rem',
+  },
   body: {
     margin: 0,
     fontFamily: 'sans-serif',
