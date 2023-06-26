@@ -1,9 +1,11 @@
+import { getLimit } from '@/utils';
 import { ChevronDownIcon } from '@radix-ui/react-icons';
 import * as Select from '@radix-ui/react-select';
 import { styled } from '@stitches/react';
 import { useState } from 'react';
 
 const limits = ['10', '20', '50', '100'] as const;
+const initialLimit = getLimit();
 
 type Limit = typeof limits[number];
 
@@ -14,12 +16,13 @@ const PostLimit: React.FC<{}> = () => {
   const handleToggle = (value: boolean) => setIsOpen(!value);
 
   const handleLimitChange = (newLimit: Limit) => {
+    console.log('setting limit', newLimit);
     sessionStorage.setItem('limit', newLimit);
   };
 
   return (
     <Select.Root
-      defaultValue={limits?.[0]}
+      defaultValue={initialLimit ?? limits[0]}
       onValueChange={handleLimitChange}
       onOpenChange={handleToggle}
     >
