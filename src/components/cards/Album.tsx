@@ -1,10 +1,8 @@
+import { Box, Error, Loading } from '@/components/common';
+import { styled } from '@/theme';
+import type { Album as AlbumType, User } from '@/types';
+import { fetcher } from '@/utils';
 import useSWR from 'swr';
-import { styled } from '../../theme';
-import type { Album as AlbumType, User } from '../../types';
-import { fetcher } from '../../utils';
-import { Error } from '../common';
-import Box from '../common/Box';
-import Loading from '../common/Loading';
 
 type AlbumProps = {
   album: AlbumType;

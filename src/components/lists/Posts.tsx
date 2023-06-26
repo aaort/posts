@@ -1,10 +1,10 @@
+import Post from '@/components/cards/Post';
+import { Column, Error } from '@/components/common';
+import Loading from '@/components/common/Loading';
+import { styled } from '@/theme';
+import type { Post as PostType } from '@/types';
+import { fetcher } from '@/utils';
 import useSWR from 'swr';
-import { styled } from '../../theme';
-import type { Post as PostType } from '../../types';
-import { fetcher } from '../../utils';
-import Post from '../cards/Post';
-import { Column, Error } from '../common';
-import Loading from '../common/Loading';
 
 type PostsProps = {};
 

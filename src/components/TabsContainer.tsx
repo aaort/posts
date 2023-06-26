@@ -1,7 +1,7 @@
+import Tabs from '@/components/Tabs';
+import { styled } from '@/theme';
+import { Tab } from '@/types';
 import { Suspense, lazy, useState } from 'react';
-import { styled } from '../theme';
-import { Tab } from '../types';
-import Tabs from './Tabs';
 import { Column } from './common';
 import Loading from './common/Loading';
 

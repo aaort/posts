@@ -1,4 +1,4 @@
-import Box from '../common/Box';
+import Box from '@/components/common/Box';
 
 const Todo: React.FC<{}> = () => {
   return <Box>Hello World </Box>;

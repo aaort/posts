@@ -1,7 +1,7 @@
+import { styled } from '@/theme';
+import type { Tab as TabType } from '@/types';
 import { Item as NavigationItem } from '@radix-ui/react-navigation-menu';
 import { Dispatch, SetStateAction } from 'react';
-import { styled } from '../theme';
-import type { Tab as TabType } from '../types';
 
 type TabTypes = {
   title: TabType;

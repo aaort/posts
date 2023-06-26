@@ -1,6 +1,6 @@
+import { styled } from '@/theme';
+import type { Tab as TabType } from '@/types';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
-import { styled } from '../theme';
-import type { Tab as TabType } from '../types';
 import Tab from './Tab';
 
 type TabsProps = {
@@ -27,7 +27,9 @@ const Tabs: React.FC<TabsProps> = (props) => {
   );
 };
 
-const Root = styled(NavigationMenu.Root, {});
+const Root = styled(NavigationMenu.Root, {
+  my: '$2',
+});
 
 const List = styled(NavigationMenu.List, {
   display: 'flex',

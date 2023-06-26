@@ -1,10 +1,9 @@
+import Album from '@/components/cards/Album';
+import { Column, Error, Loading } from '@/components/common';
+import { styled } from '@/theme';
+import type { Album as AlbumType } from '@/types';
+import { fetcher } from '@/utils';
 import useSWR from 'swr';
-import { styled } from '../../theme';
-import { fetcher } from '../../utils';
-import { Column, Error } from '../common';
-import Loading from '../common/Loading';
-import type { Album as AlbumType } from '../../types';
-import Album from '../cards/Album';
 
 type PhotosProps = {};
 

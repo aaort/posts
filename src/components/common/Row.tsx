@@ -1,4 +1,4 @@
-import { styled } from '../../theme';
+import { styled } from '@/theme';
 
 const Row = styled('div', {
   display: 'flex',

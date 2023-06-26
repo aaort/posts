@@ -1,5 +1,5 @@
+import { theme } from '@/theme';
 import { TailSpin } from 'react-loader-spinner';
-import { theme } from '../../theme';
 
 const Loading: React.FC<{}> = () => {
   return <TailSpin wrapperStyle={styles} color={theme.colors.card.value} />;
