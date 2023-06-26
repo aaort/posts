@@ -43,7 +43,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
           justifyContent: 'flex-end',
         }}
       >
-        <Button handleClick={() => {}} title={'Comment'}></Button>
+        <Button handleClick={() => {}} title={'Comments'}></Button>
         <Button handleClick={() => {}} title={'Edit'}></Button>
         <Button
           handleClick={() => {}}
