@@ -25,8 +25,6 @@ const Posts: React.FC<PostsProps> = () => {
     return <div></div>;
   }
 
-  console.log(data);
-
   return (
     <Container>
       {(data as PostType[]).map((post) => (
