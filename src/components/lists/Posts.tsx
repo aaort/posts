@@ -1,21 +1,18 @@
 import useSWR from 'swr';
 import { styled } from '../../theme';
 import type { Post as PostType } from '../../types';
+import { fetcher } from '../../utils';
 import Post from '../cards/Post';
 import { Column } from '../common';
 
 type PostsProps = {};
 
-const fetcher = async () => {
-  const response = await fetch(
-    'https://jsonplaceholder.typicode.com/users/1/posts'
-  );
-
-  return await response.json();
-};
+const endpoint = `${process.env.REACT_APP_API_BASE_URL}users/1/posts`;
 
 const Posts: React.FC<PostsProps> = () => {
-  const { data, error, isLoading } = useSWR('/api/posts', fetcher);
+  const { data, error, isLoading } = useSWR('/api/posts', () =>
+    fetcher(endpoint)
+  );
 
   if (isLoading) {
     return <div></div>;
