@@ -3,7 +3,9 @@ import * as Select from '@radix-ui/react-select';
 import { styled } from '@stitches/react';
 import { useState } from 'react';
 
-const items = ['10', '20', '50', '100'];
+const limits = ['10', '20', '50', '100'] as const;
+
+type Limit = typeof limits[number];
 
 // Component to control the displayed posts count
 const PostLimit: React.FC<{}> = () => {
@@ -11,8 +13,16 @@ const PostLimit: React.FC<{}> = () => {
 
   const handleToggle = (value: boolean) => setIsOpen(!value);
 
+  const handleLimitChange = (newLimit: Limit) => {
+    sessionStorage.setItem('limit', newLimit);
+  };
+
   return (
-    <Select.Root defaultValue={items?.[0]} onOpenChange={handleToggle}>
+    <Select.Root
+      defaultValue={limits?.[0]}
+      onValueChange={handleLimitChange}
+      onOpenChange={handleToggle}
+    >
       <Select.Trigger asChild data-state={isOpen}>
         <SelTrigger>
           <span>
@@ -26,7 +36,7 @@ const PostLimit: React.FC<{}> = () => {
       <Select.Content asChild>
         <Dropdown>
           <Viewport>
-            {items.map((item, i) => {
+            {limits.map((item, i) => {
               return (
                 <Item key={i} value={item}>
                   <Select.ItemText> {item} </Select.ItemText>
