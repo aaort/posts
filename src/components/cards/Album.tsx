@@ -1,7 +1,7 @@
 import Box from '../common/Box';
 
-const Photo: React.FC<{}> = () => {
+const Album: React.FC<{}> = () => {
   return <Box>Hello World </Box>;
 };
 
-export default Photo;
+export default Album;
