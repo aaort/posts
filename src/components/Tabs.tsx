@@ -16,6 +16,7 @@ const Tabs: React.FC<TabsProps> = (props) => {
       <List>
         {tabs.map((tab) => (
           <Tab
+            key={tab}
             title={tab}
             setSelectedTab={props.setSelectedTab}
             selected={props.selectedTab === tab}
