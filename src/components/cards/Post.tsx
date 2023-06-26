@@ -36,7 +36,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
 };
 
 const Container = styled(Column, {
-  gap: '0.5rem',
+  gap: '$2',
 });
 
 export default Post;

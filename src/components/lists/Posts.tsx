@@ -38,7 +38,7 @@ const Posts: React.FC<PostsProps> = () => {
 
 const Container = styled(Column, {
   gap: '$3',
-  paddingInline: '$3',
+  paddingInline: '$5',
 });
 
 export default Posts;
