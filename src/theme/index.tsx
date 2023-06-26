@@ -22,6 +22,8 @@ export const {
       gray6: '#868e96',
       gray7: '#495057',
       gray9: '#212529',
+      error: '#fa5252',
+      success: '#40c057',
     },
     space: {
       1: '0.5rem',
@@ -37,6 +39,12 @@ export const {
       4: '2.8rem',
       5: '3.4rem',
       6: '4rem',
+    },
+    fontWeights: {
+      1: '400',
+      2: '500',
+      3: '600',
+      4: '700',
     },
     radii: {
       small: '0.5rem',
@@ -64,6 +72,7 @@ export const globalStyles = globalCss({
   body: {
     margin: 0,
     fontFamily: 'sans-serif',
+    color: '$card',
   },
   '*': {
     boxSizing: 'border-box',
