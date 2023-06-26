@@ -39,8 +39,16 @@ const Post: React.FC<PostProps> = ({ post }) => {
       >
         <Button handleClick={() => {}} title={'Comment'}></Button>
         <Button handleClick={() => {}} title={'Edit'}></Button>
-        <Button handleClick={() => {}} title={'Favorite'}></Button>
-        <Button handleClick={() => {}} title={'Delete'}></Button>
+        <Button
+          handleClick={() => {}}
+          type="success"
+          title={'Favorite'}
+        ></Button>
+        <Button
+          handleClick={() => {}}
+          type="dangerous"
+          title={'Delete'}
+        ></Button>
       </div>
     </Container>
   );
