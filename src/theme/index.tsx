@@ -1,4 +1,3 @@
-// stitches.config.ts
 import { createStitches } from '@stitches/react';
 
 export const {
@@ -14,7 +13,7 @@ export const {
   theme: {
     colors: {
       background: '#f8f9fa',
-      card: '#adb5bd',
+      card: '#343a40',
     },
     space: {
       1: '0.5rem',
@@ -31,7 +30,6 @@ export const {
       5: '3.4rem',
       6: '4rem',
     },
-    sizes: {},
   },
   media: {
     bp1: '(min-width: 480px)',
@@ -39,4 +37,17 @@ export const {
   //   utils: {
   //     marginX: (value) => ({ marginLeft: value, marginRight: value }),
   //   },
+});
+
+export const globalStyles = globalCss({
+  body: {
+    margin: 0,
+    fontFamily: 'sans-serif',
+  },
+  '*': {
+    boxSizing: 'border-box',
+  },
+  img: {
+    maxWidth: '100%',
+  },
 });
