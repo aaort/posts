@@ -9,8 +9,7 @@ import useSWR from 'swr';
 type PostsProps = {};
 
 const Posts: React.FC<PostsProps> = () => {
-  const limit = sessionStorage.getItem('limit');
-  const url = getUrlFromEndpoint('posts', limit);
+  const url = getUrlFromEndpoint('posts');
   const { data, error, isLoading } = useSWR('/api/posts', () => fetcher(url));
 
   if (error) {

@@ -8,8 +8,7 @@ import useSWR from 'swr';
 type PhotosProps = {};
 
 const Photos: React.FC<PhotosProps> = () => {
-  const limit = sessionStorage.getItem('limit');
-  const url = getUrlFromEndpoint('albums', limit);
+  const url = getUrlFromEndpoint('albums');
   const { data, error, isLoading } = useSWR('/api/albums', () => fetcher(url));
 
   if (error) {
