@@ -1,6 +1,6 @@
 import { Item as NavigationItem } from '@radix-ui/react-navigation-menu';
-import { styled } from '../theme';
 import { Dispatch, SetStateAction } from 'react';
+import { styled } from '../theme';
 import type { Tab as TabType } from '../types';
 
 type TabTypes = {
@@ -26,6 +26,7 @@ const Item = styled(NavigationItem, {
   cursor: 'pointer',
   fontSize: '$2',
   textTransform: 'uppercase',
+  letterSpacing: '0.2rem',
   textUnderlineOffset: '0.5rem',
 });
 
