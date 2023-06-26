@@ -3,7 +3,7 @@ import { styled } from '../../theme';
 import type { Post as PostType } from '../../types';
 import { fetcher } from '../../utils';
 import Post from '../cards/Post';
-import { Column } from '../common';
+import { Column, Error } from '../common';
 import Loading from '../common/Loading';
 
 type PostsProps = {};
@@ -15,12 +15,12 @@ const Posts: React.FC<PostsProps> = () => {
     fetcher(endpoint)
   );
 
-  if (isLoading) {
-    return <Loading />;
+  if (error) {
+    return <Error />;
   }
 
-  if (error) {
-    return <div></div>;
+  if (isLoading) {
+    return <Loading />;
   }
 
   return (
