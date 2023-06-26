@@ -7,7 +7,7 @@ import Loading from './common/Loading';
 
 const Posts = lazy(() => import('./lists/Posts'));
 const Photos = lazy(() => import('./lists/Photos'));
-const Tasks = lazy(() => import('./lists/Tasks'));
+const Todos = lazy(() => import('./lists/Todos'));
 
 const TabsContainer: React.FC<{}> = () => {
   const [selectedTab, setSelectedTab] = useState<Tab>('posts');
@@ -21,7 +21,7 @@ const TabsContainer: React.FC<{}> = () => {
         ) : selectedTab === 'photos' ? (
           <Photos />
         ) : (
-          <Tasks />
+          <Todos />
         )}
       </Suspense>
     </Container>

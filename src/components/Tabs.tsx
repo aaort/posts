@@ -8,7 +8,7 @@ type TabsProps = {
   setSelectedTab: React.Dispatch<React.SetStateAction<TabType>>;
 };
 
-const tabs: TabType[] = ['posts', 'photos', 'tasks'];
+const tabs: TabType[] = ['posts', 'photos', 'todos'];
 
 const Tabs: React.FC<TabsProps> = (props) => {
   return (
