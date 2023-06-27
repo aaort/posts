@@ -42,14 +42,22 @@ const Box: React.FC<BoxTypes> = (props) => {
 
 const Container = styled(Column, {
   '@xs': {
-    width: '40rem',
+    minWidth: '30rem',
   },
   '@sm': {
-    width: '45rem',
+    minWidth: '35rem',
+  },
+  '@md': {
+    minWidth: '40rem',
   },
   '@lg': {
-    width: '55rem',
+    minWidth: '50rem',
   },
+  '@xl': {
+    minWidth: '60rem',
+  },
+  width: '100%',
+  maxWidth: '80%',
   padding: '$2',
   backgroundColor: '$gray3',
   borderRadius: '$medium',
