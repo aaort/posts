@@ -68,6 +68,14 @@ export const {
     lg: '(min-width: 1201px)',
   },
   utils: {
+    m: (value: number | string) => ({
+      marginInline: value,
+      marginBlock: value,
+    }),
+    p: (value: number | string) => ({
+      paddingInline: value,
+      paddingBlock: value,
+    }),
     ml: (value: number | string) => ({ marginLeft: value }),
     mt: (value: number | string) => ({ marginTop: value }),
     mr: (value: number | string) => ({ marginRight: value }),
