@@ -1,25 +1,31 @@
 // Types of data returned from API calls
-type Post = {
-  userId: number;
+
+type Common = {
   id: number;
-  title: string;
-  body: string;
 };
 
+type Post = {
+  userId: number;
+  title: string;
+  body: string;
+} & Common;
+
 type User = {
-  id: number;
   name: string;
   username: string;
   address: string;
-};
+} & Common;
 
 type Comment = {
   postId: number;
-  id: number;
   name: string;
   email: string;
   body: string;
-};
+} & Common;
+
+type Todo = Pick<Post, 'title' | 'userId'> & {
+  completed: boolean;
+} & Common;
 
 type Album = Omit<Post, 'body'> & {};
 
@@ -28,4 +34,4 @@ type Tab = 'posts' | 'photos' | 'todos';
 
 type Limit = '10' | '20' | '50' | '100';
 
-export type { Album, Comment, Limit, Post, Tab, User };
+export type { Album, Comment, Limit, Post, Tab, Todo, User };
