@@ -58,11 +58,11 @@ export const {
     },
   },
   media: {
-    xs: '(max-width: 0px)',
-    sm: '(mxa-width: 600px)',
-    md: '(mxa-width: 900px)',
-    lg: '(mxa-width: 1200px)',
-    xl: '(mxa-width: 1536px)',
+    xs: '(min-width: 0px)',
+    sm: '(min-width: 600px)',
+    md: '(min-width: 900px)',
+    lg: '(min-width: 1200px)',
+    xl: '(min-width: 1536px)',
   },
   utils: {
     m: (value: number | string) => ({
