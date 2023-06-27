@@ -30,8 +30,8 @@ const Todos: React.FC<TodosProps> = () => {
 
   return (
     <List>
-      {(data as TodoType[]).map((post) => (
-        <Todo key={post.id} todo={post} />
+      {(data as TodoType[]).map((todo) => (
+        <Todo key={todo.id} todo={todo} />
       ))}
     </List>
   );
