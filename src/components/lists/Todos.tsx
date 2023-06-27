@@ -28,13 +28,21 @@ const Todos: React.FC<TodosProps> = () => {
     return <Loading />;
   }
 
+  const todos = sortTodos(data);
+
   return (
     <List>
-      {(data as TodoType[]).map((todo) => (
+      {(todos as TodoType[]).map((todo) => (
         <Todo key={todo.id} todo={todo} />
       ))}
     </List>
   );
+};
+
+const sortTodos = (todos: TodoType[]) => {
+  const completedTodos = todos.filter((todo) => todo.completed);
+  const uncompletedTodos = todos.filter((todo) => !todo.completed);
+  return uncompletedTodos.concat(completedTodos);
 };
 
 export default Todos;
