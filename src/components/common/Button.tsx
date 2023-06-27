@@ -22,6 +22,7 @@ const Container = styled('button', {
   fontWeight: '$3',
   borderRadius: '$medium',
   color: '$primary',
+  cursor: 'pointer',
   variants: {
     type: {
       dangerous: {
