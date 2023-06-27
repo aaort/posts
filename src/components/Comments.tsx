@@ -26,12 +26,14 @@ const Comments: React.FC<CommentsProps> = ({ postId }) => {
   const comments = data as CommentType[];
 
   return (
-    <Container>
-      <p>Comments</p>
-      {comments.map((comment, i) => (
-        <Comment comment={comment} />
-      ))}
-    </Container>
+    <>
+      <Heading>Comments</Heading>
+      <Container>
+        {comments.map((comment, i) => (
+          <Comment comment={comment} />
+        ))}
+      </Container>
+    </>
   );
 };
 
@@ -40,10 +42,13 @@ const Container = styled(Column, {
   padding: '$2',
   borderRadius: '$small',
   backgroundColor: '$gray1',
-  '& > p': {
-    margin: 0,
-    fontSize: '$2',
-  },
+});
+
+const Heading = styled('p', {
+  mt: '$2',
+  mb: '$1',
+  fontSize: 'calc($1 + 0.2rem)',
+  fontWeight: '$3',
 });
 
 export default Comments;
