@@ -1,16 +1,27 @@
 import Post from '@/components/cards/Post';
 import { Column, Error } from '@/components/common';
 import Loading from '@/components/common/Loading';
+import LimitContext from '@/context/LImit';
 import { styled } from '@/theme';
 import type { Post as PostType } from '@/types';
 import { fetcher, getUrlFromEndpoint } from '@/utils';
+import { useContext, useEffect } from 'react';
 import useSWR from 'swr';
 
 type PostsProps = {};
 
 const Posts: React.FC<PostsProps> = () => {
   const url = getUrlFromEndpoint('posts');
-  const { data, error, isLoading } = useSWR('/api/posts', () => fetcher(url));
+  const { data, error, isLoading, mutate } = useSWR('/api/posts', () =>
+    fetcher(url)
+  );
+  const [limit] = useContext(LimitContext)!;
+
+  useEffect(() => {
+    if (limit) {
+      mutate();
+    }
+  }, [limit, mutate]);
 
   if (error) {
     return <Error />;
