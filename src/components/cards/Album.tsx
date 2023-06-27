@@ -1,6 +1,6 @@
 import { Box, Error, Loading } from '@/components/common';
 import type { Album as AlbumType, User } from '@/types';
-import { fetcher } from '@/utils';
+import { fetcher, getUrlFromEndpoint } from '@/utils';
 import useSWR from 'swr';
 
 type AlbumProps = {
@@ -9,9 +9,9 @@ type AlbumProps = {
 
 const Album: React.FC<AlbumProps> = (props) => {
   const ownerId = props.album.userId;
-  const endpoint = `${process.env.REACT_APP_API_BASE_URL}users/${ownerId}`;
+  const url = getUrlFromEndpoint(`users/${ownerId}`);
   const { data, error, isLoading } = useSWR(`/api/users/${ownerId}`, () =>
-    fetcher(endpoint)
+    fetcher(url)
   );
 
   if (error) {

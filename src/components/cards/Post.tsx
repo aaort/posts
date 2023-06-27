@@ -1,6 +1,6 @@
 import { Box, Error, Loading } from '@/components/common';
 import type { Post as PostType, User } from '@/types';
-import { fetcher } from '@/utils';
+import { fetcher, getUrlFromEndpoint } from '@/utils';
 import useSWR from 'swr';
 
 type PostProps = {
@@ -8,9 +8,9 @@ type PostProps = {
 };
 
 const Post: React.FC<PostProps> = ({ post }) => {
-  const endpoint = `${process.env.REACT_APP_API_BASE_URL}users/${post.userId}`;
+  const url = getUrlFromEndpoint(`users/${post.userId}`);
   const { data, error, isLoading } = useSWR(`api/user/${post.userId}`, () =>
-    fetcher(endpoint)
+    fetcher(url)
   );
 
   if (error) {
