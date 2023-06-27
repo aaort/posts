@@ -1,10 +1,11 @@
-import Comments from '@/components/Comments';
 import { Box, Column, Error, Loading } from '@/components/common';
 import { useUrlWithLimit } from '@/hooks';
 import type { Post as PostType, User } from '@/types';
 import { fetcher } from '@/utils';
-import { memo, useState } from 'react';
+import { Suspense, lazy, memo, useState } from 'react';
 import useSWR from 'swr';
+
+const Comments = lazy(() => import('@/components/Comments'));
 
 type PostProps = {
   post: PostType;
@@ -41,7 +42,9 @@ const Post: React.FC<PostProps> = ({ post }) => {
       return (
         <Column>
           <p>{post.body}</p>
-          <Comments postId={post.id} />
+          <Suspense fallback={<Loading />}>
+            <Comments postId={post.id} />
+          </Suspense>
         </Column>
       );
     } else {
