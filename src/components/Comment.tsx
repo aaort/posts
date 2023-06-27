@@ -1,6 +1,6 @@
 import { styled } from '@/theme';
-import { Column, Row } from './common';
 import { Comment as CommentType } from '@/types';
+import { Column, Row } from './common';
 
 type CommentProps = {
   comment: CommentType;
