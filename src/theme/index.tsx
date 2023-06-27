@@ -62,7 +62,7 @@ export const {
     sm: '(mxa-width: 600px)',
     md: '(mxa-width: 900px)',
     lg: '(mxa-width: 1200px)',
-    xg: '(mxa-width: 1536px)',
+    xl: '(mxa-width: 1536px)',
   },
   utils: {
     m: (value: number | string) => ({
