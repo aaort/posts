@@ -1,12 +1,12 @@
 import Post from '@/components/cards/Post';
-import { Column, Error } from '@/components/common';
+import { Error } from '@/components/common';
 import Loading from '@/components/common/Loading';
 import LimitContext from '@/context/LImit';
-import { styled } from '@/theme';
 import type { Post as PostType } from '@/types';
 import { fetcher, getUrlFromEndpoint } from '@/utils';
 import { useContext, useEffect } from 'react';
 import useSWR from 'swr';
+import List from './List';
 
 type PostsProps = {};
 
@@ -32,17 +32,12 @@ const Posts: React.FC<PostsProps> = () => {
   }
 
   return (
-    <Container>
+    <List>
       {(data as PostType[]).map((post) => (
         <Post key={post.id} post={post} />
       ))}
-    </Container>
+    </List>
   );
 };
-
-const Container = styled(Column, {
-  gap: '$3',
-  paddingInline: '$5',
-});
 
 export default Posts;

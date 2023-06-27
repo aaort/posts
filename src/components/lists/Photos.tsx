@@ -1,9 +1,9 @@
 import Album from '@/components/cards/Album';
-import { Column, Error, Loading } from '@/components/common';
-import { styled } from '@/theme';
+import { Error, Loading } from '@/components/common';
 import type { Album as AlbumType } from '@/types';
 import { fetcher, getUrlFromEndpoint } from '@/utils';
 import useSWR from 'swr';
+import List from './List';
 
 type PhotosProps = {};
 
@@ -22,17 +22,12 @@ const Photos: React.FC<PhotosProps> = () => {
   const albums = data as AlbumType[];
 
   return (
-    <Container>
+    <List>
       {albums.map((album, i) => (
         <Album key={i} album={album} />
       ))}
-    </Container>
+    </List>
   );
 };
-
-const Container = styled(Column, {
-  gap: '$3',
-  paddingInline: '$5',
-});
 
 export default Photos;
