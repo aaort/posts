@@ -1,7 +1,7 @@
 import Box from '@/components/common/Box';
 
 const Todo: React.FC<{}> = () => {
-  return <Box>Hello World </Box>;
+  return <Box title={''} subtitle={''} content={''} />;
 };
 
 export default Todo;

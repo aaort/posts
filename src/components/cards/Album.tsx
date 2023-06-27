@@ -1,5 +1,4 @@
 import { Box, Error, Loading } from '@/components/common';
-import { styled } from '@/theme';
 import type { Album as AlbumType, User } from '@/types';
 import { fetcher } from '@/utils';
 import useSWR from 'swr';
@@ -26,14 +25,12 @@ const Album: React.FC<AlbumProps> = (props) => {
   const owner = data as User;
 
   return (
-    <Container>
-      {props.album.title} | {`@${owner.username}`}
-    </Container>
+    <Box
+      title={props.album.title}
+      subtitle={`@${owner.username}`}
+      content={''}
+    />
   );
 };
-
-const Container = styled(Box, {
-  color: '$background',
-});
 
 export default Album;

@@ -1,5 +1,4 @@
-import { Box, Button, Error, Loading, Row } from '@/components/common';
-import { styled } from '@/theme';
+import { Box, Error, Loading } from '@/components/common';
 import type { Post as PostType, User } from '@/types';
 import { fetcher } from '@/utils';
 import useSWR from 'swr';
@@ -30,52 +29,12 @@ const Post: React.FC<PostProps> = ({ post }) => {
   }
 
   return (
-    <Container>
-      <Row css={{ gap: '$1' }}>
-        <Title>{post.title}</Title> | <Username>{`@${user.username}`}</Username>
-      </Row>
-      <p>{post.body}</p>
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '16px',
-          justifyContent: 'flex-end',
-        }}
-      >
-        <Button handleClick={() => {}} title={'Comments'}></Button>
-        <Button handleClick={() => {}} title={'Edit'}></Button>
-        <Button
-          handleClick={() => {}}
-          type="success"
-          title={'Favorite'}
-        ></Button>
-        <Button
-          handleClick={() => {}}
-          type="dangerous"
-          title={'Delete'}
-        ></Button>
-      </div>
-    </Container>
+    <Box
+      title={post.title}
+      subtitle={`@${user.username}`}
+      content={post.body}
+    />
   );
 };
-
-const Container = styled(Box, {
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '$2',
-  color: '$background',
-  width: '100%',
-});
-
-const Title = styled('span', {
-  fontSize: '$2',
-  maxLines: 1,
-});
-
-const Username = styled('span', {
-  fontSize: 'calc($2 - 0.4rem)',
-  color: '$gray4',
-});
 
 export default Post;
