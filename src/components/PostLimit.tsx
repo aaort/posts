@@ -26,7 +26,7 @@ const PostLimit: React.FC<{}> = () => {
       onValueChange={handleLimitChange}
       onOpenChange={handleToggle}
     >
-      <Select.Trigger asChild data-state={isOpen}>
+      <Select.Trigger asChild data-state={isOpen} style={{ cursor: 'pointer' }}>
         <SelTrigger>
           <span>
             <Select.Value />
