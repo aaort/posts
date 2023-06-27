@@ -61,11 +61,17 @@ export const {
   },
   utils: {
     ml: (value: number | string) => ({ marginLeft: value }),
+    mt: (value: number | string) => ({ marginTop: value }),
     mr: (value: number | string) => ({ marginRight: value }),
+    mb: (value: number | string) => ({ marginBottom: value }),
     mx: (value: number | string) => ({ marginInline: value }),
     my: (value: number | string) => ({ marginBlock: value }),
     px: (value: number | string) => ({ paddingInline: value }),
     py: (value: number | string) => ({ paddingBlock: value }),
+    pl: (value: number | string) => ({ paddingLeft: value }),
+    pt: (value: number | string) => ({ paddingTop: value }),
+    pr: (value: number | string) => ({ paddingRight: value }),
+    pb: (value: number | string) => ({ paddingBottom: value }),
   },
 });
 
