@@ -2,7 +2,7 @@ import { styled } from '@/theme';
 
 type ButtonProps = {
   title: string;
-  handleClick: () => void;
+  handleClick?: () => void;
   type?: ButtonType;
 };
 
