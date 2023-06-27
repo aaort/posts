@@ -62,19 +62,19 @@ const SelTrigger = styled('button', {
   background: '$background',
   padding: 'calc($1 + $1)',
   fontSize: '$1',
-  border: '1px solid $card',
+  border: '1px solid $primary',
   borderRadius: '$small',
   outline: 'none',
-  color: '$card',
+  color: '$primary',
 });
 
 const Dropdown = styled('div', {
   position: 'relative',
-  color: '$card',
+  color: '$primary',
   padding: '$1',
   fontSize: '$1',
   background: '$background',
-  border: '1px solid $card',
+  border: '1px solid $primary',
   borderRadius: '$small',
   pointerEvents: 'all',
 });
@@ -92,7 +92,7 @@ const Item = styled(Select.Item, {
   borderRadius: '$small',
   cursor: 'pointer',
   '&:focus': {
-    background: '$card',
+    background: '$primary',
     color: '$background',
   },
 });

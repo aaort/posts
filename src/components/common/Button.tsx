@@ -21,7 +21,7 @@ const Container = styled('button', {
   fontSize: '$1',
   fontWeight: '$3',
   borderRadius: '$medium',
-  color: '$card',
+  color: '$primary',
   variants: {
     type: {
       dangerous: {

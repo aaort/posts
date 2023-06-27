@@ -2,7 +2,7 @@ import { theme } from '@/theme';
 import { TailSpin } from 'react-loader-spinner';
 
 const Loading: React.FC<{}> = () => {
-  return <TailSpin wrapperStyle={styles} color={theme.colors.card.value} />;
+  return <TailSpin wrapperStyle={styles} color={theme.colors.primary.value} />;
 };
 
 const styles = {

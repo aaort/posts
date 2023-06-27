@@ -19,8 +19,7 @@ const Box: React.FC<BoxTypes> = (props) => {
   return (
     <Container>
       <Row css={{ gap: '$1' }}>
-        <Title>{props.title}</Title> |
-        <Username>{`${props.subtitle}`}</Username>
+        <Title>{props.title}</Title> |<Username>{`${props.subtitle}`}</Username>
       </Row>
       <p>{props.content}</p>
       <Actions>
@@ -35,9 +34,8 @@ const Box: React.FC<BoxTypes> = (props) => {
 
 const Container = styled(Column, {
   padding: '$2',
-  backgroundColor: '$card',
+  backgroundColor: '$gray3',
   borderRadius: '$medium',
-  color: '$background',
   gap: '$2',
 });
 
@@ -48,7 +46,6 @@ const Title = styled('span', {
 
 const Username = styled('span', {
   fontSize: 'calc($2 - 0.4rem)',
-  color: '$gray4',
 });
 
 const Actions = styled(Row, {

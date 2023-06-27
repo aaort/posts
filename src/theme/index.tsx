@@ -13,7 +13,7 @@ export const {
   theme: {
     colors: {
       background: '#f8f9fa',
-      card: '#343a40',
+      primary: '#343a40',
       gray1: '#f1f3f5',
       gray2: '#e9ecef',
       gray3: '#dee2e6',
@@ -72,7 +72,7 @@ export const globalStyles = globalCss({
   body: {
     margin: 0,
     fontFamily: 'sans-serif',
-    color: '$card',
+    color: '$primary',
   },
   '*': {
     boxSizing: 'border-box',
