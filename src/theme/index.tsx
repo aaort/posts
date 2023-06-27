@@ -55,6 +55,11 @@ export const {
       medium: '1rem',
       large: '1.5rem',
     },
+    shadows: {
+      small: '0 .2rem .4rem hsl(210, 11%, 80%)',
+      medium: '0 .4rem .8rem hsl(210, 11%, 80%)',
+      large: '0 .8rem 1.6rem hsl(210, 11%, 80%)',
+    },
   },
   media: {
     bp1: '(min-width: 480px)',
