@@ -1,6 +1,8 @@
 import Tabs from '@/components/Tabs';
+import LimitContext from '@/context/LImit';
 import { styled } from '@/theme';
-import { Tab } from '@/types';
+import { Limit, Tab } from '@/types';
+import { getLimit } from '@/utils';
 import { Suspense, lazy, useState } from 'react';
 import { Column } from './common';
 import Loading from './common/Loading';
@@ -11,20 +13,23 @@ const Todos = lazy(() => import('./lists/Todos'));
 
 const TabsContainer: React.FC<{}> = () => {
   const [selectedTab, setSelectedTab] = useState<Tab>('posts');
+  const [limit, setLimit] = useState<Limit>(getLimit());
 
   return (
-    <Container>
-      <Tabs selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
-      <Suspense fallback={<Loading />}>
-        {selectedTab === 'posts' ? (
-          <Posts />
-        ) : selectedTab === 'photos' ? (
-          <Photos />
-        ) : (
-          <Todos />
-        )}
-      </Suspense>
-    </Container>
+    <LimitContext.Provider value={[limit, setLimit]}>
+      <Container>
+        <Tabs selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
+        <Suspense fallback={<Loading />}>
+          {selectedTab === 'posts' ? (
+            <Posts />
+          ) : selectedTab === 'photos' ? (
+            <Photos />
+          ) : (
+            <Todos />
+          )}
+        </Suspense>
+      </Container>
+    </LimitContext.Provider>
   );
 };
 
