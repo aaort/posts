@@ -51,6 +51,7 @@ const Username = styled('span', {
 const Actions = styled(Row, {
   gap: '$2',
   justifyContent: 'flex-end',
+  flexWrap: 'wrap',
 });
 
 export default Box;
