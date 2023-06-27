@@ -1,10 +1,9 @@
-import LimitContext from '@/context/LImit';
 import { Limit } from '@/types';
 import { getLimit } from '@/utils';
 import { ChevronDownIcon } from '@radix-ui/react-icons';
 import * as Select from '@radix-ui/react-select';
 import { styled } from '@stitches/react';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 
 const limits = ['10', '20', '50', '100'] as const;
 const initialLimit = getLimit();
@@ -12,13 +11,13 @@ const initialLimit = getLimit();
 // Component to control the displayed posts count
 const PostLimit: React.FC<{}> = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [, setLimit] = useContext(LimitContext)!;
 
   const handleToggle = (value: boolean) => setIsOpen(!value);
 
+  // Update limit in the local storage and dispatch an event for listeners
   const handleLimitChange = (newLimit: Limit) => {
-    setLimit(newLimit);
-    sessionStorage.setItem('limit', newLimit);
+    window.localStorage.setItem('limit', newLimit);
+    window.dispatchEvent(new Event('storage'));
   };
 
   return (
