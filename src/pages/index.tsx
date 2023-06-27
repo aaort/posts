@@ -1,4 +1,4 @@
-import TabsContainer from '../components/TabsContainer';
+import { TabsContainer } from '@/components/';
 import { styled } from '../theme';
 
 const Home = () => {
