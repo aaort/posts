@@ -27,13 +27,9 @@ export const {
     },
     space: {
       1: '0.5rem',
-      1.5: '1rem',
       2: '2rem',
-      2.5: '3rem',
       3: '4rem',
-      3.5: '6rem',
       4: '8rem',
-      4.5: '12rem',
       5: '16rem',
     },
     fontSizes: {
