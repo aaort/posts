@@ -1,6 +1,7 @@
-import Box from './common/Box';
+import Comments from './Comments';
 import Tab from './Tab';
 import Tabs from './Tabs';
 import TabsContainer from './TabsContainer';
+import Box from './common/Box';
 
-export { Box, Tab, Tabs, TabsContainer };
+export { Box, Comments, Tab, Tabs, TabsContainer };
