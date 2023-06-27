@@ -22,8 +22,8 @@ export const {
       gray6: '#868e96',
       gray7: '#495057',
       gray9: '#212529',
-      error: '#fa5252',
-      success: '#40c057',
+      error: '#e03131',
+      success: '#2f9e44',
     },
     space: {
       1: '0.5rem',
