@@ -13,7 +13,7 @@ const TabsContainer: React.FC<{}> = () => {
   const [selectedTab, setSelectedTab] = useState<Tab>('posts');
 
   return (
-    <Container>
+    <Column>
       <Tabs selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
       <Suspense fallback={<Loading />}>
         {selectedTab === 'posts' ? (
@@ -24,13 +24,8 @@ const TabsContainer: React.FC<{}> = () => {
           <Todos />
         )}
       </Suspense>
-    </Container>
+    </Column>
   );
 };
-
-const Container = styled(Column, {
-  alignItems: 'center',
-  gap: '$2',
-});
 
 export default TabsContainer;
