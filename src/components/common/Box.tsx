@@ -41,6 +41,15 @@ const Box: React.FC<BoxTypes> = (props) => {
 };
 
 const Container = styled(Column, {
+  '@xs': {
+    width: '40rem',
+  },
+  '@sm': {
+    width: '45rem',
+  },
+  '@lg': {
+    width: '55rem',
+  },
   padding: '$2',
   backgroundColor: '$gray3',
   borderRadius: '$medium',
