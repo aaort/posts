@@ -20,7 +20,7 @@ const Box: React.FC<BoxTypes> = (props) => {
     <Container>
       <Row css={{ gap: '$1' }}>
         <Title>{props.title}</Title> |
-        <Username>{`@${props.subtitle}`}</Username>
+        <Username>{`${props.subtitle}`}</Username>
       </Row>
       <p>{props.content}</p>
       <Actions>
