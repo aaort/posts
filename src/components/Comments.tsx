@@ -30,7 +30,7 @@ const Comments: React.FC<CommentsProps> = ({ postId }) => {
       <Heading>Comments</Heading>
       <Container>
         {comments.map((comment, i) => (
-          <Comment comment={comment} />
+          <Comment key={i} comment={comment} />
         ))}
       </Container>
     </>
