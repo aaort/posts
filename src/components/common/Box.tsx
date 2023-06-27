@@ -8,10 +8,10 @@ type BoxTypes = {
   subtitle: string;
   content: string;
   actions?: {
-    onComments: () => void;
-    onEdit: () => void;
-    onFavorite: () => void;
-    onDelete: () => void;
+    onComments?: () => void;
+    onEdit?: () => void;
+    onFavorite?: () => void;
+    onDelete?: () => void;
   };
 };
 
