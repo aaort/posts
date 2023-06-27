@@ -23,8 +23,8 @@ const Photos: React.FC<PhotosProps> = () => {
 
   return (
     <Container>
-      {albums.map((album) => (
-        <Album album={album} />
+      {albums.map((album, i) => (
+        <Album key={i} album={album} />
       ))}
     </Container>
   );
