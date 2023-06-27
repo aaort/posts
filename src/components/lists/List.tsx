@@ -6,8 +6,9 @@ const List: React.FC<React.PropsWithChildren & {}> = ({ children }) => {
 };
 
 const Container = styled(Column, {
+  maxWidth: '70%',
   gap: '$3',
-  px: '$5',
+  mx: 'auto',
   mb: '$2',
 });
 
