@@ -1,4 +1,5 @@
 import { styled } from '@/theme';
+import { CSS } from '@stitches/react';
 import Button from './Button';
 import Column from './Column';
 import Row from './Row';
@@ -13,11 +14,12 @@ type BoxTypes = {
     onFavorite?: () => void;
     onDelete?: () => void;
   };
+  css?: CSS;
 };
 
 const Box: React.FC<BoxTypes> = (props) => {
   return (
-    <Container>
+    <Container css={props.css}>
       <Row css={{ gap: '$1' }}>
         <Title>{props.title}</Title> |<Username>{`${props.subtitle}`}</Username>
       </Row>
