@@ -2,7 +2,7 @@ import Todo from '@/components/cards/Todo';
 import { Error, Loading } from '@/components/common';
 import useUrlWithLimit from '@/hooks/useUrlWithLimit';
 import type { Todo as TodoType } from '@/types';
-import { fetcher } from '@/utils';
+import { fetcher, getCompletedTodos } from '@/utils';
 import { useEffect } from 'react';
 import useSWR from 'swr';
 import List from './List';
@@ -39,10 +39,22 @@ const Todos: React.FC<TodosProps> = () => {
   );
 };
 
+// Sorts todo, uncompleted first
 const sortTodos = (todos: TodoType[]) => {
-  const completedTodos = todos.filter((todo) => todo.completed);
-  const uncompletedTodos = todos.filter((todo) => !todo.completed);
+  const completedTodos = todos
+    .filter(isTodoCompleted)
+    .map((todo) => ({ ...todo, completed: true }));
+
+  const uncompletedTodos = todos.filter((todo) => !isTodoCompleted(todo));
+
   return uncompletedTodos.concat(completedTodos);
+};
+
+// Checks if todo is completed locally or from API
+const isTodoCompleted = (todo: TodoType) => {
+  const localCompletedTodos = getCompletedTodos();
+
+  return todo.completed || localCompletedTodos.includes(`${todo.id}`);
 };
 
 export default Todos;
