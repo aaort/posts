@@ -6,7 +6,7 @@ import Row from './Row';
 type BoxTypes = {
   title: string;
   subtitle: string;
-  content: string;
+  content: React.ReactNode;
   actions?: {
     onComments?: () => void;
     onEdit?: () => void;
@@ -21,9 +21,17 @@ const Box: React.FC<BoxTypes> = (props) => {
       <Row css={{ gap: '$1' }}>
         <Title>{props.title}</Title> |<Username>{`${props.subtitle}`}</Username>
       </Row>
-      <p>{props.content}</p>
+      {typeof props.content === 'string' ? (
+        <p>{props.content}</p>
+      ) : (
+        props.content
+      )}
       <Actions>
-        <Button handleClick={() => {}} type="comments" title={'Comments'} />
+        <Button
+          handleClick={props.actions?.onComments}
+          type="comments"
+          title={'Comments'}
+        />
         <Button handleClick={() => {}} type="edit" title={'Edit'} />
         <Button handleClick={() => {}} type="favorite" title={'Favorite'} />
         <Button handleClick={() => {}} type="delete" title={'Delete'} />
@@ -46,6 +54,7 @@ const Title = styled('span', {
 
 const Username = styled('span', {
   fontSize: 'calc($2 - 0.4rem)',
+  color: '$gray7',
 });
 
 const Actions = styled(Row, {
