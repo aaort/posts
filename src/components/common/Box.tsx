@@ -24,18 +24,10 @@ const Box: React.FC<BoxTypes> = (props) => {
       </Row>
       <p>{props.content}</p>
       <Actions>
-        <Button handleClick={() => {}} title={'Comments'}></Button>
-        <Button handleClick={() => {}} title={'Edit'}></Button>
-        <Button
-          handleClick={() => {}}
-          type="success"
-          title={'Favorite'}
-        ></Button>
-        <Button
-          handleClick={() => {}}
-          type="dangerous"
-          title={'Delete'}
-        ></Button>
+        <Button handleClick={() => {}} title={'Comments'} />
+        <Button handleClick={() => {}} title={'Edit'} />
+        <Button handleClick={() => {}} type="success" title={'Favorite'} />
+        <Button handleClick={() => {}} type="dangerous" title={'Delete'} />
       </Actions>
     </Container>
   );
