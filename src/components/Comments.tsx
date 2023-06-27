@@ -10,6 +10,7 @@ type CommentsProps = {
   postId: Post['id'];
 };
 
+// Fetch and display a list of comments for individual post
 const Comments: React.FC<CommentsProps> = ({ postId }) => {
   const url = useUrlWithLimit(`posts/${postId}/comments`);
   const { data, error, isLoading } = useSWR(url, () => fetcher(url));
@@ -26,6 +27,7 @@ const Comments: React.FC<CommentsProps> = ({ postId }) => {
 
   return (
     <Container>
+      <p>Comments</p>
       {comments.map((comment, i) => (
         <Comment comment={comment} />
       ))}
@@ -38,6 +40,10 @@ const Container = styled(Column, {
   padding: '$2',
   borderRadius: '$small',
   backgroundColor: '$gray1',
+  '& > p': {
+    margin: 0,
+    fontSize: '$2',
+  },
 });
 
 export default Comments;
