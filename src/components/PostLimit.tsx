@@ -29,7 +29,7 @@ const PostLimit: React.FC<{}> = () => {
       <Select.Trigger asChild data-state={isOpen}>
         <SelTrigger>
           <span>
-            <Select.Value /> Posts
+            <Select.Value />
           </span>
           <Select.Icon asChild>
             <ChevronDownIcon />
@@ -42,7 +42,7 @@ const PostLimit: React.FC<{}> = () => {
             {limits.map((item, i) => {
               return (
                 <Item key={i} value={item}>
-                  <Select.ItemText> {item} </Select.ItemText>
+                  <Select.ItemText> {`${item} Posts`} </Select.ItemText>
                 </Item>
               );
             })}
