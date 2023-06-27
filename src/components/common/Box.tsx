@@ -1,5 +1,6 @@
 import { styled } from '@/theme';
 import Button from './Button';
+import Column from './Column';
 import Row from './Row';
 
 type BoxTypes = {
@@ -18,18 +19,11 @@ const Box: React.FC<BoxTypes> = (props) => {
   return (
     <Container>
       <Row css={{ gap: '$1' }}>
-        <Title>{props.title}</Title> |{' '}
+        <Title>{props.title}</Title> |
         <Username>{`@${props.subtitle}`}</Username>
       </Row>
       <p>{props.content}</p>
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '16px',
-          justifyContent: 'flex-end',
-        }}
-      >
+      <Actions>
         <Button handleClick={() => {}} title={'Comments'}></Button>
         <Button handleClick={() => {}} title={'Edit'}></Button>
         <Button
@@ -42,16 +36,17 @@ const Box: React.FC<BoxTypes> = (props) => {
           type="dangerous"
           title={'Delete'}
         ></Button>
-      </div>
+      </Actions>
     </Container>
   );
 };
 
-const Container = styled('div', {
+const Container = styled(Column, {
   padding: '$2',
   backgroundColor: '$card',
   borderRadius: '$medium',
   color: '$background',
+  gap: '$2',
 });
 
 const Title = styled('span', {
@@ -62,6 +57,11 @@ const Title = styled('span', {
 const Username = styled('span', {
   fontSize: 'calc($2 - 0.4rem)',
   color: '$gray4',
+});
+
+const Actions = styled(Row, {
+  gap: '$2',
+  justifyContent: 'flex-end',
 });
 
 export default Box;
