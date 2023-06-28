@@ -1,3 +1,4 @@
+import useStorageChangeEvent from './useStorageChangeEvent';
 import useUrl from './useUrl';
 
-export { useUrl };
+export { useStorageChangeEvent, useUrl };
