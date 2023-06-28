@@ -116,20 +116,20 @@ const Post: React.FC<PostProps> = (props) => {
       )}
       <Actions>
         <Button
-          handleClick={handleToggleComments}
+          onClick={handleToggleComments}
           type={'primary'}
           title={!showComments ? 'Show Comments' : 'Hide Comments'}
         />
         {!isEditing ? (
-          <Button handleClick={toggleEditing} type={'primary'} title={'Edit'} />
+          <Button onClick={toggleEditing} type={'primary'} title={'Edit'} />
         ) : (
           <>
             <Button
-              handleClick={handleDiscard}
+              onClick={handleDiscard}
               type={'dangerous'}
               title={'Discard'}
             />
-            <Button handleClick={handleSave} type={'success'} title={'Save'} />
+            <Button onClick={handleSave} type={'success'} title={'Save'} />
           </>
         )}
       </Actions>

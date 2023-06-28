@@ -90,7 +90,7 @@ const Album: React.FC<AlbumProps> = (props) => {
         <Button
           title={!isEditing ? 'Edit' : 'Save'}
           type={!isEditing ? 'primary' : 'success'}
-          handleClick={!isEditing ? toggleIsEditing : handleSave}
+          onClick={!isEditing ? toggleIsEditing : handleSave}
         />
         {!isEditing ? (
           <>
@@ -98,11 +98,7 @@ const Album: React.FC<AlbumProps> = (props) => {
             <Button title="Delete" type="dangerous" />
           </>
         ) : (
-          <Button
-            title="Discard"
-            type="dangerous"
-            handleClick={handleDiscard}
-          />
+          <Button title="Discard" type="dangerous" onClick={handleDiscard} />
         )}
       </Actions>
     </Box>

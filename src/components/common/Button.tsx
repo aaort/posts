@@ -4,7 +4,7 @@ import Tooltip from './Tooltip';
 
 type ButtonProps = {
   title: string;
-  handleClick?: () => void;
+  onClick?: () => void;
   type?: ButtonType;
   tooltip?: string;
 };
@@ -13,7 +13,7 @@ type ButtonProps = {
 // for Post, Album and Todo components
 const Button: React.FC<ButtonProps> = (props) => {
   const Content = (
-    <Container type={props.type} onClick={props.handleClick}>
+    <Container type={props.type} onClick={props.onClick}>
       {props.title}
     </Container>
   );
