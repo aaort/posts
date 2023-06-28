@@ -79,7 +79,7 @@ const Album: React.FC<AlbumProps> = (props) => {
     <Box>
       <Row css={{ gap: '$1', position: 'relative' }}>
         {!isEditing ? (
-          <Title>{album.title} </Title>
+          <Title>{album.title}</Title>
         ) : (
           <Input value={album.title} name="title" onChange={handleDataChange} />
         )}
