@@ -53,7 +53,7 @@ export const {
     },
     shadows: {
       small: '.2rem .2rem .6rem hsl(210, 11%, 90%)',
-      medium: '.2rem .6rem 1.2rem hsl(210, 11%, 90%)',
+      medium: '.2rem .6rem 1.2rem hsl(210, 11%, 80%)',
       large: '.2rem 1.2rem 2rem hsl(210, 11%, 90%)',
     },
   },
