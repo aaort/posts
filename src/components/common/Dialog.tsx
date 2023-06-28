@@ -24,7 +24,10 @@ const Dialog: React.FC<DialogProps> = (props) => {
           <DialogTitle>{props.title}</DialogTitle>
           <DialogDescription>{props.description}</DialogDescription>
           <RadixDialog.Close asChild onClick={props.onClose}>
-            <IconButton aria-label="Close">
+            <IconButton
+              css={{ position: 'absolute', top: 10, right: 10 }}
+              aria-label="Close"
+            >
               <Cross2Icon width={'90%'} height={'90%'} />
             </IconButton>
           </RadixDialog.Close>
