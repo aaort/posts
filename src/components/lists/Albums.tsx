@@ -75,6 +75,7 @@ const Albums: React.FC<AlbumsProps> = () => {
                 onChange={() => handleAlbumSelectToggle(album.id)}
                 tooltip={!isSelected ? 'Select' : 'Unselect'}
                 size="medium"
+                css={{ border: '1px solid $primary' }}
               />
             </AlbumRow>
           );

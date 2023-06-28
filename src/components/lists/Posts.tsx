@@ -77,6 +77,7 @@ const Posts: React.FC<PostsProps> = () => {
                   onChange={() => handlePostSelectToggle(post.id)}
                   tooltip={!isSelected ? 'Select' : 'Unselect'}
                   size="medium"
+                  css={{ border: '1px solid $primary' }}
                 />
               </PostRow>
             );
