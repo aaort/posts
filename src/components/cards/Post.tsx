@@ -4,12 +4,14 @@ import {
   Column,
   Dialog,
   Error,
+  IconButton,
   Loading,
   Row,
 } from '@/components/common';
 import { useUrl } from '@/hooks';
 import type { Post as PostType, User } from '@/types';
-import { fetcher, getDeletedPosts } from '@/utils';
+import { fetcher, getDeletedPosts, getFavoritePosts } from '@/utils';
+import { HeartIcon } from '@radix-ui/react-icons';
 import { Suspense, lazy, useEffect, useState } from 'react';
 import useSWR from 'swr';
 import Input from '../Input';
@@ -89,7 +91,7 @@ const Post: React.FC<PostProps> = (props) => {
 
   return (
     <Box>
-      <Row css={{ gap: '$1' }}>
+      <Row css={{ gap: '$1', position: 'relative' }}>
         {isEditing ? (
           <Input value={post.title} name="title" onChange={handleDataChange} />
         ) : (
@@ -105,6 +107,7 @@ const Post: React.FC<PostProps> = (props) => {
         ) : (
           <Subtitle>{`@${post.subtitle}`}</Subtitle>
         )}
+        <Favorite postId={props.post.id} />
       </Row>
       {showComments ? (
         <Column>
@@ -185,6 +188,38 @@ const Delete: React.FC<DeleteProps> = ({ postId }) => {
         onOk={handleDelete}
       />
     </>
+  );
+};
+
+type FavoriteProps = {
+  postId: number;
+};
+
+const Favorite: React.FC<FavoriteProps> = ({ postId }) => {
+  const handleClick = () => {
+    const favoritePosts = getFavoritePosts();
+
+    if (favoritePosts.includes(postId)) {
+      localStorage.setItem(
+        'favoritePosts',
+        JSON.stringify(favoritePosts.filter((id) => id !== postId))
+      );
+    } else {
+      localStorage.setItem(
+        'favoritePosts',
+        JSON.stringify([...favoritePosts, postId])
+      );
+    }
+  };
+
+  return (
+    <IconButton
+      css={{ position: 'absolute', top: 0, right: 0 }}
+      aria-label="favorite"
+      onClick={handleClick}
+    >
+      <HeartIcon width={'90%'} height={'90%'} />
+    </IconButton>
   );
 };
 
