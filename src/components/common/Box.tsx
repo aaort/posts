@@ -1,9 +1,7 @@
+import { Button, Column, Row } from '@/components/common';
 import { styled } from '@/theme';
-import { ButtonType } from '@/types';
-import { CSS } from '@stitches/react';
-import Button from './Button';
-import Column from './Column';
-import Row from './Row';
+import type { ButtonType } from '@/types';
+import type { CSS } from '@stitches/react';
 
 type BoxTypes = {
   title: string;
