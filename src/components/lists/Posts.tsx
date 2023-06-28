@@ -116,8 +116,7 @@ const Posts: React.FC<PostsProps> = () => {
 const getFilteredPosts = (posts: PostType[]) => {
   const deletedPosts = getDeletedPosts();
 
-  const filtered = posts.filter((post) => !deletedPosts.includes(post.id));
-  return filtered;
+  return posts.filter((post) => !deletedPosts.includes(post.id));
 };
 
 const FloatingButtons = styled(Row, {
