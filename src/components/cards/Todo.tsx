@@ -36,9 +36,11 @@ const Todo: React.FC<TodoProps> = ({ todo: initialTodo }) => {
     <Container>
       <Title css={taskCss}>{todo.title + ' ' + todo.id}</Title>
       <Row css={{ gap: '$2' }}>
-        <Tooltip text={!todo.completed ? 'Mark as done' : 'Unmark'}>
-          <Checkbox checked={todo.completed} onChange={handleComplete} />
-        </Tooltip>
+        <Checkbox
+          checked={todo.completed}
+          onChange={handleComplete}
+          tooltip={!todo.completed ? 'Mark As Complete' : 'Unmark'}
+        />
         <Tooltip text={'Edit'}>
           <EditButton>
             <Pencil1Icon width={20} height={20} />
