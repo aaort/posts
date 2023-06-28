@@ -4,6 +4,7 @@ import { Cross2Icon } from '@radix-ui/react-icons';
 import { keyframes } from '@stitches/react';
 import React from 'react';
 import Button from './Button';
+import IconButton from './IconButton';
 import Row from './Row';
 
 type DialogProps = {
@@ -79,24 +80,6 @@ const DialogDescription = styled(RadixDialog.Description, {
   color: '$primary',
   fontSize: '$1',
   lineHeight: 1.5,
-});
-
-const IconButton = styled('button', {
-  all: 'unset',
-  fontFamily: 'inherit',
-  borderRadius: '100%',
-  height: 30,
-  width: 30,
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  color: '$primary',
-  position: 'absolute',
-  top: 10,
-  right: 10,
-  cursor: 'pointer',
-
-  '&:hover': { backgroundColor: '$gray3' },
 });
 
 const Actions = styled(Row, {
