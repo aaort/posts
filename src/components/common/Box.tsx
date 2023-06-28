@@ -24,7 +24,7 @@ const Box: React.FC<BoxTypes> = (props) => {
   return (
     <Container css={props.css}>
       <Row css={{ gap: '$1' }}>
-        <Title>{props.title}</Title> |<Username>{`${props.subtitle}`}</Username>
+        <Title>{props.title}</Title> |<Subtitle>{`${props.subtitle}`}</Subtitle>
       </Row>
       {typeof props.content === 'string' ? (
         <p>{props.content}</p>
@@ -75,7 +75,7 @@ const Title = styled('span', {
   maxLines: 1,
 });
 
-const Username = styled('span', {
+const Subtitle = styled('span', {
   fontSize: 'calc($2 - 0.4rem)',
   color: '$gray7',
 });
