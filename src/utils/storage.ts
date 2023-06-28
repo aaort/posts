@@ -8,7 +8,7 @@ export const getDeletedPosts = () => {
 };
 
 // Delete posts by given an array of post ids
-export const deletePosts = (postIds: number[]) => {
+export const toggleDeletedPosts = (postIds: number[]) => {
   const deletedTodos = getDeletedPosts();
 
   let newDeletedPosts = deletedTodos;

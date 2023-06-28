@@ -12,7 +12,7 @@ import { useUrl } from '@/hooks';
 import { styled, theme } from '@/theme';
 import type { Post as PostType, User } from '@/types';
 import {
-  deletePosts,
+  toggleDeletedPosts,
   fetcher,
   isFavoritePost,
   toggleFavoritePosts,
@@ -159,11 +159,11 @@ const Post: React.FC<PostProps> = (props) => {
   );
 };
 
-type DeleteProps = {
+type IconActionButtonProps = {
   postId: number;
 };
 
-const Delete: React.FC<DeleteProps> = ({ postId }) => {
+const Delete: React.FC<IconActionButtonProps> = ({ postId }) => {
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
 
   const url = useUrl(`posts/${postId}`, false);
@@ -173,7 +173,7 @@ const Delete: React.FC<DeleteProps> = ({ postId }) => {
   const handleDelete = async () => {
     await fetch(url, { method: 'DELETE' });
 
-    deletePosts([postId]);
+    toggleDeletedPosts([postId]);
 
     handleClose();
   };
@@ -194,9 +194,7 @@ const Delete: React.FC<DeleteProps> = ({ postId }) => {
   );
 };
 
-type FavoriteProps = DeleteProps;
-
-const Favorite: React.FC<FavoriteProps> = ({ postId }) => {
+const Favorite: React.FC<IconActionButtonProps> = ({ postId }) => {
   const handleClick = () => {
     toggleFavoritePosts([postId]);
   };
@@ -218,7 +216,7 @@ const Favorite: React.FC<FavoriteProps> = ({ postId }) => {
   );
 };
 
-const IconButtonBox = styled(IconButton, {
+export const IconButtonBox = styled(IconButton, {
   p: '$1',
   '&[aria-label="delete-icon-button"]:hover': {
     backgroundColor: '$error',

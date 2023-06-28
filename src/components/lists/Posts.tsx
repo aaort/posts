@@ -6,7 +6,7 @@ import { useUrl } from '@/hooks';
 import { styled } from '@/theme';
 import type { Post as PostType } from '@/types';
 import {
-  deletePosts,
+  toggleDeletedPosts,
   fetcher,
   getDeletedPosts,
   toggleFavoritePosts,
@@ -71,7 +71,7 @@ const Posts: React.FC<PostsProps> = () => {
   };
 
   const handleDeleteClick = () => {
-    deletePosts(selectedTodoIds);
+    toggleDeletedPosts(selectedTodoIds);
     setSelectedTodoIds([]);
   };
 
