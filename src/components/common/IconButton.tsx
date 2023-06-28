@@ -3,7 +3,7 @@ import { styled } from '@/theme';
 const IconButton = styled('button', {
   all: 'unset',
   fontFamily: 'inherit',
-  borderRadius: '100%',
+  borderRadius: '$small',
   height: 30,
   width: 30,
   display: 'inline-flex',
