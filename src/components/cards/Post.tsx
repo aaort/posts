@@ -9,9 +9,11 @@ import {
   Row,
 } from '@/components/common';
 import { useUrl } from '@/hooks';
+import { theme } from '@/theme';
 import type { Post as PostType, User } from '@/types';
 import { fetcher, getDeletedPosts, getFavoritePosts } from '@/utils';
-import { HeartIcon } from '@radix-ui/react-icons';
+import { isFavoritePost } from '@/utils/storage';
+import { HeartFilledIcon, HeartIcon } from '@radix-ui/react-icons';
 import { Suspense, lazy, useEffect, useState } from 'react';
 import useSWR from 'swr';
 import Input from '../Input';
@@ -210,7 +212,19 @@ const Favorite: React.FC<FavoriteProps> = ({ postId }) => {
         JSON.stringify([...favoritePosts, postId])
       );
     }
+
+    dispatchEvent(new Event('storage'));
   };
+
+  const icon = !isFavoritePost(postId) ? (
+    <HeartIcon width={'90%'} height={'90%'} />
+  ) : (
+    <HeartFilledIcon
+      width={'90%'}
+      height={'90%'}
+      color={theme.colors.error.value}
+    />
+  );
 
   return (
     <IconButton
@@ -218,7 +232,7 @@ const Favorite: React.FC<FavoriteProps> = ({ postId }) => {
       aria-label="favorite"
       onClick={handleClick}
     >
-      <HeartIcon width={'90%'} height={'90%'} />
+      {icon}
     </IconButton>
   );
 };
