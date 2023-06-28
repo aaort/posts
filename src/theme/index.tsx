@@ -52,9 +52,9 @@ export const {
       large: '1.5rem',
     },
     shadows: {
-      small: '0 .2rem .4rem hsl(210, 11%, 80%)',
-      medium: '0 .4rem .8rem hsl(210, 11%, 80%)',
-      large: '0 .8rem 1.6rem hsl(210, 11%, 80%)',
+      small: '.2rem .2rem .6rem hsl(210, 11%, 90%)',
+      medium: '.2rem .6rem 1.2rem hsl(210, 11%, 90%)',
+      large: '.2rem 1.2rem 2rem hsl(210, 11%, 90%)',
     },
   },
   media: {
