@@ -6,7 +6,7 @@ import { useUrl } from '@/hooks';
 import { styled } from '@/theme';
 import type { Post as PostType } from '@/types';
 import { fetcher, getDeletedPosts, toggleFavoritePosts } from '@/utils';
-import { HeartIcon } from '@radix-ui/react-icons';
+import { HeartIcon, TrashIcon } from '@radix-ui/react-icons';
 import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 import List from './List';
@@ -84,9 +84,14 @@ const Posts: React.FC<PostsProps> = () => {
         })}
       </List>
       {selectedTodoIds.length && (
-        <FloatingButton onClick={handleFavoriteClick}>
-          <HeartIcon />
-        </FloatingButton>
+        <FloatingButtons>
+          <FloatingButton onClick={handleFavoriteClick}>
+            <HeartIcon />
+          </FloatingButton>
+          <FloatingButton onClick={handleFavoriteClick} aria-label="delete">
+            <TrashIcon />
+          </FloatingButton>
+        </FloatingButtons>
       )}
     </>
   );
@@ -99,10 +104,14 @@ const getFilteredPosts = (posts: PostType[]) => {
   return filtered;
 };
 
-const FloatingButton = styled(IconButton, {
+const FloatingButtons = styled(Row, {
   position: 'fixed',
   bottom: 20,
   right: 20,
+  gap: '$2',
+});
+
+const FloatingButton = styled(IconButton, {
   width: '4rem',
   height: '4rem',
   display: 'flex',
@@ -112,6 +121,10 @@ const FloatingButton = styled(IconButton, {
   '& svg': {
     width: '50%',
     height: '50%',
+  },
+  '&[aria-label="delete"]': {
+    backgroundColor: '$error',
+    color: '$background',
   },
 });
 
