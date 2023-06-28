@@ -1,4 +1,5 @@
 import { styled } from '@/theme';
+import { ButtonType } from '@/types';
 import { CSS } from '@stitches/react';
 import Button from './Button';
 import Column from './Column';
@@ -8,12 +9,7 @@ type BoxTypes = {
   title: string;
   subtitle: string;
   content: React.ReactNode;
-  actions?: {
-    onComments?: () => void;
-    onEdit?: () => void;
-    onFavorite?: () => void;
-    onDelete?: () => void;
-  };
+  actions?: { title: string; onClick?: () => void; type: ButtonType }[];
   css?: CSS;
 };
 
@@ -29,14 +25,13 @@ const Box: React.FC<BoxTypes> = (props) => {
         props.content
       )}
       <Actions>
-        <Button
-          handleClick={props.actions?.onComments}
-          type="comments"
-          title={'Comments'}
-        />
-        <Button handleClick={() => {}} type="edit" title={'Edit'} />
-        <Button handleClick={() => {}} type="favorite" title={'Favorite'} />
-        <Button handleClick={() => {}} type="delete" title={'Delete'} />
+        {props.actions?.map((action) => (
+          <Button
+            handleClick={action.onClick}
+            type={action.type}
+            title={action.title}
+          />
+        ))}
       </Actions>
     </Container>
   );

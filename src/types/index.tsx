@@ -34,4 +34,6 @@ type Tab = 'posts' | 'photos' | 'todos';
 
 type Limit = '10' | '20' | '50' | '100';
 
-export type { Album, Comment, Limit, Post, Tab, Todo, User };
+type ButtonType = 'primary' | 'success' | 'dangerous';
+
+export type { Album, ButtonType, Comment, Limit, Post, Tab, Todo, User };

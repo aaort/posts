@@ -1,12 +1,11 @@
 import { styled } from '@/theme';
+import { ButtonType } from '@/types';
 
 type ButtonProps = {
   title: string;
   handleClick?: () => void;
   type?: ButtonType;
 };
-
-type ButtonType = 'comments' | 'edit' | 'favorite' | 'delete';
 
 // This component is specifically designed to be used as action buttons
 // for Post, Album and Todo components
@@ -33,20 +32,16 @@ const Container = styled('button', {
   },
   variants: {
     type: {
-      comments: {
+      primary: {
         backgroundColor: '$gray6',
         color: '$background',
       },
-      edit: {
-        backgroundColor: '$gray6',
-        color: '$background',
-      },
-      favorite: {
-        backgroundColor: '$success',
-        color: '$background',
-      },
-      delete: {
+      success: {
         backgroundColor: '$error',
+        color: '$background',
+      },
+      dangerous: {
+        backgroundColor: '$success',
         color: '$background',
       },
     },
