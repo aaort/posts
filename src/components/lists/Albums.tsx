@@ -25,12 +25,13 @@ const Albums: React.FC<AlbumsProps> = () => {
   );
 
   const [selectedAlbumIds, setSelectedTodoIds] = useState<number[]>([]);
-  const [albums, setAlbums] = useState<AlbumType[]>([]);
+
+  const [, setFlag] = useState<boolean>(false);
 
   useEffect(() => {
     const handleStorageEvent = () => {
       if (data) {
-        setAlbums(getFilteredAlbums(data));
+        setFlag((flag) => !flag);
       }
     };
 
@@ -42,7 +43,7 @@ const Albums: React.FC<AlbumsProps> = () => {
   }, [data]);
 
   useEffect(() => {
-    mutate('/api/albums', true);
+    mutate();
   }, [url, mutate]);
 
   if (error) {
@@ -53,9 +54,7 @@ const Albums: React.FC<AlbumsProps> = () => {
     return <Loading />;
   }
 
-  if (!albums.length) {
-    setAlbums(getFilteredAlbums(data));
-  }
+  const albums = getFilteredAlbums(data);
 
   const handleAlbumSelectToggle = (id: number) => {
     if (selectedAlbumIds.includes(id)) {
