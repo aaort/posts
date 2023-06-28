@@ -115,13 +115,15 @@ const Post: React.FC<PostProps> = (props) => {
         <p> {post.content} </p>
       )}
       <Actions>
-        <Button
-          onClick={handleToggleComments}
-          type={'primary'}
-          title={!showComments ? 'Show Comments' : 'Hide Comments'}
-        />
         {!isEditing ? (
-          <Button onClick={toggleEditing} type={'primary'} title={'Edit'} />
+          <>
+            <Button
+              onClick={handleToggleComments}
+              type={'primary'}
+              title={!showComments ? 'Show Comments' : 'Hide Comments'}
+            />
+            <Button onClick={toggleEditing} type={'primary'} title={'Edit'} />
+          </>
         ) : (
           <>
             <Button
