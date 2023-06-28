@@ -42,10 +42,10 @@ const Posts: React.FC<PostsProps> = () => {
 
   return (
     <List>
-      {(data as PostType[]).map((post) => {
+      {(data as PostType[]).map((post, i) => {
         const isSelected = selectedTodoIds.includes(post.id);
         return (
-          <PostRow key={post.id}>
+          <PostRow key={i}>
             <Post post={post} />
             <Checkbox
               checked={isSelected}
