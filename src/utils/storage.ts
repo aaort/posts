@@ -128,5 +128,23 @@ export const toggleFavoriteAlbums = (albumIds: number[]) => {
 export const getCompletedTodos = () => {
   const unparsedCompletedTodos = localStorage.getItem('completedTodos') ?? '[]';
 
-  return JSON.parse(unparsedCompletedTodos) as string[];
+  return JSON.parse(unparsedCompletedTodos) as number[];
+};
+
+// Toggle completed todos
+export const toggleCompletedTodos = (todoIds: number[]) => {
+  const completedTodos = getCompletedTodos();
+
+  let newCompletedTodos = completedTodos;
+  for (let i = 0; i < todoIds.length; i++) {
+    const todoId = todoIds[i];
+    if (completedTodos.includes(todoId)) {
+      newCompletedTodos = newCompletedTodos.filter((id) => id !== todoId);
+    } else {
+      newCompletedTodos.push(todoId);
+    }
+  }
+
+  localStorage.setItem('completedTodos', JSON.stringify(completedTodos));
+  window.dispatchEvent(new Event('storage'));
 };
