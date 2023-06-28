@@ -1,3 +1,3 @@
-import useUrlWithLimit from './useUrlWithLimit';
+import useUrl from './useUrl';
 
-export { useUrlWithLimit };
+export { useUrl };

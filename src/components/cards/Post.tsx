@@ -1,5 +1,4 @@
-import { Box, Button, Column, Error, Loading, Row } from '@/components/common';
-import { useUrlWithLimit } from '@/hooks';
+import { useUrl } from '@/hooks';
 import type { Post as PostType, User } from '@/types';
 import { fetcher } from '@/utils';
 import { Suspense, lazy, useEffect, useState } from 'react';
@@ -20,8 +19,8 @@ type Data = {
 };
 
 const Post: React.FC<PostProps> = (props) => {
-  const url = useUrlWithLimit(`users/${props.post.userId}`);
-  const { data, error, isLoading } = useSWR(`api//${props.post.userId}`, () =>
+  const url = useUrl(`users/${props.post.userId}`);
+  const { data, error, isLoading } = useSWR(`api/${props.post.userId}`, () =>
     fetcher(url)
   );
   // Post owner data

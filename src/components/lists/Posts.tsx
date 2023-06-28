@@ -2,7 +2,7 @@ import { Checkbox } from '@/components';
 import Post from '@/components/cards/Post';
 import { Error, Row } from '@/components/common';
 import Loading from '@/components/common/Loading';
-import useUrlWithLimit from '@/hooks/useUrlWithLimit';
+import { useUrl } from '@/hooks';
 import { styled } from '@/theme';
 import type { Post as PostType } from '@/types';
 import { fetcher } from '@/utils';
@@ -13,7 +13,7 @@ import List from './List';
 type PostsProps = {};
 
 const Posts: React.FC<PostsProps> = () => {
-  const url = useUrlWithLimit('posts');
+  const url = useUrl('posts');
   const { data, error, isLoading, mutate, isValidating } = useSWR(
     '/api/posts',
     () => fetcher(url)

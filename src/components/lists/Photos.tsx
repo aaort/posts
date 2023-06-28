@@ -1,6 +1,6 @@
 import Album from '@/components/cards/Album';
 import { Error, Loading, Row } from '@/components/common';
-import useUrlWithLimit from '@/hooks/useUrlWithLimit';
+import { useUrl } from '@/hooks';
 import { styled } from '@/theme';
 import type { Album as AlbumType } from '@/types';
 import { fetcher } from '@/utils';
@@ -12,7 +12,7 @@ import List from './List';
 type PhotosProps = {};
 
 const Photos: React.FC<PhotosProps> = () => {
-  const url = useUrlWithLimit('albums');
+  const url = useUrl('albums');
   const { data, error, isLoading, mutate, isValidating } = useSWR(
     '/api/albums',
     () => fetcher(url)

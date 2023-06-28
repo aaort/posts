@@ -1,6 +1,6 @@
 import Todo from '@/components/cards/Todo';
 import { Error, Loading } from '@/components/common';
-import useUrlWithLimit from '@/hooks/useUrlWithLimit';
+import { useUrl } from '@/hooks';
 import type { Todo as TodoType } from '@/types';
 import { fetcher, getCompletedTodos } from '@/utils';
 import { useEffect, useState } from 'react';
@@ -10,7 +10,7 @@ import List from './List';
 type TodosProps = {};
 
 const Todos: React.FC<TodosProps> = () => {
-  const url = useUrlWithLimit('todos');
+  const url = useUrl('todos');
   const { data, error, isLoading, mutate, isValidating } = useSWR(
     '/api/todos',
     () => fetcher(url)

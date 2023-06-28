@@ -1,5 +1,5 @@
 import { Box, Button, Error, Loading, Row } from '@/components/common';
-import useUrlWithLimit from '@/hooks/useUrlWithLimit';
+import useUrl from '@/hooks/useUrl';
 import type { Album as AlbumType, User } from '@/types';
 import { fetcher } from '@/utils';
 import { useEffect, useState } from 'react';
@@ -18,7 +18,7 @@ type Data = {
 
 const Album: React.FC<AlbumProps> = (props) => {
   const ownerId = props.album.userId;
-  const url = useUrlWithLimit(`users/${ownerId}`);
+  const url = useUrl(`users/${ownerId}`);
   const { data, error, isLoading } = useSWR(`/api/users/${ownerId}`, () =>
     fetcher(url)
   );

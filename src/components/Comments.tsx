@@ -1,5 +1,5 @@
 import { Column, Error, Loading } from '@/components/common';
-import { useUrlWithLimit } from '@/hooks';
+import { useUrl } from '@/hooks';
 import { styled } from '@/theme';
 import type { Comment as CommentType, Post } from '@/types';
 import { fetcher } from '@/utils';
@@ -12,7 +12,7 @@ type CommentsProps = {
 
 // Fetch and display a list of comments for individual post
 const Comments: React.FC<CommentsProps> = ({ postId }) => {
-  const url = useUrlWithLimit(`posts/${postId}/comments`);
+  const url = useUrl(`posts/${postId}/comments`);
   const { data, error, isLoading } = useSWR(url, () => fetcher(url));
 
   if (error) {
