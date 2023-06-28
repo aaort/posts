@@ -2,7 +2,7 @@ import { Box, Column, Error, Loading } from '@/components/common';
 import { useUrlWithLimit } from '@/hooks';
 import type { Post as PostType, User } from '@/types';
 import { fetcher } from '@/utils';
-import { Suspense, lazy, memo, useState } from 'react';
+import { Suspense, lazy, useState } from 'react';
 import useSWR from 'swr';
 
 const Comments = lazy(() => import('@/components/Comments'));
