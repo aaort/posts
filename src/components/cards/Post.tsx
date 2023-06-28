@@ -32,7 +32,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
     setShowComments(!showComments);
   };
 
-  const Content = memo(() => {
+  const content = () => {
     if (showComments) {
       return (
         <Column>
@@ -43,15 +43,15 @@ const Post: React.FC<PostProps> = ({ post }) => {
         </Column>
       );
     } else {
-      return <p>{post.body}</p>;
+      return post.body;
     }
-  });
+  };
 
   return (
     <Box
       title={post.title}
       subtitle={`@${user.username}`}
-      content={<Content />}
+      content={content()}
       actions={[
         {
           title: 'Comments',
