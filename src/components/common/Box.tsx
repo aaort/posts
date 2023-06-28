@@ -1,10 +1,11 @@
-import { useState } from 'react';
-import Button from './Button';
-import Column from './Column';
-import Row from './Row';
 import { styled } from '@/theme';
 import type { ButtonType } from '@/types';
 import type { CSS } from '@stitches/react';
+import { useState } from 'react';
+import Input from '../Input';
+import Button from './Button';
+import Column from './Column';
+import Row from './Row';
 
 type BoxProps = {
   title: string;
@@ -46,13 +47,13 @@ const Box: React.FC<BoxProps> = (props) => {
     <Container css={props.css}>
       <Row css={{ gap: '$1' }}>
         {isEditing ? (
-          <input value={data.title} name="title" onChange={handleChange} />
+          <Input value={data.title} name="title" onChange={handleChange} />
         ) : (
           <Title>{data.title}</Title>
         )}
         |
         {isEditing ? (
-          <input
+          <Input
             value={data.subtitle}
             name="subtitle"
             onChange={handleChange}
