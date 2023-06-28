@@ -5,7 +5,7 @@ import Loading from '@/components/common/Loading';
 import { useUrl } from '@/hooks';
 import { styled } from '@/theme';
 import type { Post as PostType } from '@/types';
-import { fetcher } from '@/utils';
+import { fetcher, getDeletedPosts } from '@/utils';
 import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 import List from './List';
@@ -19,6 +19,21 @@ const Posts: React.FC<PostsProps> = () => {
     () => fetcher(url)
   );
   const [selectedTodoIds, setSelectedTodoIds] = useState<number[]>([]);
+  const [posts, setPosts] = useState<PostType[]>([]);
+
+  useEffect(() => {
+    const handleStorageEvent = () => {
+      if (data) {
+        setPosts(getFilteredPosts(data));
+      }
+    };
+
+    window.addEventListener('storage', handleStorageEvent);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageEvent);
+    };
+  }, [data]);
 
   useEffect(() => {
     mutate('/api/posts', true);
@@ -32,6 +47,10 @@ const Posts: React.FC<PostsProps> = () => {
     return <Loading />;
   }
 
+  if (!posts.length) {
+    setPosts(getFilteredPosts(data));
+  }
+
   const handlePostSelectToggle = (id: number) => {
     if (selectedTodoIds.includes(id)) {
       setSelectedTodoIds(selectedTodoIds.filter((postId) => id !== postId));
@@ -42,7 +61,7 @@ const Posts: React.FC<PostsProps> = () => {
 
   return (
     <List>
-      {(data as PostType[]).map((post, i) => {
+      {(posts as PostType[]).map((post, i) => {
         const isSelected = selectedTodoIds.includes(post.id);
         return (
           <PostRow key={i}>
@@ -58,6 +77,13 @@ const Posts: React.FC<PostsProps> = () => {
       })}
     </List>
   );
+};
+
+const getFilteredPosts = (posts: PostType[]) => {
+  const deletedPosts = getDeletedPosts();
+
+  const filtered = posts.filter((post) => !deletedPosts.includes(post.id));
+  return filtered;
 };
 
 const PostRow = styled(Row, {
