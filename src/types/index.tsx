@@ -30,7 +30,7 @@ type Todo = Pick<Post, 'title' | 'userId'> & {
 type Album = Omit<Post, 'body'> & {};
 
 // Custom types used in the project
-type Tab = 'posts' | 'photos' | 'todos';
+type Tab = 'posts' | 'albums' | 'todos';
 
 type Limit = '10' | '20' | '50' | '100';
 
