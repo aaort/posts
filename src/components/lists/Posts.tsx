@@ -62,6 +62,7 @@ const Posts: React.FC<PostsProps> = () => {
 
   const handleFavoriteClick = () => {
     toggleFavoritePosts(selectedTodoIds);
+    setSelectedTodoIds([]);
   };
 
   return (
