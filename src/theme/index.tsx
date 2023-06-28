@@ -24,6 +24,7 @@ export const {
       gray9: '#212529',
       error: '#e03131',
       success: '#2f9e44',
+      favorite: '#ff6b6b',
     },
     space: {
       1: '0.5rem',
