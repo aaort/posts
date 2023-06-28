@@ -41,7 +41,7 @@ const Posts: React.FC<PostsProps> = () => {
     return () => {
       window.removeEventListener('storage', handleStorageEvent);
     };
-  }, [data, setFlag]);
+  }, [data]);
 
   useEffect(() => {
     mutate();
