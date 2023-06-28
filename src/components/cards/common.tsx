@@ -9,6 +9,7 @@ export const Title = styled('span', {
 export const Subtitle = styled('span', {
   fontSize: 'calc($2 - 0.4rem)',
   color: '$gray7',
+  fontStyle: 'italic',
 });
 
 export const Actions = styled(Row, {
