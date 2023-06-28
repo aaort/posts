@@ -35,8 +35,12 @@ const Container = styled('button', {
   color: '$primary',
   cursor: 'pointer',
   transition: 'box-shadow 40ms linear',
+  boxSizing: 'border-box',
   '&:hover': {
     boxShadow: '$medium',
+  },
+  '&:focus': {
+    border: '1px solid $primary',
   },
   variants: {
     type: {
