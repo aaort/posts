@@ -15,7 +15,7 @@ import {
   fetcher,
   getDeletedPosts,
   isFavoritePost,
-  toggleFavoritePost,
+  toggleFavoritePosts,
 } from '@/utils';
 import { HeartFilledIcon, HeartIcon } from '@radix-ui/react-icons';
 import { Suspense, lazy, useEffect, useState } from 'react';
@@ -203,8 +203,7 @@ type FavoriteProps = {
 
 const Favorite: React.FC<FavoriteProps> = ({ postId }) => {
   const handleClick = () => {
-    console.log('called once');
-    toggleFavoritePost([postId]);
+    toggleFavoritePosts([postId]);
   };
 
   const icon = !isFavoritePost(postId) ? (
