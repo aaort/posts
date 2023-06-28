@@ -30,8 +30,9 @@ const Box: React.FC<BoxTypes> = (props) => {
         props.content
       )}
       <Actions>
-        {props.actions?.map((action) => (
+        {props.actions?.map((action, i) => (
           <Button
+            key={i}
             handleClick={action.onClick}
             type={action.type}
             title={action.title}
