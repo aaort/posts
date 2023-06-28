@@ -44,11 +44,11 @@ const Container = styled('button', {
         backgroundColor: '$gray6',
         color: '$background',
       },
-      success: {
+      dangerous: {
         backgroundColor: '$error',
         color: '$background',
       },
-      dangerous: {
+      success: {
         backgroundColor: '$success',
         color: '$background',
       },
