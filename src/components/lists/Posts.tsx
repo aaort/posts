@@ -5,7 +5,12 @@ import Loading from '@/components/common/Loading';
 import { useUrl } from '@/hooks';
 import { styled } from '@/theme';
 import type { Post as PostType } from '@/types';
-import { fetcher, getDeletedPosts, toggleFavoritePosts } from '@/utils';
+import {
+  deletePosts,
+  fetcher,
+  getDeletedPosts,
+  toggleFavoritePosts,
+} from '@/utils';
 import { HeartIcon, TrashIcon } from '@radix-ui/react-icons';
 import { useEffect, useState } from 'react';
 import useSWR from 'swr';
@@ -65,6 +70,11 @@ const Posts: React.FC<PostsProps> = () => {
     setSelectedTodoIds([]);
   };
 
+  const handleDeleteClick = () => {
+    deletePosts(selectedTodoIds);
+    setSelectedTodoIds([]);
+  };
+
   return (
     <>
       <List>
@@ -88,7 +98,7 @@ const Posts: React.FC<PostsProps> = () => {
           <FloatingButton onClick={handleFavoriteClick}>
             <HeartIcon />
           </FloatingButton>
-          <FloatingButton onClick={handleFavoriteClick} aria-label="delete">
+          <FloatingButton onClick={handleDeleteClick} aria-label="delete">
             <TrashIcon />
           </FloatingButton>
         </FloatingButtons>
