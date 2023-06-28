@@ -5,7 +5,7 @@ import {
   getDeletedPosts,
   getFavoritePosts,
   isFavoritePost,
-  toggleFavoritePost,
+  toggleFavoritePosts,
 } from './storage';
 
 export {
@@ -15,5 +15,5 @@ export {
   getFavoritePosts,
   getLimit,
   isFavoritePost,
-  toggleFavoritePost,
+  toggleFavoritePosts,
 };

@@ -24,23 +24,20 @@ export const isFavoritePost = (postId: number) => {
 };
 
 // Toggle an array of favorite posts, either mark as favorite or unmark
-export const toggleFavoritePost = (postIds: number[]) => {
+export const toggleFavoritePosts = (postIds: number[]) => {
   const favoritePosts = getFavoritePosts();
 
+  let newFavoritePosts = favoritePosts;
   for (let i = 0; i < postIds.length; i++) {
     const postId = postIds[i];
     if (favoritePosts.includes(postId)) {
-      localStorage.setItem(
-        'favoritePosts',
-        JSON.stringify(favoritePosts.filter((id) => id !== postId))
-      );
+      newFavoritePosts = newFavoritePosts.filter((id) => id !== postId);
     } else {
-      localStorage.setItem(
-        'favoritePosts',
-        JSON.stringify([...favoritePosts, postId])
-      );
+      newFavoritePosts.push(postId);
     }
   }
+
+  localStorage.setItem('favoritePosts', JSON.stringify(newFavoritePosts));
 
   dispatchEvent(new Event('storage'));
 };
