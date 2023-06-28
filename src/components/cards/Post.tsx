@@ -95,7 +95,7 @@ const Post: React.FC<PostProps> = (props) => {
             onChange={handleDataChange}
           />
         ) : (
-          <Subtitle>{`${post.subtitle}`}</Subtitle>
+          <Subtitle>{`@${post.subtitle}`}</Subtitle>
         )}
       </Row>
       {showComments ? (
