@@ -1,6 +1,7 @@
 import { styled } from '@/theme';
 import * as RadixCheckbox from '@radix-ui/react-checkbox';
 import { CheckIcon } from '@radix-ui/react-icons';
+import { CSS } from '@stitches/react';
 import { Tooltip } from './common';
 
 type CheckboxProps = {
@@ -8,6 +9,7 @@ type CheckboxProps = {
   onChange: () => void;
   tooltip?: string;
   size?: Size;
+  css?: CSS;
 };
 
 type Size = 'small' | 'medium' | 'large';
@@ -18,6 +20,7 @@ const Checkbox: React.FC<CheckboxProps> = (props) => {
       size={props.size}
       checked={props.checked}
       onCheckedChange={props.onChange}
+      css={props.css}
     >
       <CheckboxIndicator>
         <CheckIcon width={'100%'} height={'100%'} />
