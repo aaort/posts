@@ -9,7 +9,7 @@ import {
   Row,
 } from '@/components/common';
 import { useUrl } from '@/hooks';
-import { theme } from '@/theme';
+import { styled, theme } from '@/theme';
 import type { Post as PostType, User } from '@/types';
 import {
   fetcher,
@@ -17,7 +17,7 @@ import {
   isFavoritePost,
   toggleFavoritePosts,
 } from '@/utils';
-import { HeartFilledIcon, HeartIcon } from '@radix-ui/react-icons';
+import { HeartFilledIcon, HeartIcon, TrashIcon } from '@radix-ui/react-icons';
 import { Suspense, lazy, useEffect, useState } from 'react';
 import useSWR from 'swr';
 import Input from '../Input';
@@ -113,7 +113,10 @@ const Post: React.FC<PostProps> = (props) => {
         ) : (
           <Subtitle>{`@${post.subtitle}`}</Subtitle>
         )}
-        <Favorite postId={props.post.id} />
+        <Row css={{ position: 'absolute', top: -10, right: -10, gap: '$1' }}>
+          <Favorite postId={props.post.id} />
+          <Delete postId={props.post.id} />
+        </Row>
       </Row>
       {showComments ? (
         <Column>
@@ -140,7 +143,6 @@ const Post: React.FC<PostProps> = (props) => {
               title={!showComments ? 'Show Comments' : 'Hide Comments'}
             />
             <Button onClick={toggleEditing} type={'primary'} title={'Edit'} />
-            <Delete postId={props.post.id} />
           </>
         ) : (
           <>
@@ -185,7 +187,9 @@ const Delete: React.FC<DeleteProps> = ({ postId }) => {
 
   return (
     <>
-      <Button title="Delete" type="dangerous" onClick={handleOpenDialog} />
+      <IconButtonBox onClick={handleOpenDialog} aria-label="delete-icon-button">
+        <TrashIcon />
+      </IconButtonBox>
       <Dialog
         isOpen={isDialogOpen}
         title="Confirm Operation"
@@ -197,9 +201,7 @@ const Delete: React.FC<DeleteProps> = ({ postId }) => {
   );
 };
 
-type FavoriteProps = {
-  postId: number;
-};
+type FavoriteProps = DeleteProps;
 
 const Favorite: React.FC<FavoriteProps> = ({ postId }) => {
   const handleClick = () => {
@@ -217,14 +219,26 @@ const Favorite: React.FC<FavoriteProps> = ({ postId }) => {
   );
 
   return (
-    <IconButton
-      css={{ position: 'absolute', top: 0, right: 0 }}
-      aria-label="favorite"
-      onClick={handleClick}
-    >
+    <IconButtonBox aria-label="favorite-icon-button" onClick={handleClick}>
       {icon}
-    </IconButton>
+    </IconButtonBox>
   );
 };
+
+const IconButtonBox = styled(IconButton, {
+  p: '$1',
+  '&[aria-label="delete-icon-button"]:hover': {
+    backgroundColor: '$error',
+    color: '$background',
+  },
+  '&[aria-label="favorite-icon-button"]:hover': {
+    backgroundColor: '$gray6',
+    color: '$background',
+  },
+  '& svg': {
+    width: '90%',
+    height: '90%',
+  },
+});
 
 export default Post;
