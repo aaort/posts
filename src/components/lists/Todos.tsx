@@ -39,7 +39,7 @@ const Todos: React.FC<TodosProps> = () => {
   );
 };
 
-// Sorts todo, uncompleted first
+// Sort todos, uncompleted first
 const sortTodos = (todos: TodoType[]) => {
   const completedTodos = todos
     .filter(isTodoCompleted)
@@ -50,7 +50,7 @@ const sortTodos = (todos: TodoType[]) => {
   return uncompletedTodos.concat(completedTodos);
 };
 
-// Checks if todo is completed locally or from API
+// Check if todo is completed locally or from API
 const isTodoCompleted = (todo: TodoType) => {
   const localCompletedTodos = getCompletedTodos();
 
