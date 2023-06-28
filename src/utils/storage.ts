@@ -26,7 +26,7 @@ export const deletePosts = (postIds: number[]) => {
   dispatchEvent(new Event('storage'));
 };
 
-// Return all favorite posts as an array of post ids
+// Return an array of favorite posts as ids
 export const getFavoritePosts = () => {
   const unparsedFavoritePosts = localStorage.getItem('favoritePosts') ?? '[]';
 
@@ -35,11 +35,27 @@ export const getFavoritePosts = () => {
   return favoritePosts;
 };
 
+// Return an array of favorite albums as ids
+export const getFavoriteAlbums = () => {
+  const unparsedFavoriteAlbums = localStorage.getItem('favoriteAlbums') ?? '[]';
+
+  const favoriteAlbums = JSON.parse(unparsedFavoriteAlbums) as number[];
+
+  return favoriteAlbums;
+};
+
 // Check if post is a favorite or not by post id
 export const isFavoritePost = (postId: number) => {
   const favoritePosts = getFavoritePosts();
 
   return favoritePosts.includes(postId);
+};
+
+// Check if album is a favorite or not by id
+export const isFavoriteAlbum = (albumId: number) => {
+  const favoriteAlbums = getFavoriteAlbums();
+
+  return favoriteAlbums.includes(albumId);
 };
 
 // Toggle an array of favorite posts, either mark as favorite or unmark
@@ -57,6 +73,25 @@ export const toggleFavoritePosts = (postIds: number[]) => {
   }
 
   localStorage.setItem('favoritePosts', JSON.stringify(newFavoritePosts));
+
+  dispatchEvent(new Event('storage'));
+};
+
+// Toggle an array of favorite albums, either mark as favorite or unmark
+export const toggleFavoriteAlbums = (albumIds: number[]) => {
+  const favoriteAlbums = getFavoriteAlbums();
+
+  let newFavoriteAlbums = favoriteAlbums;
+  for (let i = 0; i < albumIds.length; i++) {
+    const albumId = albumIds[i];
+    if (favoriteAlbums.includes(albumId)) {
+      newFavoriteAlbums = newFavoriteAlbums.filter((id) => id !== albumId);
+    } else {
+      newFavoriteAlbums.push(albumId);
+    }
+  }
+
+  localStorage.setItem('favoriteAlbums', JSON.stringify(newFavoriteAlbums));
 
   dispatchEvent(new Event('storage'));
 };
