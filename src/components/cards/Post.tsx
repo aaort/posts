@@ -3,7 +3,7 @@ import { useUrlWithLimit } from '@/hooks';
 import { styled } from '@/theme';
 import type { Post as PostType, User } from '@/types';
 import { fetcher } from '@/utils';
-import { Suspense, lazy, memo, useEffect, useState } from 'react';
+import { Suspense, lazy, useEffect, useState } from 'react';
 import useSWR from 'swr';
 import Input from '../Input';
 
