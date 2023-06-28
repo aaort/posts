@@ -45,8 +45,8 @@ const Posts: React.FC<PostsProps> = () => {
       {(data as PostType[]).map((post) => {
         const isSelected = selectedTodoIds.includes(post.id);
         return (
-          <PostRow>
-            <Post key={post.id} post={post} />
+          <PostRow key={post.id}>
+            <Post post={post} />
             <Checkbox
               checked={isSelected}
               onChange={() => handlePostSelectToggle(post.id)}
