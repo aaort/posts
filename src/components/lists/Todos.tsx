@@ -3,7 +3,7 @@ import { Error, Loading } from '@/components/common';
 import useUrlWithLimit from '@/hooks/useUrlWithLimit';
 import type { Todo as TodoType } from '@/types';
 import { fetcher, getCompletedTodos } from '@/utils';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 import List from './List';
 
@@ -15,10 +15,26 @@ const Todos: React.FC<TodosProps> = () => {
     '/api/todos',
     () => fetcher(url)
   );
+  const [todos, setTodos] = useState<TodoType[]>();
 
   useEffect(() => {
     mutate('/api/todos', true);
   }, [url, mutate]);
+
+  // Listen for local storage changes and update todo list
+  useEffect(() => {
+    const handleStorageEvent = () => {
+      if (data) {
+        setTodos(sortTodos(data));
+      }
+    };
+
+    window.addEventListener('storage', handleStorageEvent);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageEvent);
+    };
+  }, [data]);
 
   if (error) {
     return <Error />;
@@ -28,7 +44,9 @@ const Todos: React.FC<TodosProps> = () => {
     return <Loading />;
   }
 
-  const todos = sortTodos(data);
+  if (!todos?.length) {
+    setTodos(sortTodos(data));
+  }
 
   return (
     <List>
