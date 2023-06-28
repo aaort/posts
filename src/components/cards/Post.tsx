@@ -62,7 +62,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
           title: 'Comments',
           type: 'primary',
           onClick: handleToggleComments,
-          tooltip: 'Show Comments',
+          tooltip: showComments ? 'Hide Comments' : 'Show Comments',
         },
       ]}
     />
