@@ -48,7 +48,7 @@ const Posts: React.FC<PostsProps> = () => {
           <PostRow>
             <Post key={post.id} post={post} />
             <Checkbox
-              checked={selectedTodoIds.includes(post.id)}
+              checked={isSelected}
               onChange={() => handlePostSelectToggle(post.id)}
               tooltip={!isSelected ? 'Select' : 'Unselect'}
             />
