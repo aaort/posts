@@ -14,7 +14,10 @@ const Tab: React.FC<TabTypes> = (props) => {
 
   return (
     <Item
-      css={{ textDecoration: props.selected ? 'underline' : 'none' }}
+      css={{
+        backgroundColor: props.selected ? '$gray7' : 'none',
+        color: props.selected ? '$background' : 'initial',
+      }}
       onClick={handleClick}
     >
       {props.title}
@@ -27,7 +30,30 @@ const Item = styled(NavigationItem, {
   fontSize: '$2',
   textTransform: 'uppercase',
   letterSpacing: '0.2rem',
-  textUnderlineOffset: '0.5rem',
+  px: '$2',
+  py: '1rem',
+  transition: 'background-color 150ms linear',
+  '&:hover': {
+    backgroundColor: '$gray7',
+    color: '$background',
+  },
+  '@md': {
+    '&:nth-child(1)': {
+      borderTopLeftRadius: 'inherit',
+      borderBottomLeftRadius: 'inherit',
+    },
+    '&:nth-child(2)': {
+      borderInline: '1px solid $primary',
+    },
+    '&:nth-child(3)': {
+      borderTopRightRadius: 'inherit',
+      borderBottomRightRadius: 'inherit',
+    },
+  },
+  '@sm': {
+    borderRadius: '$small',
+    border: 'none',
+  },
 });
 
 export default Tab;

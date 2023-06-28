@@ -37,7 +37,6 @@ const Root = styled(NavigationMenu.Root, {
 });
 
 const HeaderRow = styled(Row, {
-  width: '100%',
   justifyContent: 'center',
   gap: '$2',
 });
@@ -46,19 +45,18 @@ const List = styled(NavigationMenu.List, {
   '@sm': {
     flexDirection: 'column',
     borderRadius: '$medium',
-    gap: '$2',
     alignItems: 'center',
+    gap: '$1',
   },
   '@md': {
     flexDirection: 'row',
     borderRadius: '50rem',
-    gap: '$3',
   },
   display: 'flex',
-  justifyContent: 'center',
+  p: 0,
+  gap: 0,
+  justifyContent: 'space-evenly',
   listStyle: 'none',
-  px: '$2',
-  py: '1rem',
   backgroundColor: '$gray3',
   boxShadow: '$small',
 });
