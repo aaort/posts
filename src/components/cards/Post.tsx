@@ -1,11 +1,11 @@
 import { Box, Button, Column, Error, Loading, Row } from '@/components/common';
 import { useUrlWithLimit } from '@/hooks';
-import { styled } from '@/theme';
 import type { Post as PostType, User } from '@/types';
 import { fetcher } from '@/utils';
 import { Suspense, lazy, useEffect, useState } from 'react';
 import useSWR from 'swr';
 import Input from '../Input';
+import { Actions, Subtitle, Title } from './common';
 
 const Comments = lazy(() => import('@/components/Comments'));
 
@@ -136,21 +136,5 @@ const Post: React.FC<PostProps> = (props) => {
     </Box>
   );
 };
-
-const Title = styled('span', {
-  fontSize: '$2',
-  maxLines: 1,
-});
-
-const Subtitle = styled('span', {
-  fontSize: 'calc($2 - 0.4rem)',
-  color: '$gray7',
-});
-
-const Actions = styled(Row, {
-  gap: '$2',
-  justifyContent: 'flex-end',
-  flexWrap: 'wrap',
-});
 
 export default Post;
