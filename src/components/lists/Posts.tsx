@@ -124,9 +124,6 @@ const FloatingButtons = styled(Row, {
 const FloatingButton = styled(IconButton, {
   width: '4rem',
   height: '4rem',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
   backgroundColor: '$gray3',
   '& svg': {
     width: '50%',
