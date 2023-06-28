@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Button from './Button';
 import Column from './Column';
 import Row from './Row';
@@ -5,7 +6,7 @@ import { styled } from '@/theme';
 import type { ButtonType } from '@/types';
 import type { CSS } from '@stitches/react';
 
-type BoxTypes = {
+type BoxProps = {
   title: string;
   subtitle: string;
   content: React.ReactNode;
@@ -20,11 +21,45 @@ type Action = {
   tooltip?: string;
 };
 
-const Box: React.FC<BoxTypes> = (props) => {
+type Data = Pick<BoxProps, 'title' | 'subtitle' | 'content'>;
+
+const Box: React.FC<BoxProps> = (props) => {
+  const [data, setData] = useState<Data>(getDataFromProps(props));
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+
+  const toggleEditing = (value?: boolean) => setIsEditing(value ?? !isEditing);
+
+  const handleSave = () => {
+    toggleEditing(false);
+  };
+
+  const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
+    setData({ ...data, [event.currentTarget.name]: event.currentTarget.value });
+  };
+
+  const handleDiscard = () => {
+    setData(getDataFromProps(props));
+    toggleEditing(false);
+  };
+
   return (
     <Container css={props.css}>
       <Row css={{ gap: '$1' }}>
-        <Title>{props.title}</Title> |<Subtitle>{`${props.subtitle}`}</Subtitle>
+        {isEditing ? (
+          <input value={data.title} name="title" onChange={handleChange} />
+        ) : (
+          <Title>{data.title}</Title>
+        )}
+        |
+        {isEditing ? (
+          <input
+            value={data.subtitle}
+            name="subtitle"
+            onChange={handleChange}
+          />
+        ) : (
+          <Subtitle>{`${data.subtitle}`}</Subtitle>
+        )}
       </Row>
       {typeof props.content === 'string' ? (
         <p>{props.content}</p>
@@ -41,10 +76,28 @@ const Box: React.FC<BoxTypes> = (props) => {
             tooltip={action.tooltip}
           />
         ))}
+        {!isEditing ? (
+          <Button handleClick={toggleEditing} type={'primary'} title={'Edit'} />
+        ) : (
+          <>
+            <Button
+              handleClick={handleDiscard}
+              type={'dangerous'}
+              title={'Discard'}
+            />
+            <Button handleClick={handleSave} type={'success'} title={'Save'} />
+          </>
+        )}
       </Actions>
     </Container>
   );
 };
+
+const getDataFromProps = (props: BoxProps): Data => ({
+  title: props.title,
+  subtitle: props.subtitle,
+  content: props.content,
+});
 
 const Container = styled(Column, {
   '@xs': {
