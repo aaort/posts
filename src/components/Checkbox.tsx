@@ -7,13 +7,20 @@ type CheckboxProps = {
   checked: boolean;
   onChange: () => void;
   tooltip?: string;
+  size?: Size;
 };
+
+type Size = 'small' | 'medium' | 'large';
 
 const Checkbox: React.FC<CheckboxProps> = (props) => {
   const Content = (
-    <CheckboxRoot checked={props.checked} onCheckedChange={props.onChange}>
+    <CheckboxRoot
+      size={props.size}
+      checked={props.checked}
+      onCheckedChange={props.onChange}
+    >
       <CheckboxIndicator>
-        <CheckIcon width={25} height={25} />
+        <CheckIcon width={'100%'} height={'100%'} />
       </CheckboxIndicator>
     </CheckboxRoot>
   );
@@ -39,6 +46,22 @@ const CheckboxRoot = styled(RadixCheckbox.Root, {
   '&:hover': {
     backgroundColor: '$primary',
     '& span': { color: '$background' },
+  },
+  variants: {
+    size: {
+      small: {
+        width: 25,
+        height: 25,
+      },
+      medium: {
+        width: 35,
+        height: 35,
+      },
+      large: {
+        width: 45,
+        height: 45,
+      },
+    },
   },
 });
 
