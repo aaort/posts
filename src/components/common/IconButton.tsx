@@ -10,9 +10,6 @@ const IconButton = styled('button', {
   alignItems: 'center',
   justifyContent: 'center',
   color: '$primary',
-  position: 'absolute',
-  top: 10,
-  right: 10,
   cursor: 'pointer',
 
   '&:hover': { backgroundColor: '$gray3' },
