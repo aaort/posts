@@ -34,7 +34,7 @@ const Box: React.FC<BoxProps> = (props) => {
     toggleEditing(false);
   };
 
-  const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
+  const handleDataChange = (event: React.FormEvent<HTMLInputElement>) => {
     setData({ ...data, [event.currentTarget.name]: event.currentTarget.value });
   };
 
@@ -47,7 +47,7 @@ const Box: React.FC<BoxProps> = (props) => {
     <Container css={props.css}>
       <Row css={{ gap: '$1' }}>
         {isEditing ? (
-          <Input value={data.title} name="title" onChange={handleChange} />
+          <Input value={data.title} name="title" onChange={handleDataChange} />
         ) : (
           <Title>{data.title}</Title>
         )}
@@ -56,17 +56,13 @@ const Box: React.FC<BoxProps> = (props) => {
           <Input
             value={data.subtitle}
             name="subtitle"
-            onChange={handleChange}
+            onChange={handleDataChange}
           />
         ) : (
           <Subtitle>{`${data.subtitle}`}</Subtitle>
         )}
       </Row>
-      {typeof props.content === 'string' ? (
-        <p>{props.content}</p>
-      ) : (
-        props.content
-      )}
+      {data.content}
       <Actions>
         {props.actions?.map((action, i) => (
           <Button
