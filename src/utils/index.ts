@@ -1,6 +1,7 @@
 import fetcher from './fetcher';
 import getLimit from './getLimit';
 import {
+  deletePosts,
   getCompletedTodos,
   getDeletedPosts,
   getFavoritePosts,
@@ -9,6 +10,7 @@ import {
 } from './storage';
 
 export {
+  deletePosts,
   fetcher,
   getCompletedTodos,
   getDeletedPosts,

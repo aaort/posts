@@ -7,6 +7,25 @@ export const getDeletedPosts = () => {
   return deletedPosts;
 };
 
+// Delete posts by given an array of post ids
+export const deletePosts = (postIds: number[]) => {
+  const deletedTodos = getDeletedPosts();
+
+  let newDeletedPosts = deletedTodos;
+  for (let i = 0; i < postIds.length; i++) {
+    const postId = postIds[i];
+    if (deletedTodos.includes(postId)) {
+      newDeletedPosts = newDeletedPosts.filter((id) => id !== postId);
+    } else {
+      newDeletedPosts.push(postId);
+    }
+  }
+
+  localStorage.setItem('deletedPosts', JSON.stringify(newDeletedPosts));
+
+  dispatchEvent(new Event('storage'));
+};
+
 // Return all favorite posts as an array of post ids
 export const getFavoritePosts = () => {
   const unparsedFavoritePosts = localStorage.getItem('favoritePosts') ?? '[]';
