@@ -2,7 +2,7 @@ import { styled } from '@/theme';
 import { Todo as TodoType } from '@/types';
 import { getCompletedTodos } from '@/utils';
 import * as Checkbox from '@radix-ui/react-checkbox';
-import { CheckIcon } from '@radix-ui/react-icons';
+import { CheckIcon, Pencil1Icon } from '@radix-ui/react-icons';
 import { CSS } from '@stitches/react';
 import { useState } from 'react';
 import { Row } from '../common';
@@ -35,15 +35,20 @@ const Todo: React.FC<TodoProps> = ({ todo: initialTodo }) => {
   return (
     <Container>
       <Title css={taskCss}>{todo.title + ' ' + todo.id}</Title>
-      <CheckboxRoot
-        defaultChecked={todo.completed}
-        checked={todo.completed}
-        onCheckedChange={handleComplete}
-      >
-        <CheckboxIndicator>
-          <CheckIcon width={'100%'} height={'100%'} />
-        </CheckboxIndicator>
-      </CheckboxRoot>
+      <Row css={{ gap: '$2' }}>
+        <CheckboxRoot
+          defaultChecked={todo.completed}
+          checked={todo.completed}
+          onCheckedChange={handleComplete}
+        >
+          <CheckboxIndicator>
+            <CheckIcon width={25} height={25} />
+          </CheckboxIndicator>
+        </CheckboxRoot>
+        <EditButton>
+          <Pencil1Icon width={20} height={20} />
+        </EditButton>
+      </Row>
     </Container>
   );
 };
@@ -72,6 +77,11 @@ const Container = styled(Row, {
   borderRadius: '$medium',
 });
 
+const Title = styled('p', {
+  fontWeight: '$3',
+  fontSize: 'calc($2 - 0.5em)',
+});
+
 const CheckboxRoot = styled(Checkbox.Root, {
   all: 'unset',
   backgroundColor: '$background',
@@ -93,9 +103,10 @@ const CheckboxIndicator = styled(Checkbox.Indicator, {
   color: '$primary',
 });
 
-const Title = styled('p', {
-  fontWeight: '$3',
-  fontSize: 'calc($2 - 0.5em)',
+const EditButton = styled(CheckboxRoot, {
+  '&:hover svg': {
+    color: '$background',
+  },
 });
 
 export default Todo;
