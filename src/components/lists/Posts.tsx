@@ -25,12 +25,14 @@ const Posts: React.FC<PostsProps> = () => {
     () => fetcher(url)
   );
   const [selectedTodoIds, setSelectedTodoIds] = useState<number[]>([]);
-  const [posts, setPosts] = useState<PostType[]>([]);
+
+  // Used to changes to take place on storage update (favorite, delete, exc...)
+  const [, setFlag] = useState<boolean>(false);
 
   useEffect(() => {
     const handleStorageEvent = () => {
       if (data) {
-        setPosts(getFilteredPosts(data));
+        setFlag((flag) => !flag);
       }
     };
 
@@ -39,10 +41,10 @@ const Posts: React.FC<PostsProps> = () => {
     return () => {
       window.removeEventListener('storage', handleStorageEvent);
     };
-  }, [data]);
+  }, [data, setFlag]);
 
   useEffect(() => {
-    mutate('/api/posts', true);
+    mutate();
   }, [url, mutate]);
 
   if (error) {
@@ -53,9 +55,7 @@ const Posts: React.FC<PostsProps> = () => {
     return <Loading />;
   }
 
-  if (!posts.length) {
-    setPosts(getFilteredPosts(data));
-  }
+  const posts = getFilteredPosts(data);
 
   const handlePostSelectToggle = (id: number) => {
     if (selectedTodoIds.includes(id)) {
@@ -78,20 +78,21 @@ const Posts: React.FC<PostsProps> = () => {
   return (
     <>
       <List>
-        {posts.map((post, i) => {
-          const isSelected = selectedTodoIds.includes(post.id);
-          return (
-            <PostRow key={i}>
-              <Post post={post} />
-              <Checkbox
-                checked={isSelected}
-                onChange={() => handlePostSelectToggle(post.id)}
-                tooltip={!isSelected ? 'Select' : 'Unselect'}
-                size="medium"
-              />
-            </PostRow>
-          );
-        })}
+        {posts &&
+          posts.map((post, i) => {
+            const isSelected = selectedTodoIds.includes(post.id);
+            return (
+              <PostRow key={i}>
+                <Post post={post} />
+                <Checkbox
+                  checked={isSelected}
+                  onChange={() => handlePostSelectToggle(post.id)}
+                  tooltip={!isSelected ? 'Select' : 'Unselect'}
+                  size="medium"
+                />
+              </PostRow>
+            );
+          })}
       </List>
       {selectedTodoIds.length && (
         <FloatingButtons>
