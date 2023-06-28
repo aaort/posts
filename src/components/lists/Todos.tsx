@@ -15,17 +15,13 @@ const Todos: React.FC<TodosProps> = () => {
     '/api/todos',
     () => fetcher(url)
   );
-  const [todos, setTodos] = useState<TodoType[]>([]);
-
-  useEffect(() => {
-    mutate('/api/todos', true);
-  }, [url, mutate]);
+  const [, setFlag] = useState<boolean>(false);
 
   // Listen for local storage changes and update todo list
   useEffect(() => {
     const handleStorageEvent = () => {
       if (data) {
-        setTodos(sortTodos(data));
+        setFlag((flag) => !flag);
       }
     };
 
@@ -36,6 +32,10 @@ const Todos: React.FC<TodosProps> = () => {
     };
   }, [data]);
 
+  useEffect(() => {
+    mutate();
+  }, [url, mutate]);
+
   if (error) {
     return <Error />;
   }
@@ -44,9 +44,7 @@ const Todos: React.FC<TodosProps> = () => {
     return <Loading />;
   }
 
-  if (!todos?.length) {
-    setTodos(sortTodos(data));
-  }
+  const todos = sortTodos(data);
 
   return (
     <List>
