@@ -43,12 +43,22 @@ const HeaderRow = styled(Row, {
 });
 
 const List = styled(NavigationMenu.List, {
+  '@sm': {
+    flexDirection: 'column',
+    borderRadius: '$medium',
+    gap: '$2',
+    alignItems: 'center',
+  },
+  '@md': {
+    flexDirection: 'row',
+    borderRadius: '50rem',
+    gap: '$3',
+  },
   display: 'flex',
   justifyContent: 'center',
-  gap: '$4',
   listStyle: 'none',
-  padding: 'calc($2 - 0.8rem) $3',
-  borderRadius: '50rem',
+  px: '$2',
+  py: '1rem',
   backgroundColor: '$gray3',
 });
 
