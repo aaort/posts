@@ -1,10 +1,18 @@
-import { Box, Button, Error, Loading, Row } from '@/components/common';
+import { Box, Button, Dialog, Error, Loading, Row } from '@/components/common';
 import useUrl from '@/hooks/useUrl';
+import { theme } from '@/theme';
 import type { Album as AlbumType, User } from '@/types';
-import { fetcher } from '@/utils';
+import {
+  fetcher,
+  isFavoriteAlbum,
+  toggleDeletedAlbums,
+  toggleFavoriteAlbums,
+} from '@/utils';
+import { HeartFilledIcon, HeartIcon, TrashIcon } from '@radix-ui/react-icons';
 import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 import Input from '../Input';
+import { IconButtonBox } from './Post';
 import { Actions, Subtitle, Title } from './common';
 
 type AlbumProps = {
@@ -69,7 +77,7 @@ const Album: React.FC<AlbumProps> = (props) => {
 
   return (
     <Box>
-      <Row css={{ gap: '$1' }}>
+      <Row css={{ gap: '$1', position: 'relative' }}>
         {!isEditing ? (
           <Title>{album.title} </Title>
         ) : (
@@ -85,6 +93,10 @@ const Album: React.FC<AlbumProps> = (props) => {
             onChange={handleDataChange}
           />
         )}
+        <Row css={{ position: 'absolute', top: -10, right: -10, gap: '$1' }}>
+          <Favorite albumId={props.album.id} />
+          <Delete albumId={props.album.id} />
+        </Row>
       </Row>
       <Actions>
         <Button
@@ -92,16 +104,68 @@ const Album: React.FC<AlbumProps> = (props) => {
           type={!isEditing ? 'primary' : 'success'}
           onClick={!isEditing ? toggleIsEditing : handleSave}
         />
-        {!isEditing ? (
-          <>
-            <Button title="Favorite" type="success" />
-            <Button title="Delete" type="dangerous" />
-          </>
-        ) : (
+        {isEditing && (
           <Button title="Discard" type="dangerous" onClick={handleDiscard} />
         )}
       </Actions>
     </Box>
+  );
+};
+
+type ActonButtonProps = {
+  albumId: number;
+};
+
+const Delete: React.FC<ActonButtonProps> = ({ albumId }) => {
+  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
+
+  const url = useUrl(`posts/${albumId}`, false);
+
+  const handleOpenDialog = () => setIsDialogOpen(true);
+  const handleClose = () => setIsDialogOpen(false);
+  const handleDelete = async () => {
+    await fetch(url, { method: 'DELETE' });
+
+    toggleDeletedAlbums([albumId]);
+
+    handleClose();
+  };
+
+  return (
+    <>
+      <IconButtonBox onClick={handleOpenDialog} aria-label="delete-icon-button">
+        <TrashIcon />
+      </IconButtonBox>
+      <Dialog
+        isOpen={isDialogOpen}
+        title="Confirm Operation"
+        description="Are you sure you want to proceed this operation ?"
+        onClose={handleClose}
+        onOk={handleDelete}
+      />
+    </>
+  );
+};
+
+const Favorite: React.FC<ActonButtonProps> = ({ albumId }) => {
+  const handleClick = () => {
+    toggleFavoriteAlbums([albumId]);
+  };
+
+  const icon = !isFavoriteAlbum(albumId) ? (
+    <HeartIcon width={'90%'} height={'90%'} />
+  ) : (
+    <HeartFilledIcon
+      width={'90%'}
+      height={'90%'}
+      color={theme.colors.error.value}
+    />
+  );
+
+  return (
+    <IconButtonBox aria-label="favorite-icon-button" onClick={handleClick}>
+      {icon}
+    </IconButtonBox>
   );
 };
 
