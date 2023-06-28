@@ -2,7 +2,7 @@ import { Checkbox } from '@/components';
 import { Row, Tooltip } from '@/components/common';
 import { styled } from '@/theme';
 import { Todo as TodoType } from '@/types';
-import { getCompletedTodos } from '@/utils';
+import { toggleCompletedTodos } from '@/utils/storage';
 import { Pencil1Icon } from '@radix-ui/react-icons';
 import { CSS } from '@stitches/react';
 import { useState } from 'react';
@@ -20,16 +20,8 @@ const Todo: React.FC<TodoProps> = ({ todo: initialTodo }) => {
   const handleComplete = async () => {
     setTodo({ ...todo, completed: !todo.completed });
 
-    let completedTodos = getCompletedTodos();
-    if (!todo.completed) {
-      await fetch(`${baseUrl}todos/${todo.id}`, { method: 'DELETE' });
-
-      completedTodos.push(`${todo.id}`);
-    } else {
-      completedTodos = completedTodos.filter((id) => id !== `${todo.id}`);
-    }
-    localStorage.setItem('completedTodos', JSON.stringify(completedTodos));
-    window.dispatchEvent(new Event('storage'));
+    await fetch(`${baseUrl}todos/${todo.id}`, { method: 'DELETE' });
+    toggleCompletedTodos([todo.id]);
   };
 
   return (
