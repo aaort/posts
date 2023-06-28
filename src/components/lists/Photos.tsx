@@ -1,10 +1,12 @@
 import Album from '@/components/cards/Album';
-import { Error, Loading } from '@/components/common';
+import { Error, Loading, Row } from '@/components/common';
 import useUrlWithLimit from '@/hooks/useUrlWithLimit';
+import { styled } from '@/theme';
 import type { Album as AlbumType } from '@/types';
 import { fetcher } from '@/utils';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useSWR from 'swr';
+import Checkbox from '../Checkbox';
 import List from './List';
 
 type PhotosProps = {};
@@ -15,6 +17,7 @@ const Photos: React.FC<PhotosProps> = () => {
     '/api/albums',
     () => fetcher(url)
   );
+  const [selectedAlbumIds, setSelectedTodoIds] = useState<number[]>([]);
 
   useEffect(() => {
     mutate('/api/albums', true);
@@ -28,15 +31,40 @@ const Photos: React.FC<PhotosProps> = () => {
     return <Loading />;
   }
 
+  const handleAlbumSelectToggle = (id: number) => {
+    if (selectedAlbumIds.includes(id)) {
+      setSelectedTodoIds(selectedAlbumIds.filter((albumId) => id !== albumId));
+    } else {
+      setSelectedTodoIds([...selectedAlbumIds, id]);
+    }
+  };
+
   const albums = data as AlbumType[];
 
   return (
     <List>
-      {albums.map((album, i) => (
-        <Album key={i} album={album} />
-      ))}
+      {albums.map((album, i) => {
+        const isSelected = selectedAlbumIds.includes(album.id);
+        return (
+          <AlbumRow key={i}>
+            <Album album={album} />
+            <Checkbox
+              checked={isSelected}
+              onChange={() => handleAlbumSelectToggle(album.id)}
+              tooltip={!isSelected ? 'Select' : 'Unselect'}
+              size="medium"
+            />
+          </AlbumRow>
+        );
+      })}
     </List>
   );
 };
+
+const AlbumRow = styled(Row, {
+  gap: '$2',
+  width: '100%',
+  justifyContent: 'center',
+});
 
 export default Photos;
