@@ -1,6 +1,6 @@
 import { Checkbox } from '@/components';
 import Post from '@/components/cards/Post';
-import { Error, IconButton, Row } from '@/components/common';
+import { Dialog, Error, IconButton, Row } from '@/components/common';
 import Loading from '@/components/common/Loading';
 import { useUrl } from '@/hooks';
 import { styled } from '@/theme';
@@ -95,18 +95,8 @@ const Posts: React.FC<PostsProps> = () => {
       </List>
       {selectedTodoIds.length && (
         <FloatingButtons>
-          <FloatingButton
-            onClick={handleFavoriteClick}
-            aria-label="favorite-icon-button"
-          >
-            <HeartIcon />
-          </FloatingButton>
-          <FloatingButton
-            onClick={handleDeleteClick}
-            aria-label="delete-icon-button"
-          >
-            <TrashIcon />
-          </FloatingButton>
+          <FavoriteButton onClick={handleFavoriteClick} />
+          <DeleteButton onClick={handleDeleteClick} />
         </FloatingButtons>
       )}
     </>
@@ -117,6 +107,58 @@ const getFilteredPosts = (posts: PostType[]) => {
   const deletedPosts = getDeletedPosts();
 
   return posts.filter((post) => !deletedPosts.includes(post.id));
+};
+
+type FloatingButtonProps = { onClick: () => void };
+
+const FavoriteButton: React.FC<FloatingButtonProps> = ({ onClick }) => {
+  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
+
+  const toggleDialog = (value?: boolean) =>
+    setIsDialogOpen(value ?? !isDialogOpen);
+
+  return (
+    <>
+      <FloatingButton
+        onClick={() => toggleDialog(true)}
+        aria-label="favorite-icon-button"
+      >
+        <HeartIcon />
+      </FloatingButton>
+      <Dialog
+        title="Confirm"
+        description="Are you sure you want to add those post to your favorites ?"
+        isOpen={isDialogOpen}
+        onClose={() => toggleDialog(false)}
+        onOk={onClick}
+      />
+    </>
+  );
+};
+
+const DeleteButton: React.FC<FloatingButtonProps> = ({ onClick }) => {
+  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
+
+  const toggleDialog = (value?: boolean) =>
+    setIsDialogOpen(value ?? !isDialogOpen);
+
+  return (
+    <>
+      <FloatingButton
+        onClick={() => toggleDialog(true)}
+        aria-label="delete-icon-button"
+      >
+        <TrashIcon />
+      </FloatingButton>
+      <Dialog
+        title="Confirm"
+        description="Are you sure you want to delete those post ?"
+        isOpen={isDialogOpen}
+        onClose={() => toggleDialog(false)}
+        onOk={onClick}
+      />
+    </>
+  );
 };
 
 const FloatingButtons = styled(Row, {
