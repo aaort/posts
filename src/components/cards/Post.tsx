@@ -1,6 +1,15 @@
+import {
+  Box,
+  Button,
+  Column,
+  Dialog,
+  Error,
+  Loading,
+  Row,
+} from '@/components/common';
 import { useUrl } from '@/hooks';
 import type { Post as PostType, User } from '@/types';
-import { fetcher } from '@/utils';
+import { fetcher, getDeletedPosts } from '@/utils';
 import { Suspense, lazy, useEffect, useState } from 'react';
 import useSWR from 'swr';
 import Input from '../Input';
@@ -84,7 +93,7 @@ const Post: React.FC<PostProps> = (props) => {
         {isEditing ? (
           <Input value={post.title} name="title" onChange={handleDataChange} />
         ) : (
-          <Title>{post.title}</Title>
+          <Title>{post.title + ' ' + props.post.id}</Title>
         )}
         |
         {isEditing ? (
@@ -122,6 +131,7 @@ const Post: React.FC<PostProps> = (props) => {
               title={!showComments ? 'Show Comments' : 'Hide Comments'}
             />
             <Button onClick={toggleEditing} type={'primary'} title={'Edit'} />
+            <Delete postId={props.post.id} />
           </>
         ) : (
           <>
@@ -135,6 +145,46 @@ const Post: React.FC<PostProps> = (props) => {
         )}
       </Actions>
     </Box>
+  );
+};
+
+type DeleteProps = {
+  postId: number;
+};
+
+const Delete: React.FC<DeleteProps> = ({ postId }) => {
+  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
+
+  const url = useUrl(`posts/${postId}`, false);
+
+  const handleOpenDialog = () => setIsDialogOpen(true);
+  const handleClose = () => setIsDialogOpen(false);
+  const handleDelete = async () => {
+    await fetch(url, { method: 'DELETE' });
+
+    const deletedPosts = getDeletedPosts();
+
+    localStorage.setItem(
+      'deletedPosts',
+      JSON.stringify([...deletedPosts, postId])
+    );
+
+    dispatchEvent(new Event('storage'));
+
+    handleClose();
+  };
+
+  return (
+    <>
+      <Button title="Delete" type="dangerous" onClick={handleOpenDialog} />
+      <Dialog
+        isOpen={isDialogOpen}
+        title="Confirm Operation"
+        description="Are you sure you want to proceed this operation ?"
+        onClose={handleClose}
+        onOk={handleDelete}
+      />
+    </>
   );
 };
 
