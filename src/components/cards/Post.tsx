@@ -58,7 +58,12 @@ const Post: React.FC<PostProps> = ({ post }) => {
       subtitle={`@${user.username}`}
       content={<Content />}
       actions={[
-        { title: 'Comments', type: 'primary', onClick: handleToggleComments },
+        {
+          title: 'Comments',
+          type: 'primary',
+          onClick: handleToggleComments,
+          tooltip: 'Show Comments',
+        },
       ]}
     />
   );
