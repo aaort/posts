@@ -2,13 +2,13 @@ import { Checkbox } from '@/components';
 import Post from '@/components/cards/Post';
 import { Dialog, Error, IconButton, Row } from '@/components/common';
 import Loading from '@/components/common/Loading';
-import { useUrl } from '@/hooks';
+import { useStorageChangeEvent, useUrl } from '@/hooks';
 import { styled } from '@/theme';
 import type { Post as PostType } from '@/types';
 import {
-  toggleDeletedPosts,
   fetcher,
   getDeletedPosts,
+  toggleDeletedPosts,
   toggleFavoritePosts,
 } from '@/utils';
 import { HeartIcon, TrashIcon } from '@radix-ui/react-icons';
@@ -29,19 +29,7 @@ const Posts: React.FC<PostsProps> = () => {
   // Used to changes to take place on storage update (favorite, delete, exc...)
   const [, setFlag] = useState<boolean>(false);
 
-  useEffect(() => {
-    const handleStorageEvent = () => {
-      if (data) {
-        setFlag((flag) => !flag);
-      }
-    };
-
-    window.addEventListener('storage', handleStorageEvent);
-
-    return () => {
-      window.removeEventListener('storage', handleStorageEvent);
-    };
-  }, [data]);
+  useStorageChangeEvent({ callback: () => setFlag((flag) => !flag) });
 
   useEffect(() => {
     mutate();

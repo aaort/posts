@@ -1,13 +1,13 @@
 import Album from '@/components/cards/Album';
 import { Dialog, Error, IconButton, Loading, Row } from '@/components/common';
-import { useUrl } from '@/hooks';
+import { useStorageChangeEvent, useUrl } from '@/hooks';
 import { styled } from '@/theme';
 import type { Album as AlbumType } from '@/types';
 import {
   fetcher,
-  toggleFavoriteAlbums,
   getDeletedAlbums,
   toggleDeletedAlbums,
+  toggleFavoriteAlbums,
 } from '@/utils';
 import { HeartIcon, TrashIcon } from '@radix-ui/react-icons';
 import { useEffect, useState } from 'react';
@@ -28,19 +28,7 @@ const Albums: React.FC<AlbumsProps> = () => {
 
   const [, setFlag] = useState<boolean>(false);
 
-  useEffect(() => {
-    const handleStorageEvent = () => {
-      if (data) {
-        setFlag((flag) => !flag);
-      }
-    };
-
-    window.addEventListener('storage', handleStorageEvent);
-
-    return () => {
-      window.removeEventListener('storage', handleStorageEvent);
-    };
-  }, [data]);
+  useStorageChangeEvent({ callback: () => setFlag((flag) => !flag) });
 
   useEffect(() => {
     mutate();

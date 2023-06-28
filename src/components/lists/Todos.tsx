@@ -1,6 +1,6 @@
 import Todo from '@/components/cards/Todo';
 import { Error, Loading } from '@/components/common';
-import { useUrl } from '@/hooks';
+import { useStorageChangeEvent, useUrl } from '@/hooks';
 import type { Todo as TodoType } from '@/types';
 import { fetcher, getCompletedTodos } from '@/utils';
 import { useEffect, useState } from 'react';
@@ -17,20 +17,7 @@ const Todos: React.FC<TodosProps> = () => {
   );
   const [, setFlag] = useState<boolean>(false);
 
-  // Listen for local storage changes and update todo list
-  useEffect(() => {
-    const handleStorageEvent = () => {
-      if (data) {
-        setFlag((flag) => !flag);
-      }
-    };
-
-    window.addEventListener('storage', handleStorageEvent);
-
-    return () => {
-      window.removeEventListener('storage', handleStorageEvent);
-    };
-  }, [data]);
+  useStorageChangeEvent({ callback: () => setFlag((flag) => !flag) });
 
   useEffect(() => {
     mutate();
