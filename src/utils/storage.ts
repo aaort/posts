@@ -7,6 +7,14 @@ export const getDeletedPosts = () => {
   return deletedPosts;
 };
 
+export const getFavoritePosts = () => {
+  const unparsedFavoritePosts = localStorage.getItem('favoritePosts') ?? '[]';
+
+  const favoritePosts = JSON.parse(unparsedFavoritePosts) as number[];
+
+  return favoritePosts;
+};
+
 // Return parsed array of completed todos from local storage
 export const getCompletedTodos = () => {
   const unparsedCompletedTodos = localStorage.getItem('completedTodos') ?? '[]';
