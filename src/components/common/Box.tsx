@@ -43,6 +43,15 @@ const Box: React.FC<BoxProps> = (props) => {
     toggleEditing(false);
   };
 
+  const content =
+    typeof data.content === 'string' && isEditing ? (
+      <Input value={data.content} name="content" onChange={handleDataChange} />
+    ) : typeof data.content === 'string' && !isEditing ? (
+      <p>{data.content}</p>
+    ) : (
+      data.content
+    );
+
   return (
     <Container css={props.css}>
       <Row css={{ gap: '$1' }}>
@@ -62,7 +71,7 @@ const Box: React.FC<BoxProps> = (props) => {
           <Subtitle>{`${data.subtitle}`}</Subtitle>
         )}
       </Row>
-      {data.content}
+      {content}
       <Actions>
         {props.actions?.map((action, i) => (
           <Button
@@ -119,6 +128,7 @@ const Container = styled(Column, {
   backgroundColor: '$gray3',
   borderRadius: '$medium',
   gap: '$2',
+  boxShadow: '$medium',
 });
 
 const Title = styled('span', {
