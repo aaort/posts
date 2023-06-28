@@ -3,12 +3,12 @@ import Post from '@/components/cards/Post';
 import { Error, Row } from '@/components/common';
 import Loading from '@/components/common/Loading';
 import useUrlWithLimit from '@/hooks/useUrlWithLimit';
+import { styled } from '@/theme';
 import type { Post as PostType } from '@/types';
 import { fetcher } from '@/utils';
 import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 import List from './List';
-import { styled } from '@/theme';
 
 type PostsProps = {};
 
@@ -42,15 +42,19 @@ const Posts: React.FC<PostsProps> = () => {
 
   return (
     <List>
-      {(data as PostType[]).map((post) => (
-        <PostRow>
-          <Post key={post.id} post={post} />
-          <Checkbox
-            checked={selectedTodoIds.includes(post.id)}
-            onChange={() => handlePostSelectToggle(post.id)}
-          />
-        </PostRow>
-      ))}
+      {(data as PostType[]).map((post) => {
+        const isSelected = selectedTodoIds.includes(post.id);
+        return (
+          <PostRow>
+            <Post key={post.id} post={post} />
+            <Checkbox
+              checked={selectedTodoIds.includes(post.id)}
+              onChange={() => handlePostSelectToggle(post.id)}
+              tooltip={!isSelected ? 'Select' : 'Unselect'}
+            />
+          </PostRow>
+        );
+      })}
     </List>
   );
 };
