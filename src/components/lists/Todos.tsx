@@ -15,7 +15,7 @@ const Todos: React.FC<TodosProps> = () => {
     '/api/todos',
     () => fetcher(url)
   );
-  const [todos, setTodos] = useState<TodoType[]>();
+  const [todos, setTodos] = useState<TodoType[]>([]);
 
   useEffect(() => {
     mutate('/api/todos', true);
