@@ -48,8 +48,8 @@ const CheckboxRoot = styled(RadixCheckbox.Root, {
   cursor: 'pointer',
   boxSizing: 'border-box',
   '&:hover': {
-    backgroundColor: '$primary',
-    '& span': { color: '$background' },
+    scale: 1.02,
+    border: '1px solid $primary',
   },
   '&:focus': {
     border: '1px solid $primary',
