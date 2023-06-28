@@ -9,8 +9,15 @@ type BoxTypes = {
   title: string;
   subtitle: string;
   content: React.ReactNode;
-  actions?: { title: string; onClick?: () => void; type: ButtonType }[];
+  actions?: Action[];
   css?: CSS;
+};
+
+type Action = {
+  title: string;
+  onClick?: () => void;
+  type: ButtonType;
+  tooltip?: string;
 };
 
 const Box: React.FC<BoxTypes> = (props) => {
@@ -30,6 +37,7 @@ const Box: React.FC<BoxTypes> = (props) => {
             handleClick={action.onClick}
             type={action.type}
             title={action.title}
+            tooltip={action.tooltip}
           />
         ))}
       </Actions>
