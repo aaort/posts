@@ -72,7 +72,7 @@ const sortTodos = (todos: TodoType[]) => {
 const isTodoCompleted = (todo: TodoType) => {
   const localCompletedTodos = getCompletedTodos();
 
-  return todo.completed || localCompletedTodos.includes(`${todo.id}`);
+  return todo.completed || localCompletedTodos.includes(todo.id);
 };
 
 export default Todos;
