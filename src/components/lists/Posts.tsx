@@ -8,6 +8,7 @@ import { fetcher } from '@/utils';
 import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 import List from './List';
+import { styled } from '@/theme';
 
 type PostsProps = {};
 
@@ -42,22 +43,22 @@ const Posts: React.FC<PostsProps> = () => {
   return (
     <List>
       {(data as PostType[]).map((post) => (
-        <Row
-          css={{
-            gap: '$2',
-            width: '100%',
-            justifyContent: 'center',
-          }}
-        >
+        <PostRow>
           <Post key={post.id} post={post} />
           <Checkbox
             checked={selectedTodoIds.includes(post.id)}
             onChange={() => handlePostSelectToggle(post.id)}
           />
-        </Row>
+        </PostRow>
       ))}
     </List>
   );
 };
+
+const PostRow = styled(Row, {
+  gap: '$2',
+  width: '100%',
+  justifyContent: 'center',
+});
 
 export default Posts;
