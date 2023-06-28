@@ -1,4 +1,6 @@
-import { Button, Column, Row } from '@/components/common';
+import Button from './Button';
+import Column from './Column';
+import Row from './Row';
 import { styled } from '@/theme';
 import type { ButtonType } from '@/types';
 import type { CSS } from '@stitches/react';
