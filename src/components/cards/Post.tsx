@@ -11,8 +11,12 @@ import {
 import { useUrl } from '@/hooks';
 import { theme } from '@/theme';
 import type { Post as PostType, User } from '@/types';
-import { fetcher, getDeletedPosts, getFavoritePosts } from '@/utils';
-import { isFavoritePost } from '@/utils/storage';
+import {
+  fetcher,
+  getDeletedPosts,
+  isFavoritePost,
+  toggleFavoritePost,
+} from '@/utils';
 import { HeartFilledIcon, HeartIcon } from '@radix-ui/react-icons';
 import { Suspense, lazy, useEffect, useState } from 'react';
 import useSWR from 'swr';
@@ -199,21 +203,8 @@ type FavoriteProps = {
 
 const Favorite: React.FC<FavoriteProps> = ({ postId }) => {
   const handleClick = () => {
-    const favoritePosts = getFavoritePosts();
-
-    if (favoritePosts.includes(postId)) {
-      localStorage.setItem(
-        'favoritePosts',
-        JSON.stringify(favoritePosts.filter((id) => id !== postId))
-      );
-    } else {
-      localStorage.setItem(
-        'favoritePosts',
-        JSON.stringify([...favoritePosts, postId])
-      );
-    }
-
-    dispatchEvent(new Event('storage'));
+    console.log('called once');
+    toggleFavoritePost([postId]);
   };
 
   const icon = !isFavoritePost(postId) ? (
