@@ -28,11 +28,6 @@ const Post: React.FC<PostProps> = ({ post }) => {
 
   const user: User = data;
 
-  // Handle edge cases when user is falsy value
-  if (!user) {
-    return null;
-  }
-
   const handleToggleComments = () => {
     setShowComments(!showComments);
   };
