@@ -33,7 +33,7 @@ const Container = styled(Column, {
   backgroundColor: '$gray3',
   borderRadius: '$medium',
   gap: '$2',
-  boxShadow: '$medium',
+  boxShadow: '$small',
 });
 
 export default Box;

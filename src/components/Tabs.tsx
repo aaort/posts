@@ -60,7 +60,7 @@ const List = styled(NavigationMenu.List, {
   px: '$2',
   py: '1rem',
   backgroundColor: '$gray3',
-  boxShadow: '$medium',
+  boxShadow: '$small',
 });
 
 export default Tabs;
