@@ -12,8 +12,8 @@ import { useUrl } from '@/hooks';
 import { styled, theme } from '@/theme';
 import type { Post as PostType, User } from '@/types';
 import {
+  deletePosts,
   fetcher,
-  getDeletedPosts,
   isFavoritePost,
   toggleFavoritePosts,
 } from '@/utils';
@@ -173,14 +173,7 @@ const Delete: React.FC<DeleteProps> = ({ postId }) => {
   const handleDelete = async () => {
     await fetch(url, { method: 'DELETE' });
 
-    const deletedPosts = getDeletedPosts();
-
-    localStorage.setItem(
-      'deletedPosts',
-      JSON.stringify([...deletedPosts, postId])
-    );
-
-    dispatchEvent(new Event('storage'));
+    deletePosts([postId]);
 
     handleClose();
   };
