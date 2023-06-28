@@ -7,6 +7,15 @@ export const getDeletedPosts = () => {
   return deletedPosts;
 };
 
+// Return parsed array of deleted posts from local storage
+export const getDeletedAlbums = () => {
+  const unparsedDeletedAlbums = localStorage.getItem('deletedAlbums') ?? '[]';
+
+  const deletedAlbums = JSON.parse(unparsedDeletedAlbums) as number[];
+
+  return deletedAlbums;
+};
+
 // Delete posts by given an array of post ids
 export const toggleDeletedPosts = (postIds: number[]) => {
   const deletedTodos = getDeletedPosts();
@@ -22,6 +31,25 @@ export const toggleDeletedPosts = (postIds: number[]) => {
   }
 
   localStorage.setItem('deletedPosts', JSON.stringify(newDeletedPosts));
+
+  dispatchEvent(new Event('storage'));
+};
+
+// Delete posts by given an array of post ids
+export const toggleDeletedAlbums = (albumIds: number[]) => {
+  const deletedAlbums = getDeletedAlbums();
+
+  let newDeletedAlbums = deletedAlbums;
+  for (let i = 0; i < albumIds.length; i++) {
+    const albumId = albumIds[i];
+    if (deletedAlbums.includes(albumId)) {
+      newDeletedAlbums = newDeletedAlbums.filter((id) => id !== albumId);
+    } else {
+      newDeletedAlbums.push(albumId);
+    }
+  }
+
+  localStorage.setItem('deletedAlbums', JSON.stringify(newDeletedAlbums));
 
   dispatchEvent(new Event('storage'));
 };
