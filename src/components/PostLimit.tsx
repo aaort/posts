@@ -76,6 +76,7 @@ const Dropdown = styled('div', {
   border: '1px solid $primary',
   borderRadius: '$small',
   pointerEvents: 'all',
+  zIndex: 10,
 });
 
 const Viewport = styled(Select.Viewport, {
