@@ -29,6 +29,7 @@ const Todo: React.FC<TodoProps> = ({ todo: initialTodo }) => {
       completedTodos = completedTodos.filter((id) => id !== `${todo.id}`);
     }
     localStorage.setItem('completedTodos', JSON.stringify(completedTodos));
+    window.dispatchEvent(new Event('storage'));
   };
 
   return (
