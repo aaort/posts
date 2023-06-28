@@ -3,7 +3,7 @@ import Post from '@/components/cards/Post';
 import { Dialog, Error, IconButton, Row } from '@/components/common';
 import Loading from '@/components/common/Loading';
 import { useStorageChangeEvent, useUrl } from '@/hooks';
-import { styled } from '@/theme';
+import { keyframes, styled } from '@/theme';
 import type { Post as PostType } from '@/types';
 import {
   fetcher,
@@ -150,11 +150,17 @@ const DeleteButton: React.FC<FloatingButtonProps> = ({ onClick }) => {
   );
 };
 
+const floatingButtonsAnim = keyframes({
+  '0%': { opacity: 0 },
+  '100%': { opacity: 1 },
+});
+
 const FloatingButtons = styled(Row, {
   position: 'fixed',
   bottom: 20,
   right: 20,
   gap: '$2',
+  animation: `${floatingButtonsAnim} 150ms linear`,
 });
 
 const FloatingButton = styled(IconButton, {
