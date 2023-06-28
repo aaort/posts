@@ -23,6 +23,28 @@ export const isFavoritePost = (postId: number) => {
   return favoritePosts.includes(postId);
 };
 
+// Toggle an array of favorite posts, either mark as favorite or unmark
+export const toggleFavoritePost = (postIds: number[]) => {
+  const favoritePosts = getFavoritePosts();
+
+  for (let i = 0; i < postIds.length; i++) {
+    const postId = postIds[i];
+    if (favoritePosts.includes(postId)) {
+      localStorage.setItem(
+        'favoritePosts',
+        JSON.stringify(favoritePosts.filter((id) => id !== postId))
+      );
+    } else {
+      localStorage.setItem(
+        'favoritePosts',
+        JSON.stringify([...favoritePosts, postId])
+      );
+    }
+  }
+
+  dispatchEvent(new Event('storage'));
+};
+
 // Return parsed array of completed todos from local storage
 export const getCompletedTodos = () => {
   const unparsedCompletedTodos = localStorage.getItem('completedTodos') ?? '[]';

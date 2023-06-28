@@ -4,6 +4,8 @@ import {
   getCompletedTodos,
   getDeletedPosts,
   getFavoritePosts,
+  isFavoritePost,
+  toggleFavoritePost,
 } from './storage';
 
 export {
@@ -12,4 +14,6 @@ export {
   getDeletedPosts,
   getFavoritePosts,
   getLimit,
+  isFavoritePost,
+  toggleFavoritePost,
 };
