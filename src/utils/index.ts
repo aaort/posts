@@ -1,5 +1,5 @@
 import fetcher from './fetcher';
-import getCompletedTodos from './getCompletedTodos';
 import getLimit from './getLimit';
+import { getCompletedTodos, getDeletedPosts } from './storage';
 
-export { fetcher, getCompletedTodos, getLimit };
+export { fetcher, getCompletedTodos, getDeletedPosts, getLimit };
