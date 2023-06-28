@@ -68,7 +68,7 @@ const Posts: React.FC<PostsProps> = () => {
   return (
     <>
       <List>
-        {(posts as PostType[]).map((post, i) => {
+        {posts.map((post, i) => {
           const isSelected = selectedTodoIds.includes(post.id);
           return (
             <PostRow key={i}>
