@@ -95,10 +95,16 @@ const Posts: React.FC<PostsProps> = () => {
       </List>
       {selectedTodoIds.length && (
         <FloatingButtons>
-          <FloatingButton onClick={handleFavoriteClick}>
+          <FloatingButton
+            onClick={handleFavoriteClick}
+            aria-label="favorite-icon-button"
+          >
             <HeartIcon />
           </FloatingButton>
-          <FloatingButton onClick={handleDeleteClick} aria-label="delete">
+          <FloatingButton
+            onClick={handleDeleteClick}
+            aria-label="delete-icon-button"
+          >
             <TrashIcon />
           </FloatingButton>
         </FloatingButtons>
@@ -129,8 +135,12 @@ const FloatingButton = styled(IconButton, {
     width: '50%',
     height: '50%',
   },
-  '&[aria-label="delete"]': {
+  '&[aria-label="delete-icon-button"]': {
     backgroundColor: '$error',
+    color: '$background',
+  },
+  '&[aria-label="favorite-icon-button"]:hover': {
+    backgroundColor: '$gray6',
     color: '$background',
   },
 });
