@@ -1,3 +1,4 @@
+import { Row, Tooltip } from '@/components/common';
 import { styled } from '@/theme';
 import { Todo as TodoType } from '@/types';
 import { getCompletedTodos } from '@/utils';
@@ -5,7 +6,6 @@ import * as Checkbox from '@radix-ui/react-checkbox';
 import { CheckIcon, Pencil1Icon } from '@radix-ui/react-icons';
 import { CSS } from '@stitches/react';
 import { useState } from 'react';
-import { Row } from '../common';
 
 type TodoProps = {
   todo: TodoType;
@@ -36,18 +36,22 @@ const Todo: React.FC<TodoProps> = ({ todo: initialTodo }) => {
     <Container>
       <Title css={taskCss}>{todo.title + ' ' + todo.id}</Title>
       <Row css={{ gap: '$2' }}>
-        <CheckboxRoot
-          defaultChecked={todo.completed}
-          checked={todo.completed}
-          onCheckedChange={handleComplete}
-        >
-          <CheckboxIndicator>
-            <CheckIcon width={25} height={25} />
-          </CheckboxIndicator>
-        </CheckboxRoot>
-        <EditButton>
-          <Pencil1Icon width={20} height={20} />
-        </EditButton>
+        <Tooltip text={!todo.completed ? 'Mark as done' : 'Unmark'}>
+          <CheckboxRoot
+            defaultChecked={todo.completed}
+            checked={todo.completed}
+            onCheckedChange={handleComplete}
+          >
+            <CheckboxIndicator>
+              <CheckIcon width={25} height={25} />
+            </CheckboxIndicator>
+          </CheckboxRoot>
+        </Tooltip>
+        <Tooltip text={'Edit'}>
+          <EditButton>
+            <Pencil1Icon width={20} height={20} />
+          </EditButton>
+        </Tooltip>
       </Row>
     </Container>
   );
