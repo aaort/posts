@@ -96,7 +96,7 @@ export const toggleFavoriteAlbums = (albumIds: number[]) => {
   dispatchEvent(new Event('storage'));
 };
 
-// Return parsed array of completed todos from local storage
+// Return an array of completed todos from local storage
 export const getCompletedTodos = () => {
   const unparsedCompletedTodos = localStorage.getItem('completedTodos') ?? '[]';
 
