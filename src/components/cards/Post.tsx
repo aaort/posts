@@ -97,23 +97,32 @@ const Post: React.FC<PostProps> = (props) => {
 
   return (
     <Box>
-      <Row css={{ gap: '$1', position: 'relative' }}>
-        {isEditing ? (
-          <Input value={post.title} name="title" onChange={handleDataChange} />
-        ) : (
-          <Title>{post.title + ' ' + props.post.id}</Title>
-        )}
-        |
-        {isEditing ? (
-          <Input
-            value={post.subtitle}
-            name="subtitle"
-            onChange={handleDataChange}
-          />
-        ) : (
-          <Subtitle>{`@${post.subtitle}`}</Subtitle>
-        )}
-        <Row css={{ position: 'absolute', top: -10, right: -10, gap: '$1' }}>
+      <Row
+        css={{
+          justifyContent: 'space-between',
+        }}
+      >
+        <Row css={{ gap: '$1' }}>
+          {isEditing ? (
+            <Input
+              value={post.title}
+              name="title"
+              onChange={handleDataChange}
+            />
+          ) : (
+            <Title>{post.title + ' ' + props.post.id}</Title>
+          )}
+          {isEditing ? (
+            <Input
+              value={post.subtitle}
+              name="subtitle"
+              onChange={handleDataChange}
+            />
+          ) : (
+            <Subtitle>{`@${post.subtitle}`}</Subtitle>
+          )}
+        </Row>
+        <Row css={{ gap: '$1' }}>
           <Favorite postId={props.post.id} />
           <Delete postId={props.post.id} />
         </Row>

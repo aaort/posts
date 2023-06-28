@@ -77,23 +77,29 @@ const Album: React.FC<AlbumProps> = (props) => {
 
   return (
     <Box>
-      <Row css={{ gap: '$1', position: 'relative' }}>
-        {!isEditing ? (
-          <Title>{album.title}</Title>
-        ) : (
-          <Input value={album.title} name="title" onChange={handleDataChange} />
-        )}
-        |
-        {!isEditing ? (
-          <Subtitle> {`@${album?.subtitle}`} </Subtitle>
-        ) : (
-          <Input
-            value={album.subtitle}
-            name="subtitle"
-            onChange={handleDataChange}
-          />
-        )}
-        <Row css={{ position: 'absolute', top: -10, right: -10, gap: '$1' }}>
+      <Row css={{ justifyContent: 'space-between' }}>
+        <Row css={{ gap: '$1' }}>
+          {!isEditing ? (
+            <Title>{album.title}</Title>
+          ) : (
+            <Input
+              value={album.title}
+              name="title"
+              onChange={handleDataChange}
+            />
+          )}
+
+          {!isEditing ? (
+            <Subtitle> {`@${album?.subtitle}`} </Subtitle>
+          ) : (
+            <Input
+              value={album.subtitle}
+              name="subtitle"
+              onChange={handleDataChange}
+            />
+          )}
+        </Row>
+        <Row css={{ gap: '$1', alignItems: 'flex-start' }}>
           <Favorite albumId={props.album.id} />
           <Delete albumId={props.album.id} />
         </Row>
