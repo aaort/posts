@@ -26,11 +26,9 @@ const Album: React.FC<AlbumProps> = (props) => {
   const owner = data as User;
 
   return (
-    <Box
-      title={props.album.title}
-      subtitle={`@${owner.username}`}
-      content={''}
-    />
+    <Box>
+      {props.album.title} | {owner.username}
+    </Box>
   );
 };
 
