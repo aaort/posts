@@ -1,12 +1,11 @@
 import Tabs from '@/components/Tabs';
-import { styled } from '@/theme';
 import { Tab } from '@/types';
 import { Suspense, lazy, useState } from 'react';
 import { Column } from './common';
 import Loading from './common/Loading';
 
 const Posts = lazy(() => import('./lists/Posts'));
-const Photos = lazy(() => import('./lists/Photos'));
+const Photos = lazy(() => import('./lists/Albums'));
 const Todos = lazy(() => import('./lists/Todos'));
 
 const TabsContainer: React.FC<{}> = () => {
@@ -18,7 +17,7 @@ const TabsContainer: React.FC<{}> = () => {
       <Suspense fallback={<Loading />}>
         {selectedTab === 'posts' ? (
           <Posts />
-        ) : selectedTab === 'photos' ? (
+        ) : selectedTab === 'albums' ? (
           <Photos />
         ) : (
           <Todos />

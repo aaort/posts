@@ -9,9 +9,9 @@ import useSWR from 'swr';
 import Checkbox from '../Checkbox';
 import List from './List';
 
-type PhotosProps = {};
+type AlbumsProps = {};
 
-const Photos: React.FC<PhotosProps> = () => {
+const Albums: React.FC<AlbumsProps> = () => {
   const url = useUrl('albums');
   const { data, error, isLoading, mutate, isValidating } = useSWR(
     '/api/albums',
@@ -67,4 +67,4 @@ const AlbumRow = styled(Row, {
   justifyContent: 'center',
 });
 
-export default Photos;
+export default Albums;
