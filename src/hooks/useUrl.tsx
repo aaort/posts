@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 
 const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
+// Return complete concatenated with provided endpoint
+// And optional ability to add limit
 const useUrl = (endpoint: string, includeLimit: boolean = true) => {
   const [limit, setLimit] = useState<string | number | undefined>(
     includeLimit ? getLimit() : undefined
