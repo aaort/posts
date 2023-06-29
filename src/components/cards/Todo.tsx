@@ -1,5 +1,5 @@
-import { Checkbox } from '@/components';
-import { Row, Tooltip } from '@/components/common';
+import { Checkbox, Input } from '@/components';
+import { Button, Row, Tooltip } from '@/components/common';
 import { styled } from '@/theme';
 import { Todo as TodoType } from '@/types';
 import { toggleCompletedTodos } from '@/utils/storage';
@@ -17,6 +17,28 @@ const Todo: React.FC<TodoProps> = ({ todo: initialTodo }) => {
   const [todo, setTodo] = useState<TodoType>(initialTodo);
   const taskCss: CSS = todo.completed ? { textDecoration: 'line-through' } : {};
 
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [editedTodo, setEditedTodo] = useState<TodoType>(todo);
+
+  const toggleEditing = () => setIsEditing(!isEditing);
+
+  const handleEditing = (event: React.FormEvent<HTMLInputElement>) => {
+    setEditedTodo({
+      ...todo,
+      [event.currentTarget.name]: event.currentTarget.value,
+    });
+  };
+
+  const handleDiscard = () => {
+    setTodo(todo);
+    toggleEditing();
+  };
+
+  const handleSave = () => {
+    setTodo(editedTodo);
+    toggleEditing();
+  };
+
   const handleComplete = async () => {
     setTodo({ ...todo, completed: !todo.completed });
 
@@ -26,18 +48,31 @@ const Todo: React.FC<TodoProps> = ({ todo: initialTodo }) => {
 
   return (
     <Container>
-      <Title css={taskCss}>{todo.title}</Title>
+      {!isEditing ? (
+        <Title css={taskCss}>{todo.title}</Title>
+      ) : (
+        <Input value={editedTodo.title} name="title" onChange={handleEditing} />
+      )}
       <Row css={{ gap: '$2' }}>
-        <Checkbox
-          checked={todo.completed}
-          onChange={handleComplete}
-          tooltip={!todo.completed ? 'Mark As Complete' : 'Unmark'}
-        />
-        <Tooltip text={'Edit'}>
-          <EditButton>
-            <Pencil1Icon width={20} height={20} />
-          </EditButton>
-        </Tooltip>
+        {!isEditing ? (
+          <>
+            <Checkbox
+              checked={todo.completed}
+              onChange={handleComplete}
+              tooltip={!todo.completed ? 'Mark As Complete' : 'Unmark'}
+            />
+            <Tooltip text={'Edit'}>
+              <EditButton onClick={toggleEditing}>
+                <Pencil1Icon width={20} height={20} />
+              </EditButton>
+            </Tooltip>
+          </>
+        ) : (
+          <>
+            <Button title="Discard" type="dangerous" onClick={handleDiscard} />
+            <Button title="Save" type="success" onClick={handleSave} />
+          </>
+        )}
       </Row>
     </Container>
   );
