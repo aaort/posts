@@ -1,7 +1,6 @@
 import { SWRConfig, SWRConfiguration } from 'swr';
-import { Home } from './pages';
-import { globalStyles } from './theme';
 import Routes from './routes';
+import { globalStyles } from './theme';
 
 const swrOptions: SWRConfiguration = {
   revalidateOnFocus: false,
