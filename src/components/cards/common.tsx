@@ -13,7 +13,7 @@ export const Subtitle = styled('span', {
 });
 
 export const Actions = styled(Row, {
-  gap: '$2',
+  gap: '$3',
   justifyContent: 'flex-end',
   flexWrap: 'wrap',
 });

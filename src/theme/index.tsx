@@ -28,10 +28,10 @@ export const {
     },
     space: {
       1: '0.5rem',
-      2: '2rem',
-      3: '4rem',
-      4: '8rem',
-      5: '16rem',
+      2: '1rem',
+      3: '2rem',
+      4: '4rem',
+      5: '8rem',
     },
     fontSizes: {
       1: '1rem',

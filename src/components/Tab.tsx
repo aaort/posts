@@ -30,8 +30,8 @@ const Item = styled(NavigationItem, {
   fontSize: 'clamp($1, 1.1rem + 1vw, $2)',
   textTransform: 'uppercase',
   letterSpacing: '0.2rem',
-  px: 'clamp($1, .1rem + 5vw, $2)',
-  py: '1rem',
+  px: 'clamp($1, .1rem + 5vw, 3rem)',
+  py: '$2',
   transition: 'background-color 150ms linear',
   '&:hover': {
     backgroundColor: '$gray7',

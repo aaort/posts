@@ -28,11 +28,11 @@ const Container = styled(Column, {
   },
   width: '100%',
   maxWidth: '80%',
-  padding: '1.4rem $2',
+  p: '$2',
   alignItems: 'space-between',
   backgroundColor: '$gray3',
   borderRadius: '$medium',
-  gap: '$2',
+  gap: '$3',
   boxShadow: '$small',
 });
 
