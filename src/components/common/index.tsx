@@ -6,6 +6,7 @@ import Error from './Error';
 import IconButton from './IconButton';
 import Loading from './Loading';
 import Row from './Row';
+import Select from './Select';
 import Tooltip from './Tooltip';
 
 export {
@@ -17,5 +18,6 @@ export {
   IconButton,
   Loading,
   Row,
+  Select,
   Tooltip,
 };
