@@ -11,21 +11,6 @@ const Box: React.FC<BoxProps> = (props) => {
 };
 
 const Container = styled(Column, {
-  '@xs': {
-    minWidth: '30rem',
-  },
-  '@sm': {
-    minWidth: '35rem',
-  },
-  '@md': {
-    minWidth: '40rem',
-  },
-  '@lg': {
-    minWidth: '50rem',
-  },
-  '@xl': {
-    minWidth: '60rem',
-  },
   width: '100%',
   maxWidth: '80%',
   p: '$3',
