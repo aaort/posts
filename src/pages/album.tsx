@@ -45,9 +45,11 @@ const Album: React.FC<{}> = () => {
 
   return (
     <>
-      <CloseButton onClick={goBack}>
-        <ArrowLeftIcon />
-      </CloseButton>
+      {!openImageUrl ? (
+        <CloseButton onClick={goBack}>
+          <ArrowLeftIcon />
+        </CloseButton>
+      ) : null}
       <Container>
         <Grid>
           {photos.map((photo, i) => (
@@ -97,12 +99,14 @@ const CloseButton = styled(IconButton, {
   position: 'absolute',
   top: '2rem',
   left: '2rem',
+  cursor: 'pointer',
+  zIndex: 10,
   '&:hover': {
     background: 'initial',
   },
   '& svg': {
-    width: 50,
-    height: 50,
+    width: '100%',
+    height: '100%',
   },
 });
 
