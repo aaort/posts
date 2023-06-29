@@ -19,7 +19,7 @@ const AlertDialog: React.FC<AlertDialogProps> = (props) => (
       onOpenChange={props.onOpenChange}
     >
       <RadixAlertDialog.Portal>
-        <AlertDialogOverlay />
+        <AlertDialogOverlay onClick={props.onClose} />
         <AlertDialogContent>{props.children}</AlertDialogContent>
       </RadixAlertDialog.Portal>
     </RadixAlertDialog.Root>
@@ -46,9 +46,8 @@ const AlertDialogOverlay = styled(RadixAlertDialog.Overlay, {
 
 const AlertDialogContent = styled(RadixAlertDialog.Content, {
   backgroundColor: '$background',
-  borderRadius: 6,
-  boxShadow:
-    'hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px',
+  borderRadius: '$medium',
+  boxShadow: '$medium',
   position: 'fixed',
   top: '50%',
   left: '50%',
@@ -56,7 +55,7 @@ const AlertDialogContent = styled(RadixAlertDialog.Content, {
   width: '90vw',
   maxWidth: '500px',
   maxHeight: '85vh',
-  padding: 25,
+  padding: '$3',
   animation: `${contentShow} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
 
   '&:focus': { outline: 'none' },
@@ -66,7 +65,7 @@ const AlertDialogContent = styled(RadixAlertDialog.Content, {
 const CloseButton = styled(IconButton, {
   position: 'absolute',
   top: 0,
-  right: 0,
+  right: '3rem',
   zIndex: 7,
   cursor: 'pointer',
   pointerEvents: 'all',
