@@ -64,9 +64,9 @@ const TabsContainer: React.FC<{}> = () => {
       <Tabs selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
       <Suspense fallback={<Loading />}>
         {selectedTab === 'posts' ? (
-          <Column css={{ gap: '$2', alignItems: 'center' }}>
+          <Column css={{ gap: '$4', my: '$3', alignItems: 'center' }}>
             <Row css={{ gap: '$3' }}>
-              <Label text="Name" name="name">
+              <Label text="Name:" name="name">
                 <Select<FilterOrder>
                   isOpen={filtersVisibility.name}
                   values={orders}
@@ -75,7 +75,7 @@ const TabsContainer: React.FC<{}> = () => {
                   defaultValue={orders[0]}
                 />
               </Label>
-              <Label text="Id" name="id">
+              <Label text="Id:" name="id">
                 <Select<FilterOrder>
                   isOpen={filtersVisibility.id}
                   values={orders}
@@ -84,7 +84,7 @@ const TabsContainer: React.FC<{}> = () => {
                   defaultValue={orders[0]}
                 />
               </Label>
-              <Label text="Favorite" name="favorite">
+              <Label text="Favorite:" name="favorite">
                 <Select<FilterOrder>
                   isOpen={filtersVisibility.favorite}
                   values={orders}
