@@ -26,6 +26,7 @@ import { Actions, Subtitle, Title } from './common';
 
 type AlbumProps = {
   album: AlbumType;
+  checkbox: React.ReactNode;
 };
 
 type Data = {
@@ -85,50 +86,53 @@ const Album: React.FC<AlbumProps> = (props) => {
   };
 
   return (
-    <Box>
-      <Row css={{ justifyContent: 'space-between' }}>
-        <Row css={{ gap: '$1' }}>
-          {!isEditing ? (
-            <Link
-              to={`/albums/${props.album.id}`}
-              state={{ albumId: props.album.id }}
-            >
-              <Title>{album.title}</Title>
-            </Link>
-          ) : (
-            <Input
-              value={album.title}
-              name="title"
-              onChange={handleDataChange}
-            />
-          )}
+    <Row css={{ justifyContent: 'center', gap: '$4' }}>
+      <Box>
+        <Row css={{ justifyContent: 'space-between' }}>
+          <Row css={{ gap: '$1' }}>
+            {!isEditing ? (
+              <Link
+                to={`/albums/${props.album.id}`}
+                state={{ albumId: props.album.id }}
+              >
+                <Title>{album.title}</Title>
+              </Link>
+            ) : (
+              <Input
+                value={album.title}
+                name="title"
+                onChange={handleDataChange}
+              />
+            )}
 
-          {!isEditing ? (
-            <Subtitle> {`@${album?.subtitle}`} </Subtitle>
-          ) : (
-            <Input
-              value={album.subtitle}
-              name="subtitle"
-              onChange={handleDataChange}
-            />
+            {!isEditing ? (
+              <Subtitle> {`@${album?.subtitle}`} </Subtitle>
+            ) : (
+              <Input
+                value={album.subtitle}
+                name="subtitle"
+                onChange={handleDataChange}
+              />
+            )}
+          </Row>
+          <Row css={{ gap: '$1', alignItems: 'flex-start' }}>
+            <Favorite albumId={props.album.id} />
+            <Delete albumId={props.album.id} />
+          </Row>
+        </Row>
+        <Actions>
+          <Button
+            title={!isEditing ? 'Edit' : 'Save'}
+            type={!isEditing ? 'primary' : 'success'}
+            onClick={!isEditing ? toggleIsEditing : handleSave}
+          />
+          {isEditing && (
+            <Button title="Discard" type="dangerous" onClick={handleDiscard} />
           )}
-        </Row>
-        <Row css={{ gap: '$1', alignItems: 'flex-start' }}>
-          <Favorite albumId={props.album.id} />
-          <Delete albumId={props.album.id} />
-        </Row>
-      </Row>
-      <Actions>
-        <Button
-          title={!isEditing ? 'Edit' : 'Save'}
-          type={!isEditing ? 'primary' : 'success'}
-          onClick={!isEditing ? toggleIsEditing : handleSave}
-        />
-        {isEditing && (
-          <Button title="Discard" type="dangerous" onClick={handleDiscard} />
-        )}
-      </Actions>
-    </Box>
+        </Actions>
+      </Box>
+      {props.checkbox}
+    </Row>
   );
 };
 

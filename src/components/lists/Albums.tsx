@@ -75,16 +75,19 @@ const Albums: React.FC<AlbumsProps> = ({ filters }) => {
         {getAlbums().map((album, i) => {
           const isSelected = selectedAlbumIds.includes(album.id);
           return (
-            <AlbumRow key={i}>
-              <Album album={album} />
-              <Checkbox
-                checked={isSelected}
-                onChange={() => handleAlbumSelectToggle(album.id)}
-                tooltip={!isSelected ? 'Select' : 'Unselect'}
-                size="medium"
-                css={{ border: '1px solid $primary' }}
-              />
-            </AlbumRow>
+            <Album
+              key={i}
+              album={album}
+              checkbox={
+                <Checkbox
+                  checked={isSelected}
+                  onChange={() => handleAlbumSelectToggle(album.id)}
+                  tooltip={!isSelected ? 'Select' : 'Unselect'}
+                  size="medium"
+                  css={{ border: '1px solid $primary' }}
+                />
+              }
+            />
           );
         })}
       </List>
@@ -200,12 +203,6 @@ const FloatingButton = styled(IconButton, {
     backgroundColor: '$gray6',
     color: '$background',
   },
-});
-
-const AlbumRow = styled(Row, {
-  gap: '$2',
-  width: '100%',
-  justifyContent: 'center',
 });
 
 export default Albums;
