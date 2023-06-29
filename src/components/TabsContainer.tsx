@@ -43,7 +43,7 @@ const TabsContainer: React.FC<{}> = () => {
     <Column>
       <Tabs selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
       <Suspense fallback={<Loading />}>
-        <Column css={{ gap: '$4', my: '$3', alignItems: 'center' }}>
+        <Column css={{ gap: '$6', my: '$3', alignItems: 'center' }}>
           {selectedTab === 'posts' ? (
             <>
               <PostsFilters
