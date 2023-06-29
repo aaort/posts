@@ -22,7 +22,7 @@ import { HeartFilledIcon, HeartIcon, TrashIcon } from '@radix-ui/react-icons';
 import { Suspense, lazy, useEffect, useState } from 'react';
 import useSWR from 'swr';
 import Input from '../Input';
-import { Actions, Content, Subtitle, Title } from './common';
+import { Actions, Content, Subtitle, Title, Wrapper } from './common';
 
 const Comments = lazy(() => import('@/components/Comments'));
 
@@ -98,7 +98,7 @@ const Post: React.FC<PostProps> = (props) => {
   };
 
   return (
-    <Row css={{ justifyContent: 'center', gap: '$4' }}>
+    <Wrapper>
       <Box>
         <Row
           css={{
@@ -169,7 +169,7 @@ const Post: React.FC<PostProps> = (props) => {
         </Actions>
       </Box>
       {props.checkbox}
-    </Row>
+    </Wrapper>
   );
 };
 

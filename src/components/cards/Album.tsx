@@ -22,7 +22,7 @@ import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 import Input from '../Input';
 import { IconButtonBox } from './Post';
-import { Actions, Subtitle, Title } from './common';
+import { Actions, Subtitle, Title, Wrapper } from './common';
 
 type AlbumProps = {
   album: AlbumType;
@@ -86,7 +86,7 @@ const Album: React.FC<AlbumProps> = (props) => {
   };
 
   return (
-    <Row css={{ justifyContent: 'center', gap: '$4' }}>
+    <Wrapper>
       <Box>
         <Row css={{ justifyContent: 'space-between' }}>
           <Row css={{ gap: '$1' }}>
@@ -132,7 +132,7 @@ const Album: React.FC<AlbumProps> = (props) => {
         </Actions>
       </Box>
       {props.checkbox}
-    </Row>
+    </Wrapper>
   );
 };
 

@@ -6,6 +6,7 @@ import { toggleCompletedTodos } from '@/utils/storage';
 import { Pencil1Icon } from '@radix-ui/react-icons';
 import { CSS } from '@stitches/react';
 import { useState } from 'react';
+import { Wrapper } from './common';
 
 type TodoProps = {
   todo: TodoType;
@@ -48,7 +49,7 @@ const Todo: React.FC<TodoProps> = ({ todo: initialTodo, checkbox }) => {
   };
 
   return (
-    <Row css={{ justifyContent: 'center', gap: '$4' }}>
+    <Wrapper>
       <Container>
         {!isEditing ? (
           <Title css={taskCss}>{todo.title}</Title>
@@ -86,7 +87,7 @@ const Todo: React.FC<TodoProps> = ({ todo: initialTodo, checkbox }) => {
         </Row>
       </Container>
       {checkbox}
-    </Row>
+    </Wrapper>
   );
 };
 
