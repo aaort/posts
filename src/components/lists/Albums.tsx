@@ -88,12 +88,12 @@ const Albums: React.FC<AlbumsProps> = ({ filters }) => {
           );
         })}
       </List>
-      {selectedAlbumIds.length && (
+      {selectedAlbumIds.length ? (
         <FloatingButtons>
           <FavoriteButton onClick={handleFavoriteClick} />
           <DeleteButton onClick={handleDeleteClick} />
         </FloatingButtons>
-      )}
+      ) : null}
     </>
   );
 };
