@@ -40,25 +40,33 @@ const TabsContainer: React.FC<{}> = () => {
     <Column>
       <Tabs selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
       <Suspense fallback={<Loading />}>
-        {selectedTab === 'posts' ? (
-          <Column css={{ gap: '$4', my: '$3', alignItems: 'center' }}>
-            <PostsFilters filters={postsFilters} setFilters={setPostsFilters} />
-            <Posts filters={postsFilters} />
-          </Column>
-        ) : selectedTab === 'albums' ? (
-          <Column css={{ gap: '$4', my: '$3', alignItems: 'center' }}>
-            <AlbumsFilters
-              filters={albumsFilters}
-              setFilters={setAlbumsFilters}
-            />
-            <Albums filters={albumsFilters} />
-          </Column>
-        ) : (
-          <Column css={{ gap: '$4', my: '$3', alignItems: 'center' }}>
-            <TodosFilters filters={todosFilters} setFilters={setTodosFilters} />
-            <Todos filters={todosFilters} />
-          </Column>
-        )}
+        <Column css={{ gap: '$4', my: '$3', alignItems: 'center' }}>
+          {selectedTab === 'posts' ? (
+            <>
+              <PostsFilters
+                filters={postsFilters}
+                setFilters={setPostsFilters}
+              />
+              <Posts filters={postsFilters} />
+            </>
+          ) : selectedTab === 'albums' ? (
+            <>
+              <AlbumsFilters
+                filters={albumsFilters}
+                setFilters={setAlbumsFilters}
+              />
+              <Albums filters={albumsFilters} />
+            </>
+          ) : (
+            <>
+              <TodosFilters
+                filters={todosFilters}
+                setFilters={setTodosFilters}
+              />
+              <Todos filters={todosFilters} />
+            </>
+          )}
+        </Column>
       </Suspense>
     </Column>
   );
