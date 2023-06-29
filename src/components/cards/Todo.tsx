@@ -67,6 +67,7 @@ const Todo: React.FC<TodoProps> = ({ todo: initialTodo, checkbox }) => {
                 checked={todo.completed}
                 onChange={handleComplete}
                 tooltip={!todo.completed ? 'Mark As Complete' : 'Unmark'}
+                css={{ boxShadow: '$small' }}
               />
               <Tooltip text={'Edit'}>
                 <EditButton onClick={toggleEditing}>
