@@ -13,10 +13,9 @@ const Comment: React.FC<CommentProps> = ({ comment }) => {
         <b>
           <Title>{comment.name}</Title>
         </b>
-        {'|'}
-        <span>{comment.email}</span>
+        <Username>{comment.email}</Username>
       </Row>
-      <p>{comment.body}</p>
+      <Content>{comment.body}</Content>
     </Container>
   );
 };
@@ -26,7 +25,15 @@ const Container = styled(Column, {
 });
 
 const Title = styled('span', {
-  fontSize: 'calc($2 - 0.2rem)',
+  fontSize: 'calc($2 - 0.1rem)',
+});
+
+const Content = styled('p', {
+  fontSize: 'calc($1 + 0.2rem)',
+});
+
+const Username = styled('span', {
+  fontSize: 'calc($2 - 0.5rem)',
 });
 
 export default Comment;

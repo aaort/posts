@@ -47,7 +47,7 @@ const Container = styled(Column, {
 const Heading = styled('p', {
   mt: '$2',
   mb: '$1',
-  fontSize: 'calc($1 + 0.2rem)',
+  fontSize: '$2',
   fontWeight: '$3',
 });
 
