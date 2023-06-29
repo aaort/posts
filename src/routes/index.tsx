@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Home, Album } from '../pages';
+import { Album, Home } from '../pages';
 
 const router = createBrowserRouter([
   {
