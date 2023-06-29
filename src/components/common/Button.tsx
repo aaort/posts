@@ -29,7 +29,7 @@ const Container = styled('button', {
   backgroundColor: '$background',
   padding: '$1 $2',
   border: 'none',
-  fontSize: '$1',
+  fontSize: '$button',
   fontWeight: '$3',
   borderRadius: '$medium',
   color: '$primary',
