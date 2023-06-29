@@ -4,6 +4,7 @@ import {
   getCompletedTodos,
   getDeletedAlbums,
   getDeletedPosts,
+  getDeletedTodos,
   getFavoriteAlbums,
   getFavoritePosts,
   isFavoriteAlbum,
@@ -11,6 +12,7 @@ import {
   toggleCompletedTodos,
   toggleDeletedAlbums,
   toggleDeletedPosts,
+  toggleDeletedTodos,
   toggleFavoriteAlbums,
   toggleFavoritePosts,
 } from './storage';
@@ -20,6 +22,7 @@ export {
   getCompletedTodos,
   getDeletedAlbums,
   getDeletedPosts,
+  getDeletedTodos,
   getFavoriteAlbums,
   getFavoritePosts,
   getLimit,
@@ -28,6 +31,7 @@ export {
   toggleCompletedTodos,
   toggleDeletedAlbums,
   toggleDeletedPosts,
+  toggleDeletedTodos,
   toggleFavoriteAlbums,
   toggleFavoritePosts,
 };

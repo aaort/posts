@@ -18,12 +18,12 @@ export const getDeletedAlbums = () => {
 
 // Delete posts by given an array of post ids
 export const toggleDeletedPosts = (postIds: number[]) => {
-  const deletedTodos = getDeletedPosts();
+  const deletedPosts = getDeletedPosts();
 
-  let newDeletedPosts = deletedTodos;
+  let newDeletedPosts = deletedPosts;
   for (let i = 0; i < postIds.length; i++) {
     const postId = postIds[i];
-    if (deletedTodos.includes(postId)) {
+    if (deletedPosts.includes(postId)) {
       newDeletedPosts = newDeletedPosts.filter((id) => id !== postId);
     } else {
       newDeletedPosts.push(postId);
@@ -131,6 +131,13 @@ export const getCompletedTodos = () => {
   return JSON.parse(unparsedCompletedTodos) as number[];
 };
 
+// Return an array of deleted todos from local storage
+export const getDeletedTodos = () => {
+  const unparsedDeletedTodos = localStorage.getItem('deletedTodos') ?? '[]';
+
+  return JSON.parse(unparsedDeletedTodos) as number[];
+};
+
 // Toggle completed todos
 export const toggleCompletedTodos = (todoIds: number[]) => {
   const completedTodos = getCompletedTodos();
@@ -147,4 +154,23 @@ export const toggleCompletedTodos = (todoIds: number[]) => {
 
   localStorage.setItem('completedTodos', JSON.stringify(completedTodos));
   window.dispatchEvent(new Event('storage'));
+};
+
+// Delete todos by given an array of todo ids
+export const toggleDeletedTodos = (todoIds: number[]) => {
+  const deletedTodos = getDeletedTodos();
+
+  let newDeletedTodos = deletedTodos;
+  for (let i = 0; i < todoIds.length; i++) {
+    const todoId = todoIds[i];
+    if (deletedTodos.includes(todoId)) {
+      newDeletedTodos = newDeletedTodos.filter((id) => id !== todoId);
+    } else {
+      newDeletedTodos.push(todoId);
+    }
+  }
+
+  localStorage.setItem('deletedTodos', JSON.stringify(newDeletedTodos));
+
+  dispatchEvent(new Event('storage'));
 };
