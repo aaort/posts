@@ -35,11 +35,11 @@ export const {
     },
     fontSizes: {
       1: '1rem',
-      2: '1.6rem',
-      3: '2.2rem',
-      4: '2.8rem',
-      5: '3.4rem',
-      6: '4rem',
+      2: '1.2rem',
+      3: '1.4rem',
+      4: '1.6rem',
+      5: '1.8rem',
+      6: '2rem',
     },
     fontWeights: {
       1: '400',
