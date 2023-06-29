@@ -1,16 +1,4 @@
-import { TabsContainer } from '@/components/';
-import { styled } from '../theme';
+import Home from './home';
+import Album from './album';
 
-const Home = () => {
-  return (
-    <Container>
-      <TabsContainer />
-    </Container>
-  );
-};
-
-const Container = styled('div', {
-  height: '100svh',
-});
-
-export default Home;
+export { Home, Album };

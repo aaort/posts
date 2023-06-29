@@ -1,6 +1,7 @@
 import { SWRConfig, SWRConfiguration } from 'swr';
-import Home from './pages';
+import { Home } from './pages';
 import { globalStyles } from './theme';
+import Routes from './routes';
 
 const swrOptions: SWRConfiguration = {
   revalidateOnFocus: false,
@@ -10,9 +11,7 @@ function App() {
   globalStyles();
   return (
     <SWRConfig value={swrOptions}>
-      <div className="App">
-        <Home />
-      </div>
+      <Routes />
     </SWRConfig>
   );
 }
