@@ -12,16 +12,16 @@ import { useUrl } from '@/hooks';
 import { styled, theme } from '@/theme';
 import type { Post as PostType, User } from '@/types';
 import {
-  toggleDeletedPosts,
   fetcher,
   isFavoritePost,
+  toggleDeletedPosts,
   toggleFavoritePosts,
 } from '@/utils';
 import { HeartFilledIcon, HeartIcon, TrashIcon } from '@radix-ui/react-icons';
 import { Suspense, lazy, useEffect, useState } from 'react';
 import useSWR from 'swr';
 import Input from '../Input';
-import { Actions, Subtitle, Title } from './common';
+import { Actions, Content, Subtitle, Title } from './common';
 
 const Comments = lazy(() => import('@/components/Comments'));
 
@@ -129,7 +129,7 @@ const Post: React.FC<PostProps> = (props) => {
       </Row>
       {showComments ? (
         <Column>
-          <p>{post.content}</p>
+          <Content>{post.content}</Content>
           <Suspense fallback={<Loading />}>
             <Comments postId={props.post.id} />
           </Suspense>
@@ -141,7 +141,7 @@ const Post: React.FC<PostProps> = (props) => {
           name="content"
         />
       ) : (
-        <p> {post.content} </p>
+        <Content> {post.content} </Content>
       )}
       <Actions>
         {!isEditing ? (
