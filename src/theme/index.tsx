@@ -90,8 +90,8 @@ export const {
 });
 
 export const globalStyles = globalCss({
-  ':root': {
-    '--border-radius:': '1rem',
+  'html, body': {
+    fontSize: '16px',
   },
   body: {
     margin: 0,
