@@ -3,13 +3,16 @@ import { Error, Loading } from '@/components/common';
 import { useStorageChangeEvent, useUrl } from '@/hooks';
 import type { Todo as TodoType } from '@/types';
 import { fetcher, getCompletedTodos } from '@/utils';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import useSWR from 'swr';
 import List from './List';
+import type { TodosFilter } from './components/filters/types';
 
-type TodosProps = {};
+type TodosProps = {
+  filters: TodosFilter[];
+};
 
-const Todos: React.FC<TodosProps> = () => {
+const Todos: React.FC<TodosProps> = ({ filters }) => {
   const url = useUrl('todos');
   const { data, error, isLoading, mutate, isValidating } = useSWR(
     '/api/todos',
@@ -23,6 +26,11 @@ const Todos: React.FC<TodosProps> = () => {
     mutate();
   }, [url, mutate]);
 
+  const getTodos = useCallback(
+    () => getSortedTodos(sortTodos(data), filters),
+    [data, filters]
+  );
+
   if (error) {
     return <Error />;
   }
@@ -31,11 +39,9 @@ const Todos: React.FC<TodosProps> = () => {
     return <Loading />;
   }
 
-  const todos = sortTodos(data);
-
   return (
     <List>
-      {todos.map((todo) => (
+      {getTodos().map((todo) => (
         <Todo key={todo.id} todo={todo} />
       ))}
     </List>
@@ -51,6 +57,20 @@ const sortTodos = (todos: TodoType[]) => {
   const uncompletedTodos = todos.filter((todo) => !isTodoCompleted(todo));
 
   return uncompletedTodos.concat(completedTodos);
+};
+
+const getSortedTodos = (posts: TodoType[], filters: TodosFilter[]) => {
+  return posts
+    .sort(({ title: title1 }, { title: title2 }) =>
+      filters[0].order === 'ascending'
+        ? title1.length - title2.length
+        : title2.length - title1.length
+    )
+    .sort((todo1, todo2) =>
+      filters[1].order === 'ascending'
+        ? Number(isTodoCompleted(todo1)) - Number(isTodoCompleted(todo2))
+        : Number(isTodoCompleted(todo2)) - Number(isTodoCompleted(todo2))
+    );
 };
 
 // Check if todo is completed locally or from API

@@ -56,7 +56,7 @@ const TabsContainer: React.FC<{}> = () => {
         ) : (
           <Column css={{ gap: '$4', my: '$3', alignItems: 'center' }}>
             <TodosFilters filters={todosFilters} setFilters={setTodosFilters} />
-            <Todos />
+            <Todos filters={todosFilters} />
           </Column>
         )}
       </Suspense>
