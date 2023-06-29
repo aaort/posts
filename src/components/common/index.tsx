@@ -4,6 +4,7 @@ import Column from './Column';
 import Dialog from './Dialog';
 import Error from './Error';
 import IconButton from './IconButton';
+import Label from './Label';
 import Loading from './Loading';
 import Row from './Row';
 import Select from './Select';
@@ -16,6 +17,7 @@ export {
   Dialog,
   Error,
   IconButton,
+  Label,
   Loading,
   Row,
   Select,
