@@ -108,10 +108,10 @@ const getFilteredPosts = (posts: PostType[]) => {
 
 const getSortedPosts = (posts: PostType[], filters: Filter[]) => {
   return posts
-    .sort((post1, post2) =>
+    .sort(({ title: title1 }, { title: title2 }) =>
       filters[0].order === 'ascending'
-        ? post1.title.length - post2.title.length
-        : post2.title.length - post1.title.length
+        ? title1.length - title2.length
+        : title2.length - title1.length
     )
     .sort((post1, post2) =>
       filters[1].order === 'ascending'

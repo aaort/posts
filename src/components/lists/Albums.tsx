@@ -106,10 +106,10 @@ const getFilteredAlbums = (albums: AlbumType[]) => {
 
 const getSortedAlbums = (albums: AlbumType[], filters: Filter[]) => {
   return albums
-    .sort((album1, album2) =>
+    .sort(({ title: title1 }, { title: title2 }) =>
       filters[0].order === 'ascending'
-        ? album1.title.length - album2.title.length
-        : album2.title.length - album1.title.length
+        ? title1.length - title2.length
+        : title2.length - title1.length
     )
     .sort((album1, album2) =>
       filters[1].order === 'ascending'
