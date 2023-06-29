@@ -34,13 +34,13 @@ const Container = styled('button', {
   borderRadius: '$medium',
   color: '$primary',
   cursor: 'pointer',
-  transition: 'box-shadow 40ms linear',
+  transition: 'box-shadow 100ms linear',
   boxSizing: 'border-box',
   '&:hover': {
     boxShadow: '$small',
   },
   '&:focus': {
-    border: '1px solid $primary',
+    border: '1px solid inherit',
   },
   variants: {
     type: {
