@@ -4,12 +4,9 @@ import { Suspense, lazy, useState } from 'react';
 import { Column } from './common';
 import Loading from './common/Loading';
 import AlbumsFilters from './lists/components/filters/AlbumsFilters';
-import PostsFilters, {
-  PostsFilter,
-} from './lists/components/filters/PostsFilters';
-import TodosFilters, {
-  TodosFilter,
-} from './lists/components/filters/TodosFilters';
+import PostsFilters from './lists/components/filters/PostsFilters';
+import TodosFilters from './lists/components/filters/TodosFilters';
+import { PostsFilter, TodosFilter } from './lists/components/filters/types';
 
 const Posts = lazy(() => import('./lists/Posts'));
 const Albums = lazy(() => import('./lists/Albums'));

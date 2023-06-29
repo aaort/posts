@@ -1,24 +1,21 @@
 import { Label, Row, Select } from '@/components/common';
 import { Order } from '@/types';
 import { Dispatch, SetStateAction, useState } from 'react';
+import { TodosFilterType, TodosFilter, TodosFilterVisibility } from './types';
 
 type TodosFiltersProps = {
   filters: TodosFilter[];
   setFilters: Dispatch<SetStateAction<TodosFilter[]>>;
 };
 
-export type TodosFilterType = 'byName' | 'byCompleted';
-export type TodosFilter = { type: TodosFilterType; order: Order };
-
-type FilterVisibility = { byName: boolean; byCompleted: boolean };
-
 const orders: Order[] = ['ascending', 'descending'];
 
 const TodosFilters: React.FC<TodosFiltersProps> = ({ filters, setFilters }) => {
-  const [filtersVisibility, setFiltersVisibility] = useState<FilterVisibility>({
-    byName: false,
-    byCompleted: false,
-  });
+  const [filtersVisibility, setFiltersVisibility] =
+    useState<TodosFilterVisibility>({
+      byName: false,
+      byCompleted: false,
+    });
 
   const handleFiltersChange = (type: TodosFilterType, order: Order) => {
     setFilters(

@@ -14,8 +14,8 @@ import { HeartIcon, TrashIcon } from '@radix-ui/react-icons';
 import { useCallback, useEffect, useState } from 'react';
 import useSWR from 'swr';
 import Checkbox from '../Checkbox';
-import { AlbumsFilter } from './components/filters/AlbumsFilters';
 import List from './List';
+import type { AlbumsFilter } from './components/filters/types';
 
 type AlbumsProps = {
   filters: AlbumsFilter[];

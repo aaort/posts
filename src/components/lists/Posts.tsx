@@ -16,7 +16,7 @@ import { HeartIcon, TrashIcon } from '@radix-ui/react-icons';
 import { useCallback, useEffect, useState } from 'react';
 import useSWR from 'swr';
 import List from './List';
-import type { PostsFilter } from './components/filters/PostsFilters';
+import type { PostsFilter } from './components/filters/types';
 
 type PostsProps = {
   filters: PostsFilter[];

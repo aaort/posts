@@ -1,17 +1,17 @@
 import { Order } from '@/types';
 import { Label, Select, Row } from '@/components/common';
 import { Dispatch, SetStateAction, useState } from 'react';
+import {
+  AlbumsFilter,
+  AlbumsFilterType,
+  AlbumsFilterVisibility,
+  Filter,
+} from './types';
 
 type PostsFiltersProps = {
   filters: AlbumsFilter[];
   setFilters: Dispatch<SetStateAction<AlbumsFilter[]>>;
 };
-
-type FilterType = 'byName' | 'byId' | 'byFavorite';
-
-export type AlbumsFilter = { type: FilterType; order: Order };
-
-type FilterVisibility = { byName: boolean; byId: boolean; byFavorite: boolean };
 
 const orders: Order[] = ['ascending', 'descending'];
 
@@ -19,13 +19,14 @@ const AlbumsFilters: React.FC<PostsFiltersProps> = ({
   filters,
   setFilters,
 }) => {
-  const [filtersVisibility, setFiltersVisibility] = useState<FilterVisibility>({
-    byName: false,
-    byId: false,
-    byFavorite: false,
-  });
+  const [filtersVisibility, setFiltersVisibility] =
+    useState<AlbumsFilterVisibility>({
+      byName: false,
+      byId: false,
+      byFavorite: false,
+    });
 
-  const handleFiltersChange = (type: FilterType, order: Order) => {
+  const handleFiltersChange = (type: AlbumsFilterType, order: Order) => {
     setFilters(
       filters.map((filter) =>
         filter.type === type ? { ...filter, order } : filter
@@ -33,7 +34,7 @@ const AlbumsFilters: React.FC<PostsFiltersProps> = ({
     );
   };
 
-  const toggleFilter = (name: FilterType) =>
+  const toggleFilter = (name: AlbumsFilterType) =>
     setFiltersVisibility({
       ...filtersVisibility,
       [name]: !filtersVisibility[name],
