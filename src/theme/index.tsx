@@ -35,11 +35,11 @@ export const {
     },
     fontSizes: {
       1: '1rem',
-      2: '1.2rem',
-      3: '1.4rem',
-      4: '1.6rem',
-      5: '1.8rem',
-      6: '2rem',
+      2: '1.6rem',
+      3: '2.2rem',
+      4: '2.8rem',
+      5: '3.4rem',
+      6: '4rem',
     },
     fontWeights: {
       1: '400',
@@ -47,9 +47,9 @@ export const {
       3: '600',
     },
     radii: {
-      small: '0.5rem',
-      medium: '1rem',
-      large: '1.5rem',
+      small: '0.4rem',
+      medium: '0.8rem',
+      large: '1.4rem',
     },
     shadows: {
       small:
@@ -95,7 +95,7 @@ export const {
 
 export const globalStyles = globalCss({
   'html, body': {
-    fontSize: '16px',
+    fontSize: '62.5%',
     fontFamily: '$regular',
   },
   body: {
