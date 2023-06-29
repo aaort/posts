@@ -110,7 +110,7 @@ const Post: React.FC<PostProps> = (props) => {
               onChange={handleDataChange}
             />
           ) : (
-            <Title>{post.title + ' ' + props.post.id}</Title>
+            <Title>{post.title}</Title>
           )}
           {isEditing ? (
             <Input
