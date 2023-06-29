@@ -1,5 +1,4 @@
 import { SWRConfig, SWRConfiguration } from 'swr';
-import './App.css';
 import Home from './pages';
 import { globalStyles } from './theme';
 
