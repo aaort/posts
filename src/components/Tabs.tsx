@@ -42,16 +42,8 @@ const HeaderRow = styled(Row, {
 });
 
 const List = styled(NavigationMenu.List, {
-  '@sm': {
-    flexDirection: 'column',
-    borderRadius: '$medium',
-    alignItems: 'center',
-    gap: '$1',
-  },
-  '@md': {
-    flexDirection: 'row',
-    borderRadius: '50rem',
-  },
+  flexDirection: 'row',
+  borderRadius: '50rem',
   display: 'flex',
   p: 0,
   gap: 0,

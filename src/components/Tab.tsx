@@ -27,31 +27,29 @@ const Tab: React.FC<TabTypes> = (props) => {
 
 const Item = styled(NavigationItem, {
   cursor: 'pointer',
-  fontSize: '$2',
+  fontSize: 'clamp($1, 1.1rem + 1vw, $2)',
   textTransform: 'uppercase',
   letterSpacing: '0.2rem',
-  px: '$2',
+  px: 'clamp($1, .1rem + 5vw, $2)',
   py: '1rem',
   transition: 'background-color 150ms linear',
   '&:hover': {
     backgroundColor: '$gray7',
     color: '$background',
   },
-  '@md': {
-    '&:nth-child(1)': {
-      borderTopLeftRadius: 'inherit',
-      borderBottomLeftRadius: 'inherit',
-    },
-    '&:nth-child(2)': {
-      borderInline: '1px solid $primary',
-    },
-    '&:nth-child(3)': {
-      borderTopRightRadius: 'inherit',
-      borderBottomRightRadius: 'inherit',
-    },
+  '&:nth-child(2)': {
+    borderInline: '1px solid $primary',
+  },
+  '&:nth-child(1)': {
+    borderTopLeftRadius: 'inherit',
+    borderBottomLeftRadius: 'inherit',
+  },
+  '&:nth-child(3)': {
+    borderTopRightRadius: 'inherit',
+    borderBottomRightRadius: 'inherit',
   },
   '@sm': {
-    borderRadius: '$small',
+    borderRadius: 'none',
     border: 'none',
   },
 });
