@@ -93,28 +93,13 @@ const Todo: React.FC<TodoProps> = ({ todo: initialTodo, checkbox }) => {
 };
 
 const Container = styled(Row, {
-  '@xs': {
-    minWidth: '30rem',
-  },
-  '@sm': {
-    minWidth: '35rem',
-  },
-  '@md': {
-    minWidth: '40rem',
-  },
-  '@lg': {
-    minWidth: '50rem',
-  },
-  '@xl': {
-    minWidth: '60rem',
-  },
   width: '100%',
   maxWidth: '80%',
   justifyContent: 'space-between',
   backgroundColor: '$gray3',
   padding: '$2 $3',
   borderRadius: '$medium',
-  boxShadow: '$medium',
+  boxShadow: '$small',
   fontSize: '$2',
 });
 

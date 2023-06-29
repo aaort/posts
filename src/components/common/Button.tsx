@@ -37,7 +37,7 @@ const Container = styled('button', {
   transition: 'box-shadow 40ms linear',
   boxSizing: 'border-box',
   '&:hover': {
-    boxShadow: '$medium',
+    boxShadow: '$small',
   },
   '&:focus': {
     border: '1px solid $primary',

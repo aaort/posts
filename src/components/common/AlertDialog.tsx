@@ -47,7 +47,7 @@ const AlertDialogOverlay = styled(RadixAlertDialog.Overlay, {
 const AlertDialogContent = styled(RadixAlertDialog.Content, {
   backgroundColor: '$background',
   borderRadius: '$medium',
-  boxShadow: '$medium',
+  boxShadow: '$small',
   position: 'fixed',
   top: '50%',
   left: '50%',

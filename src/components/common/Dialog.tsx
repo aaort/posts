@@ -60,7 +60,7 @@ const DialogOverlay = styled(RadixDialog.Overlay, {
 const DialogContent = styled(RadixDialog.Content, {
   backgroundColor: '$background',
   borderRadius: '$small',
-  boxShadow: '$medium',
+  boxShadow: '$small',
   position: 'fixed',
   top: '5%',
   right: '5%',
