@@ -214,7 +214,7 @@ const Favorite: React.FC<IconActionButtonProps> = ({ postId }) => {
     <HeartFilledIcon
       width={'90%'}
       height={'90%'}
-      color={theme.colors.error.value}
+      color={theme.colors.favorite.value}
     />
   );
 
