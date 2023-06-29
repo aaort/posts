@@ -8,7 +8,7 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: '/album',
+    path: '/albums/:id',
     element: <Album />,
   },
 ]);
