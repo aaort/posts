@@ -52,8 +52,10 @@ export const {
       large: '1.5rem',
     },
     shadows: {
-      small: '.2rem .2rem .6rem hsl(210, 11%, 90%)',
-      medium: '.2rem .6rem 1.2rem hsl(210, 11%, 80%)',
+      small:
+        'hsl(206 22% 7% / 20%) 0px 0px 20px -5px, hsl(206 22% 7% / 10%) 0px 10px 10px -5px',
+      medium:
+        'hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px',
       large: '.2rem 1.2rem 2rem hsl(210, 11%, 90%)',
     },
     fonts: {
