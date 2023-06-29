@@ -28,7 +28,7 @@ const Albums: React.FC<AlbumsProps> = ({ filters }) => {
     () => fetcher(url)
   );
 
-  const [selectedAlbumIds, setSelectedTodoIds] = useState<number[]>([]);
+  const [selectedAlbumIds, setSelectedAlbumIds] = useState<number[]>([]);
 
   const [, setFlag] = useState<boolean>(false);
 
@@ -53,20 +53,20 @@ const Albums: React.FC<AlbumsProps> = ({ filters }) => {
 
   const handleAlbumSelectToggle = (id: number) => {
     if (selectedAlbumIds.includes(id)) {
-      setSelectedTodoIds(selectedAlbumIds.filter((albumId) => id !== albumId));
+      setSelectedAlbumIds(selectedAlbumIds.filter((albumId) => id !== albumId));
     } else {
-      setSelectedTodoIds([...selectedAlbumIds, id]);
+      setSelectedAlbumIds([...selectedAlbumIds, id]);
     }
   };
 
   const handleFavoriteClick = () => {
     toggleFavoriteAlbums(selectedAlbumIds);
-    setSelectedTodoIds([]);
+    setSelectedAlbumIds([]);
   };
 
   const handleDeleteClick = () => {
     toggleDeletedAlbums(selectedAlbumIds);
-    setSelectedTodoIds([]);
+    setSelectedAlbumIds([]);
   };
 
   return (
