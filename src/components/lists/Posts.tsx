@@ -77,16 +77,19 @@ const Posts: React.FC<PostsProps> = ({ filters }) => {
           getPosts().map((post, i) => {
             const isSelected = selectedTodoIds.includes(post.id);
             return (
-              <PostRow key={i}>
-                <Post post={post} />
-                <Checkbox
-                  checked={isSelected}
-                  onChange={() => handlePostSelectToggle(post.id)}
-                  tooltip={!isSelected ? 'Select' : 'Unselect'}
-                  size="medium"
-                  css={{ border: '1px solid $primary' }}
-                />
-              </PostRow>
+              <Post
+                key={i}
+                post={post}
+                checkbox={
+                  <Checkbox
+                    checked={isSelected}
+                    onChange={() => handlePostSelectToggle(post.id)}
+                    tooltip={!isSelected ? 'Select' : 'Unselect'}
+                    size="medium"
+                    css={{ border: '1px solid $primary' }}
+                  />
+                }
+              />
             );
           })}
       </List>

@@ -28,6 +28,7 @@ const Comments = lazy(() => import('@/components/Comments'));
 
 type PostProps = {
   post: PostType;
+  checkbox: React.ReactNode;
 };
 
 type Data = {
@@ -97,75 +98,78 @@ const Post: React.FC<PostProps> = (props) => {
   };
 
   return (
-    <Box>
-      <Row
-        css={{
-          justifyContent: 'space-between',
-        }}
-      >
-        <Row css={{ gap: '$1' }}>
-          {isEditing ? (
-            <Input
-              value={post.title}
-              name="title"
-              onChange={handleDataChange}
-            />
-          ) : (
-            <Title>{post.title}</Title>
-          )}
-          {isEditing ? (
-            <Input
-              value={post.subtitle}
-              name="subtitle"
-              onChange={handleDataChange}
-            />
-          ) : (
-            <Subtitle>{`@${post.subtitle}`}</Subtitle>
-          )}
+    <Row css={{ justifyContent: 'center', gap: '$4' }}>
+      <Box>
+        <Row
+          css={{
+            justifyContent: 'space-between',
+          }}
+        >
+          <Row css={{ gap: '$1' }}>
+            {isEditing ? (
+              <Input
+                value={post.title}
+                name="title"
+                onChange={handleDataChange}
+              />
+            ) : (
+              <Title>{post.title}</Title>
+            )}
+            {isEditing ? (
+              <Input
+                value={post.subtitle}
+                name="subtitle"
+                onChange={handleDataChange}
+              />
+            ) : (
+              <Subtitle>{`@${post.subtitle}`}</Subtitle>
+            )}
+          </Row>
+          <Row css={{ gap: '$1' }}>
+            <Favorite postId={props.post.id} />
+            <Delete postId={props.post.id} />
+          </Row>
         </Row>
-        <Row css={{ gap: '$1' }}>
-          <Favorite postId={props.post.id} />
-          <Delete postId={props.post.id} />
-        </Row>
-      </Row>
-      {showComments ? (
-        <Column>
-          <Content>{post.content}</Content>
-          <Suspense fallback={<Loading />}>
-            <Comments postId={props.post.id} />
-          </Suspense>
-        </Column>
-      ) : isEditing ? (
-        <Input
-          value={post.content}
-          onChange={handleDataChange}
-          name="content"
-        />
-      ) : (
-        <Content> {post.content} </Content>
-      )}
-      <Actions>
-        {!isEditing ? (
-          <>
-            <Button
-              onClick={handleToggleComments}
-              type={'primary'}
-              title={!showComments ? 'Show Comments' : 'Hide Comments'}
-            />
-            <Button onClick={toggleEditing} type={'primary'} title={'Edit'} />
-          </>
+        {showComments ? (
+          <Column>
+            <Content>{post.content}</Content>
+            <Suspense fallback={<Loading />}>
+              <Comments postId={props.post.id} />
+            </Suspense>
+          </Column>
+        ) : isEditing ? (
+          <Input
+            value={post.content}
+            onChange={handleDataChange}
+            name="content"
+          />
         ) : (
-          <>
-            <Button
-              onClick={handleDiscard}
-              type={'dangerous'}
-              title={'Discard'}
-            />
-            <Button onClick={handleSave} type={'success'} title={'Save'} />
-          </>
+          <Content> {post.content} </Content>
         )}
-      </Actions>
-    </Box>
+        <Actions>
+          {!isEditing ? (
+            <>
+              <Button
+                onClick={handleToggleComments}
+                type={'primary'}
+                title={!showComments ? 'Show Comments' : 'Hide Comments'}
+              />
+              <Button onClick={toggleEditing} type={'primary'} title={'Edit'} />
+            </>
+          ) : (
+            <>
+              <Button
+                onClick={handleDiscard}
+                type={'dangerous'}
+                title={'Discard'}
+              />
+              <Button onClick={handleSave} type={'success'} title={'Save'} />
+            </>
+          )}
+        </Actions>
+      </Box>
+      {props.checkbox}
+    </Row>
   );
 };
 
