@@ -11,7 +11,7 @@ const Container = styled('input', {
   backgroundColor: '$background',
   borderRadius: '$small',
   border: '1px solid $primary',
-  fontSize: 'inherit',
+  fontSize: '$2',
   outline: 'none',
 });
 
