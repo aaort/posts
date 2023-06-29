@@ -45,7 +45,7 @@ const Container = styled('button', {
   variants: {
     type: {
       primary: {
-        backgroundColor: '$gray6',
+        backgroundColor: '$gray7',
         color: '$background',
       },
       dangerous: {
