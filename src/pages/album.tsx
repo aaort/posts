@@ -55,7 +55,7 @@ const Album: React.FC<{}> = () => {
           {photos.map((photo, i) => (
             <Photo key={i} onClick={() => toggleOpenImage(photo.url)}>
               <Image src={photo.thumbnailUrl} alt={photo.title} />
-              <span>{photo.title}</span>
+              <ImageTitle>{photo.title}</ImageTitle>
             </Photo>
           ))}
         </Grid>
@@ -66,7 +66,7 @@ const Album: React.FC<{}> = () => {
           onOpenChange={() => toggleOpenImage()}
           onClose={() => toggleOpenImage()}
         >
-          <img src={openImageUrl} />
+          <img src={openImageUrl} alt="Random" />
         </AlertDialog>
       ) : null}
     </>
@@ -88,7 +88,14 @@ const Grid = styled('div', {
   justifyContent: 'center',
 });
 
-const Photo = styled(Column, {});
+const Photo = styled(Column, {
+  gap: '$2',
+  textAlign: 'center',
+});
+
+const ImageTitle = styled('span', {
+  fontSize: 'calc($2 - 0.3rem)',
+});
 
 const Image = styled('img', {
   objectFit: 'fill',
