@@ -1,3 +1,4 @@
+import AlertDialog from './AlertDialog';
 import Box from './Box';
 import Button from './Button';
 import Column from './Column';
@@ -12,6 +13,7 @@ import Select from './Select';
 import Tooltip from './Tooltip';
 
 export {
+  AlertDialog,
   Box,
   Button,
   Column,
