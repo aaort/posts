@@ -45,7 +45,6 @@ export const {
       1: '400',
       2: '500',
       3: '600',
-      4: '700',
     },
     radii: {
       small: '0.5rem',
@@ -56,6 +55,9 @@ export const {
       small: '.2rem .2rem .6rem hsl(210, 11%, 90%)',
       medium: '.2rem .6rem 1.2rem hsl(210, 11%, 80%)',
       large: '.2rem 1.2rem 2rem hsl(210, 11%, 90%)',
+    },
+    fonts: {
+      regular: 'sans-serif, cursive',
     },
   },
   media: {
@@ -92,10 +94,10 @@ export const {
 export const globalStyles = globalCss({
   'html, body': {
     fontSize: '16px',
+    fontFamily: '$regular',
   },
   body: {
     margin: 0,
-    fontFamily: 'sans-serif',
     color: '$primary',
   },
   '*': {
