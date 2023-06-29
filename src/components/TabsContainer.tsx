@@ -35,21 +35,10 @@ const TabsContainer: React.FC<{}> = () => {
     );
   };
 
-  const toggleNameFilter = () =>
+  const toggleFilter = (name: 'name' | 'id' | 'favorite') =>
     setFiltersVisibility({
       ...filtersVisibility,
-      name: !filtersVisibility.name,
-    });
-
-  const toggleIdFilter = () =>
-    setFiltersVisibility({
-      ...filtersVisibility,
-      id: !filtersVisibility.id,
-    });
-  const toggleFavoriteFilter = () =>
-    setFiltersVisibility({
-      ...filtersVisibility,
-      favorite: !filtersVisibility.favorite,
+      [name]: !filtersVisibility.name,
     });
 
   const handleNameFilterChange = (order: FilterOrder) =>
@@ -71,7 +60,7 @@ const TabsContainer: React.FC<{}> = () => {
                   isOpen={filtersVisibility.name}
                   values={orders}
                   onValueChange={handleNameFilterChange}
-                  onChangeOpen={toggleNameFilter}
+                  onChangeOpen={() => toggleFilter('name')}
                   defaultValue={orders[0]}
                 />
               </Label>
@@ -80,7 +69,7 @@ const TabsContainer: React.FC<{}> = () => {
                   isOpen={filtersVisibility.id}
                   values={orders}
                   onValueChange={handleIdFilterChange}
-                  onChangeOpen={toggleIdFilter}
+                  onChangeOpen={() => toggleFilter('id')}
                   defaultValue={orders[0]}
                 />
               </Label>
@@ -89,7 +78,7 @@ const TabsContainer: React.FC<{}> = () => {
                   isOpen={filtersVisibility.favorite}
                   values={orders}
                   onValueChange={handleFavoriteFilterChange}
-                  onChangeOpen={toggleFavoriteFilter}
+                  onChangeOpen={() => toggleFilter('favorite')}
                   defaultValue={orders[0]}
                 />
               </Label>
