@@ -6,6 +6,7 @@ import {
   Link,
   Loading,
   Row,
+  Tooltip,
 } from '@/components/common';
 import useUrl from '@/hooks/useUrl';
 import { theme } from '@/theme';
@@ -152,9 +153,14 @@ const Delete: React.FC<ActonButtonProps> = ({ albumId }) => {
 
   return (
     <>
-      <IconButtonBox onClick={handleOpenDialog} aria-label="delete-icon-button">
-        <TrashIcon />
-      </IconButtonBox>
+      <Tooltip text="Delete this album">
+        <IconButtonBox
+          onClick={handleOpenDialog}
+          aria-label="delete-icon-button"
+        >
+          <TrashIcon />
+        </IconButtonBox>
+      </Tooltip>
       <Dialog
         isOpen={isDialogOpen}
         title="Confirm Operation"
@@ -182,9 +188,11 @@ const Favorite: React.FC<ActonButtonProps> = ({ albumId }) => {
   );
 
   return (
-    <IconButtonBox aria-label="favorite-icon-button" onClick={handleClick}>
-      {icon}
-    </IconButtonBox>
+    <Tooltip text="Mark as favorite">
+      <IconButtonBox aria-label="favorite-icon-button" onClick={handleClick}>
+        {icon}
+      </IconButtonBox>
+    </Tooltip>
   );
 };
 

@@ -7,6 +7,7 @@ import {
   IconButton,
   Loading,
   Row,
+  Tooltip,
 } from '@/components/common';
 import { useUrl } from '@/hooks';
 import { styled, theme } from '@/theme';
@@ -189,9 +190,14 @@ const Delete: React.FC<IconActionButtonProps> = ({ postId }) => {
 
   return (
     <>
-      <IconButtonBox onClick={handleOpenDialog} aria-label="delete-icon-button">
-        <TrashIcon />
-      </IconButtonBox>
+      <Tooltip text="Delete this post">
+        <IconButtonBox
+          onClick={handleOpenDialog}
+          aria-label="delete-icon-button"
+        >
+          <TrashIcon />
+        </IconButtonBox>
+      </Tooltip>
       <Dialog
         isOpen={isDialogOpen}
         title="Confirm Operation"
@@ -219,9 +225,11 @@ const Favorite: React.FC<IconActionButtonProps> = ({ postId }) => {
   );
 
   return (
-    <IconButtonBox aria-label="favorite-icon-button" onClick={handleClick}>
-      {icon}
-    </IconButtonBox>
+    <Tooltip text="Mark as favorite">
+      <IconButtonBox aria-label="favorite-icon-button" onClick={handleClick}>
+        {icon}
+      </IconButtonBox>
+    </Tooltip>
   );
 };
 
