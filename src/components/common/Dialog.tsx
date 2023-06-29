@@ -61,7 +61,7 @@ const DialogContent = styled(RadixDialog.Content, {
   backgroundColor: '$background',
   borderRadius: '$small',
   boxShadow: '$medium',
-  position: 'absolute',
+  position: 'fixed',
   top: '5%',
   right: '5%',
   width: '90vw',
