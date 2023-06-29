@@ -8,17 +8,21 @@ import type { Post as PostType } from '@/types';
 import {
   fetcher,
   getDeletedPosts,
+  isFavoritePost,
   toggleDeletedPosts,
   toggleFavoritePosts,
 } from '@/utils';
 import { HeartIcon, TrashIcon } from '@radix-ui/react-icons';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import useSWR from 'swr';
 import List from './List';
+import type { Filter } from '../TabsContainer';
 
-type PostsProps = {};
+type PostsProps = {
+  filters: Filter[];
+};
 
-const Posts: React.FC<PostsProps> = () => {
+const Posts: React.FC<PostsProps> = ({ filters }) => {
   const url = useUrl('posts');
   const { data, error, isLoading, mutate, isValidating } = useSWR(
     '/api/posts',
@@ -35,6 +39,11 @@ const Posts: React.FC<PostsProps> = () => {
     mutate();
   }, [url, mutate]);
 
+  const getPosts = useCallback(
+    () => getSortedPosts(getFilteredPosts(data), filters),
+    [filters, data]
+  );
+
   if (error) {
     return <Error />;
   }
@@ -42,8 +51,6 @@ const Posts: React.FC<PostsProps> = () => {
   if (isLoading || isValidating) {
     return <Loading />;
   }
-
-  const posts = getFilteredPosts(data);
 
   const handlePostSelectToggle = (id: number) => {
     if (selectedTodoIds.includes(id)) {
@@ -66,8 +73,8 @@ const Posts: React.FC<PostsProps> = () => {
   return (
     <>
       <List>
-        {posts &&
-          posts.map((post, i) => {
+        {getPosts() &&
+          getPosts().map((post, i) => {
             const isSelected = selectedTodoIds.includes(post.id);
             return (
               <PostRow key={i}>
@@ -83,12 +90,12 @@ const Posts: React.FC<PostsProps> = () => {
             );
           })}
       </List>
-      {selectedTodoIds.length && (
+      {selectedTodoIds.length ? (
         <FloatingButtons>
           <FavoriteButton onClick={handleFavoriteClick} />
           <DeleteButton onClick={handleDeleteClick} />
         </FloatingButtons>
-      )}
+      ) : null}
     </>
   );
 };
@@ -97,6 +104,25 @@ const getFilteredPosts = (posts: PostType[]) => {
   const deletedPosts = getDeletedPosts();
 
   return posts.filter((post) => !deletedPosts.includes(post.id));
+};
+
+const getSortedPosts = (posts: PostType[], filters: Filter[]) => {
+  return posts
+    .sort((post1, post2) =>
+      filters[0].order === 'ascending'
+        ? post1.title.length - post2.title.length
+        : post2.title.length - post1.title.length
+    )
+    .sort((post1, post2) =>
+      filters[1].order === 'ascending'
+        ? post1.id - post2.id
+        : post2.id - post1.id
+    )
+    .sort((post1, post2) =>
+      filters[2].order === 'ascending'
+        ? Number(isFavoritePost(post1.id)) - Number(isFavoritePost(post2.id))
+        : Number(isFavoritePost(post2.id)) - Number(isFavoritePost(post1.id))
+    );
 };
 
 type FloatingButtonProps = { onClick: () => void };

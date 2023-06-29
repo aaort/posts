@@ -11,7 +11,7 @@ const Todos = lazy(() => import('./lists/Todos'));
 type FilterOrder = 'ascending' | 'descending';
 type FilterType = 'name' | 'id' | 'favorite';
 
-type Filter = { type: FilterType; order: FilterOrder };
+export type Filter = { type: FilterType; order: FilterOrder };
 
 type FilterVisibility = { name: boolean; id: boolean; favorite: boolean };
 
@@ -19,7 +19,11 @@ const orders: FilterOrder[] = ['ascending', 'descending'];
 
 const TabsContainer: React.FC<{}> = () => {
   const [selectedTab, setSelectedTab] = useState<Tab>('posts');
-  const [filters, setFilters] = useState<Filter[]>([]);
+  const [filters, setFilters] = useState<Filter[]>([
+    { order: 'ascending', type: 'name' },
+    { order: 'ascending', type: 'id' },
+    { order: 'ascending', type: 'favorite' },
+  ]);
 
   const [filtersVisibility, setFiltersVisibility] = useState<FilterVisibility>({
     name: false,
@@ -83,7 +87,7 @@ const TabsContainer: React.FC<{}> = () => {
                 />
               </Label>
             </Row>
-            <Posts />
+            <Posts filters={filters} />
           </Column>
         ) : selectedTab === 'albums' ? (
           <Photos />
