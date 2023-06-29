@@ -21,3 +21,8 @@ export const Actions = styled(Row, {
   justifyContent: 'flex-end',
   flexWrap: 'wrap',
 });
+
+export const Wrapper = styled(Row, {
+  justifyContent: 'center',
+  gap: '$4',
+});
