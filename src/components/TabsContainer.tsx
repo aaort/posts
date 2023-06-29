@@ -1,11 +1,11 @@
 import Tabs from '@/components/Tabs';
 import { Tab } from '@/types';
-import { Suspense, lazy, useState } from 'react';
+import { Suspense, lazy, memo, useState } from 'react';
 import { Column, Label, Row, Select } from './common';
 import Loading from './common/Loading';
 
 const Posts = lazy(() => import('./lists/Posts'));
-const Photos = lazy(() => import('./lists/Albums'));
+const Albums = lazy(() => import('./lists/Albums'));
 const Todos = lazy(() => import('./lists/Todos'));
 
 type FilterOrder = 'ascending' | 'descending';
@@ -52,45 +52,52 @@ const TabsContainer: React.FC<{}> = () => {
   const handleFavoriteFilterChange = (order: FilterOrder) =>
     handleFiltersChange('favorite', order);
 
+  const Filters = (
+    <Row css={{ gap: '$3' }}>
+      <Label text="Name:" name="name">
+        <Select<FilterOrder>
+          isOpen={filtersVisibility.name}
+          values={orders}
+          onValueChange={handleNameFilterChange}
+          onChangeOpen={() => toggleFilter('name')}
+          defaultValue={orders[0]}
+        />
+      </Label>
+      <Label text="Id:" name="id">
+        <Select<FilterOrder>
+          isOpen={filtersVisibility.id}
+          values={orders}
+          onValueChange={handleIdFilterChange}
+          onChangeOpen={() => toggleFilter('id')}
+          defaultValue={orders[0]}
+        />
+      </Label>
+      <Label text="Favorite:" name="favorite">
+        <Select<FilterOrder>
+          isOpen={filtersVisibility.favorite}
+          values={orders}
+          onValueChange={handleFavoriteFilterChange}
+          onChangeOpen={() => toggleFilter('favorite')}
+          defaultValue={orders[0]}
+        />
+      </Label>
+    </Row>
+  );
+
   return (
     <Column>
       <Tabs selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
       <Suspense fallback={<Loading />}>
         {selectedTab === 'posts' ? (
           <Column css={{ gap: '$4', my: '$3', alignItems: 'center' }}>
-            <Row css={{ gap: '$3' }}>
-              <Label text="Name:" name="name">
-                <Select<FilterOrder>
-                  isOpen={filtersVisibility.name}
-                  values={orders}
-                  onValueChange={handleNameFilterChange}
-                  onChangeOpen={() => toggleFilter('name')}
-                  defaultValue={orders[0]}
-                />
-              </Label>
-              <Label text="Id:" name="id">
-                <Select<FilterOrder>
-                  isOpen={filtersVisibility.id}
-                  values={orders}
-                  onValueChange={handleIdFilterChange}
-                  onChangeOpen={() => toggleFilter('id')}
-                  defaultValue={orders[0]}
-                />
-              </Label>
-              <Label text="Favorite:" name="favorite">
-                <Select<FilterOrder>
-                  isOpen={filtersVisibility.favorite}
-                  values={orders}
-                  onValueChange={handleFavoriteFilterChange}
-                  onChangeOpen={() => toggleFilter('favorite')}
-                  defaultValue={orders[0]}
-                />
-              </Label>
-            </Row>
+            {Filters}
             <Posts filters={filters} />
           </Column>
         ) : selectedTab === 'albums' ? (
-          <Photos />
+          <Column css={{ gap: '$4', my: '$3', alignItems: 'center' }}>
+            {Filters}
+            <Albums filters={filters} />
+          </Column>
         ) : (
           <Todos />
         )}

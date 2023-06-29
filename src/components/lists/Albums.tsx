@@ -6,18 +6,22 @@ import type { Album as AlbumType } from '@/types';
 import {
   fetcher,
   getDeletedAlbums,
+  isFavoriteAlbum,
   toggleDeletedAlbums,
   toggleFavoriteAlbums,
 } from '@/utils';
 import { HeartIcon, TrashIcon } from '@radix-ui/react-icons';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import useSWR from 'swr';
 import Checkbox from '../Checkbox';
+import { Filter } from '../TabsContainer';
 import List from './List';
 
-type AlbumsProps = {};
+type AlbumsProps = {
+  filters: Filter[];
+};
 
-const Albums: React.FC<AlbumsProps> = () => {
+const Albums: React.FC<AlbumsProps> = ({ filters }) => {
   const url = useUrl('albums');
   const { data, error, isLoading, mutate, isValidating } = useSWR(
     '/api/albums',
@@ -34,6 +38,11 @@ const Albums: React.FC<AlbumsProps> = () => {
     mutate();
   }, [url, mutate]);
 
+  const getAlbums = useCallback(
+    () => getSortedAlbums(getFilteredAlbums(data), filters),
+    [filters, data]
+  );
+
   if (error) {
     return <Error />;
   }
@@ -41,8 +50,6 @@ const Albums: React.FC<AlbumsProps> = () => {
   if (isLoading || isValidating) {
     return <Loading />;
   }
-
-  const albums = getFilteredAlbums(data);
 
   const handleAlbumSelectToggle = (id: number) => {
     if (selectedAlbumIds.includes(id)) {
@@ -65,7 +72,7 @@ const Albums: React.FC<AlbumsProps> = () => {
   return (
     <>
       <List>
-        {albums.map((album, i) => {
+        {getAlbums().map((album, i) => {
           const isSelected = selectedAlbumIds.includes(album.id);
           return (
             <AlbumRow key={i}>
@@ -89,6 +96,33 @@ const Albums: React.FC<AlbumsProps> = () => {
       )}
     </>
   );
+};
+
+const getFilteredAlbums = (albums: AlbumType[]) => {
+  const deletedAlbums = getDeletedAlbums();
+
+  return albums.filter((album) => !deletedAlbums.includes(album.id));
+};
+
+const getSortedAlbums = (albums: AlbumType[], filters: Filter[]) => {
+  return albums
+    .sort((album1, album2) =>
+      filters[0].order === 'ascending'
+        ? album1.title.length - album2.title.length
+        : album2.title.length - album1.title.length
+    )
+    .sort((album1, album2) =>
+      filters[1].order === 'ascending'
+        ? album1.id - album2.id
+        : album2.id - album1.id
+    )
+    .sort((album1, album2) =>
+      filters[2].order === 'ascending'
+        ? Number(isFavoriteAlbum(album1.id)) -
+          Number(isFavoriteAlbum(album2.id))
+        : Number(isFavoriteAlbum(album2.id)) -
+          Number(isFavoriteAlbum(album1.id))
+    );
 };
 
 type FloatingButtonProps = { onClick: () => void };
@@ -141,12 +175,6 @@ const DeleteButton: React.FC<FloatingButtonProps> = ({ onClick }) => {
       />
     </>
   );
-};
-
-const getFilteredAlbums = (albums: AlbumType[]) => {
-  const deletedAlbums = getDeletedAlbums();
-
-  return albums.filter((album) => !deletedAlbums.includes(album.id));
 };
 
 const FloatingButtons = styled(Row, {
