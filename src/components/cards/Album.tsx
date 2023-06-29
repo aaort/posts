@@ -1,4 +1,12 @@
-import { Box, Button, Dialog, Error, Loading, Row } from '@/components/common';
+import {
+  Box,
+  Button,
+  Dialog,
+  Error,
+  Link,
+  Loading,
+  Row,
+} from '@/components/common';
 import useUrl from '@/hooks/useUrl';
 import { theme } from '@/theme';
 import type { Album as AlbumType, User } from '@/types';
@@ -80,7 +88,12 @@ const Album: React.FC<AlbumProps> = (props) => {
       <Row css={{ justifyContent: 'space-between' }}>
         <Row css={{ gap: '$1' }}>
           {!isEditing ? (
-            <Title>{album.title}</Title>
+            <Link
+              to={`/albums/${props.album.id}`}
+              state={{ albumId: props.album.id }}
+            >
+              <Title>{album.title}</Title>
+            </Link>
           ) : (
             <Input
               value={album.title}
