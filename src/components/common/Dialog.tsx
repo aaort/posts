@@ -74,14 +74,14 @@ const DialogContent = styled(RadixDialog.Content, {
 
 const DialogTitle = styled(RadixDialog.Title, {
   margin: 0,
-  fontWeight: '$2',
+  fontWeight: '$3',
   color: '$primary',
-  fontSize: 'calc($1 + 0.4rem)',
+  fontSize: '$2',
 });
 
 const DialogDescription = styled(RadixDialog.Description, {
   color: '$primary',
-  fontSize: '$1',
+  fontSize: 'calc($2 - 0.3rem )',
   lineHeight: 1.5,
 });
 
