@@ -27,11 +27,11 @@ export const {
       favorite: '#ff6b6b',
     },
     space: {
-      1: '0.5rem',
-      2: '1rem',
-      3: '2rem',
-      4: '4rem',
-      5: '8rem',
+      1: '0.6rem',
+      2: '1.2rem',
+      3: '1.8rem',
+      4: '2.4rem',
+      5: '3rem',
     },
     fontSizes: {
       1: '1rem',
@@ -40,6 +40,7 @@ export const {
       4: '2.8rem',
       5: '3.4rem',
       6: '4rem',
+      button: '1.4rem',
     },
     fontWeights: {
       1: '400',
@@ -48,8 +49,8 @@ export const {
     },
     radii: {
       small: '0.4rem',
-      medium: '0.8rem',
-      large: '1.4rem',
+      medium: '0.6rem',
+      large: '0.8rem',
     },
     shadows: {
       small:
