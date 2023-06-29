@@ -1,12 +1,15 @@
 import Tabs from '@/components/Tabs';
-import { Order, Tab } from '@/types';
+import type { Order, Tab } from '@/types';
 import { Suspense, lazy, useState } from 'react';
 import { Column } from './common';
 import Loading from './common/Loading';
 import AlbumsFilters from './lists/components/filters/AlbumsFilters';
 import PostsFilters from './lists/components/filters/PostsFilters';
 import TodosFilters from './lists/components/filters/TodosFilters';
-import { PostsFilter, TodosFilter } from './lists/components/filters/types';
+import type {
+  PostsFilter,
+  TodosFilter,
+} from './lists/components/filters/types';
 
 const Posts = lazy(() => import('./lists/Posts'));
 const Albums = lazy(() => import('./lists/Albums'));
