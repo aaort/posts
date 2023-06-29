@@ -32,6 +32,7 @@ export const {
       3: '1.8rem',
       4: '2.4rem',
       5: '3rem',
+      6: '3.6rem',
     },
     fontSizes: {
       1: '1rem',
