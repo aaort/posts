@@ -23,6 +23,13 @@ type Comment = {
   body: string;
 } & Common;
 
+type Photo = {
+  albumId: number;
+  title: string;
+  url: string;
+  thumbnailUrl: string;
+} & Common;
+
 type Todo = Pick<Post, 'title' | 'userId'> & {
   completed: boolean;
 } & Common;
@@ -36,4 +43,4 @@ type Limit = '10' | '20' | '50' | '100';
 
 type ButtonType = 'primary' | 'success' | 'dangerous';
 
-export type { Album, ButtonType, Comment, Limit, Post, Tab, Todo, User };
+export type { Album, ButtonType, Comment, Limit, Photo, Post, Tab, Todo, User };
