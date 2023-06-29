@@ -26,7 +26,7 @@ const Todo: React.FC<TodoProps> = ({ todo: initialTodo }) => {
 
   return (
     <Container>
-      <Title css={taskCss}>{todo.title + ' ' + todo.id}</Title>
+      <Title css={taskCss}>{todo.title}</Title>
       <Row css={{ gap: '$2' }}>
         <Checkbox
           checked={todo.completed}
@@ -63,14 +63,14 @@ const Container = styled(Row, {
   maxWidth: '80%',
   justifyContent: 'space-between',
   backgroundColor: '$gray3',
-  padding: '$1 $2',
+  padding: '$2 $3',
   borderRadius: '$medium',
   boxShadow: '$medium',
 });
 
 const Title = styled('p', {
   fontWeight: '$3',
-  fontSize: 'calc($2 - 0.5em)',
+  fontSize: '$2',
 });
 
 const EditButton = styled('div', {
