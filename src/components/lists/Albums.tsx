@@ -14,11 +14,11 @@ import { HeartIcon, TrashIcon } from '@radix-ui/react-icons';
 import { useCallback, useEffect, useState } from 'react';
 import useSWR from 'swr';
 import Checkbox from '../Checkbox';
-import { Filter } from '../TabsContainer';
+import { AlbumsFilter } from './components/filters/AlbumsFilters';
 import List from './List';
 
 type AlbumsProps = {
-  filters: Filter[];
+  filters: AlbumsFilter[];
 };
 
 const Albums: React.FC<AlbumsProps> = ({ filters }) => {
@@ -104,7 +104,7 @@ const getFilteredAlbums = (albums: AlbumType[]) => {
   return albums.filter((album) => !deletedAlbums.includes(album.id));
 };
 
-const getSortedAlbums = (albums: AlbumType[], filters: Filter[]) => {
+const getSortedAlbums = (albums: AlbumType[], filters: AlbumsFilter[]) => {
   return albums
     .sort(({ title: title1 }, { title: title2 }) =>
       filters[0].order === 'ascending'

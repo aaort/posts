@@ -43,4 +43,17 @@ type Limit = '10' | '20' | '50' | '100';
 
 type ButtonType = 'primary' | 'success' | 'dangerous';
 
-export type { Album, ButtonType, Comment, Limit, Photo, Post, Tab, Todo, User };
+type Order = 'ascending' | 'descending';
+
+export type {
+  Album,
+  ButtonType,
+  Comment,
+  Limit,
+  Order,
+  Photo,
+  Post,
+  Tab,
+  Todo,
+  User,
+};

@@ -16,10 +16,10 @@ import { HeartIcon, TrashIcon } from '@radix-ui/react-icons';
 import { useCallback, useEffect, useState } from 'react';
 import useSWR from 'swr';
 import List from './List';
-import type { Filter } from '../TabsContainer';
+import type { PostsFilter } from './components/filters/PostsFilters';
 
 type PostsProps = {
-  filters: Filter[];
+  filters: PostsFilter[];
 };
 
 const Posts: React.FC<PostsProps> = ({ filters }) => {
@@ -106,7 +106,7 @@ const getFilteredPosts = (posts: PostType[]) => {
   return posts.filter((post) => !deletedPosts.includes(post.id));
 };
 
-const getSortedPosts = (posts: PostType[], filters: Filter[]) => {
+const getSortedPosts = (posts: PostType[], filters: PostsFilter[]) => {
   return posts
     .sort(({ title: title1 }, { title: title2 }) =>
       filters[0].order === 'ascending'
