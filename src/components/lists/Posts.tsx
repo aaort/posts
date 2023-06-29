@@ -211,10 +211,4 @@ const FloatingButton = styled(IconButton, {
   },
 });
 
-const PostRow = styled(Row, {
-  gap: '$2',
-  width: '100%',
-  justifyContent: 'center',
-});
-
 export default Posts;
