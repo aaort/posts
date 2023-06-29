@@ -59,8 +59,8 @@ const sortTodos = (todos: TodoType[]) => {
   return uncompletedTodos.concat(completedTodos);
 };
 
-const getSortedTodos = (posts: TodoType[], filters: TodosFilter[]) => {
-  return posts
+const getSortedTodos = (todos: TodoType[], filters: TodosFilter[]) => {
+  return todos
     .sort(({ title: title1 }, { title: title2 }) =>
       filters[0].order === 'ascending'
         ? title1.length - title2.length
@@ -69,7 +69,7 @@ const getSortedTodos = (posts: TodoType[], filters: TodosFilter[]) => {
     .sort((todo1, todo2) =>
       filters[1].order === 'ascending'
         ? Number(isTodoCompleted(todo1)) - Number(isTodoCompleted(todo2))
-        : Number(isTodoCompleted(todo2)) - Number(isTodoCompleted(todo2))
+        : Number(isTodoCompleted(todo2)) - Number(isTodoCompleted(todo1))
     );
 };
 
