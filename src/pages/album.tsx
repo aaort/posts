@@ -42,16 +42,16 @@ const Album: React.FC<{}> = () => {
             </Photo>
           ))}
         </Grid>
-        {openImageUrl ? (
-          <AlertDialog
-            isOpen={!!openImageUrl}
-            onOpenChange={() => toggleOpenImage()}
-            onClose={() => toggleOpenImage()}
-          >
-            <img src={openImageUrl} />
-          </AlertDialog>
-        ) : null}
       </Container>
+      {openImageUrl ? (
+        <AlertDialog
+          isOpen={!!openImageUrl}
+          onOpenChange={() => toggleOpenImage()}
+          onClose={() => toggleOpenImage()}
+        >
+          <img src={openImageUrl} />
+        </AlertDialog>
+      ) : null}
     </>
   );
 };
