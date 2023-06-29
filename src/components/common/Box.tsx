@@ -28,7 +28,7 @@ const Container = styled(Column, {
   },
   width: '100%',
   maxWidth: '80%',
-  p: '$2',
+  p: '$3',
   alignItems: 'space-between',
   backgroundColor: '$gray3',
   borderRadius: '$medium',
