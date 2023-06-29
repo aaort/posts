@@ -61,12 +61,12 @@ const CheckboxRoot = styled(RadixCheckbox.Root, {
         height: 25,
       },
       medium: {
-        width: 35,
-        height: 35,
+        width: 30,
+        height: 30,
       },
       large: {
-        width: 45,
-        height: 45,
+        width: 35,
+        height: 35,
       },
     },
   },
