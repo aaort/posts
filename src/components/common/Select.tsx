@@ -39,7 +39,6 @@ const Select = <T extends string>(props: SelectProps<T>) => {
               return (
                 <Item key={i} value={item}>
                   <RadixSelect.ItemText>
-                    {' '}
                     {`${item} ${props.valueSuffix ?? ''}`}
                   </RadixSelect.ItemText>
                 </Item>
@@ -58,8 +57,8 @@ const SelTrigger = styled('button', {
   justifyContent: 'space-between',
   alignItems: 'center',
   background: '$background',
-  padding: 'calc($1 + $1)',
-  fontSize: '$1',
+  padding: '$2',
+  fontSize: 'calc($1 + 0.4rem)',
   border: '1px solid $primary',
   borderRadius: '$small',
   outline: 'none',
