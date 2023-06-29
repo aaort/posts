@@ -101,6 +101,7 @@ const Container = styled(Row, {
   padding: '$2 $3',
   borderRadius: '$medium',
   boxShadow: '$medium',
+  fontSize: '$2',
 });
 
 const Title = styled('p', {
