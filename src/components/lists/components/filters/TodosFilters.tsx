@@ -47,7 +47,7 @@ const TodosFilters: React.FC<TodosFiltersProps> = ({ filters, setFilters }) => {
           defaultValue={orders[0]}
         />
       </Label>
-      <Label text="Id:" name="id">
+      <Label text="Completed:" name="completed">
         <Select<Order>
           isOpen={filtersVisibility.byCompleted}
           values={orders}
