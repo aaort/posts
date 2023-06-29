@@ -69,7 +69,7 @@ const Dropdown = styled('div', {
   position: 'relative',
   color: '$primary',
   padding: '$1',
-  fontSize: '$1',
+  fontSize: 'calc($1 + 0.4rem)',
   background: '$background',
   border: '1px solid $primary',
   borderRadius: '$small',
