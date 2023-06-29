@@ -9,11 +9,12 @@ import { useState } from 'react';
 
 type TodoProps = {
   todo: TodoType;
+  checkbox: React.ReactNode;
 };
 
 const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
-const Todo: React.FC<TodoProps> = ({ todo: initialTodo }) => {
+const Todo: React.FC<TodoProps> = ({ todo: initialTodo, checkbox }) => {
   const [todo, setTodo] = useState<TodoType>(initialTodo);
   const taskCss: CSS = todo.completed ? { textDecoration: 'line-through' } : {};
 
@@ -47,34 +48,45 @@ const Todo: React.FC<TodoProps> = ({ todo: initialTodo }) => {
   };
 
   return (
-    <Container>
-      {!isEditing ? (
-        <Title css={taskCss}>{todo.title}</Title>
-      ) : (
-        <Input value={editedTodo.title} name="title" onChange={handleEditing} />
-      )}
-      <Row css={{ gap: '$2' }}>
+    <Row css={{ justifyContent: 'center', gap: '$4' }}>
+      <Container>
         {!isEditing ? (
-          <>
-            <Checkbox
-              checked={todo.completed}
-              onChange={handleComplete}
-              tooltip={!todo.completed ? 'Mark As Complete' : 'Unmark'}
-            />
-            <Tooltip text={'Edit'}>
-              <EditButton onClick={toggleEditing}>
-                <Pencil1Icon width={20} height={20} />
-              </EditButton>
-            </Tooltip>
-          </>
+          <Title css={taskCss}>{todo.title}</Title>
         ) : (
-          <>
-            <Button title="Discard" type="dangerous" onClick={handleDiscard} />
-            <Button title="Save" type="success" onClick={handleSave} />
-          </>
+          <Input
+            value={editedTodo.title}
+            name="title"
+            onChange={handleEditing}
+          />
         )}
-      </Row>
-    </Container>
+        <Row css={{ gap: '$2' }}>
+          {!isEditing ? (
+            <>
+              <Checkbox
+                checked={todo.completed}
+                onChange={handleComplete}
+                tooltip={!todo.completed ? 'Mark As Complete' : 'Unmark'}
+              />
+              <Tooltip text={'Edit'}>
+                <EditButton onClick={toggleEditing}>
+                  <Pencil1Icon width={20} height={20} />
+                </EditButton>
+              </Tooltip>
+            </>
+          ) : (
+            <>
+              <Button
+                title="Discard"
+                type="dangerous"
+                onClick={handleDiscard}
+              />
+              <Button title="Save" type="success" onClick={handleSave} />
+            </>
+          )}
+        </Row>
+      </Container>
+      {checkbox}
+    </Row>
   );
 };
 
