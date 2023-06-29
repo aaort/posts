@@ -19,11 +19,6 @@ export type Filter = { type: FilterType; order: Order };
 const TabsContainer: React.FC<{}> = () => {
   const [selectedTab, setSelectedTab] = useState<Tab>('posts');
 
-  const [todosFilters, setTodosFilters] = useState<TodosFilter[]>([
-    { type: 'byName', order: 'ascending' },
-    { type: 'byCompleted', order: 'ascending' },
-  ]);
-
   const [postsFilters, setPostsFilters] = useState<PostsFilter[]>([
     { type: 'byName', order: 'ascending' },
     { type: 'byId', order: 'ascending' },
@@ -34,6 +29,11 @@ const TabsContainer: React.FC<{}> = () => {
     { type: 'byName', order: 'ascending' },
     { type: 'byId', order: 'ascending' },
     { type: 'byFavorite', order: 'ascending' },
+  ]);
+
+  const [todosFilters, setTodosFilters] = useState<TodosFilter[]>([
+    { type: 'byName', order: 'ascending' },
+    { type: 'byCompleted', order: 'ascending' },
   ]);
 
   return (
