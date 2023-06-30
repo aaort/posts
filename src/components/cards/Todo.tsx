@@ -119,12 +119,9 @@ const EditButton = styled('div', {
   justifyContent: 'center',
   boxShadow: `$small`,
   cursor: 'pointer',
+  boxSizing: 'border-box',
   '&:hover': {
-    backgroundColor: '$primary',
-    '& span': { color: '$background' },
-  },
-  '&:hover svg': {
-    color: '$background',
+    border: '1px solid $primary',
   },
 });
 
