@@ -38,7 +38,7 @@ const Root = styled(NavigationMenu.Root, {
 
 const HeaderRow = styled(Row, {
   justifyContent: 'center',
-  gap: '$2',
+  gap: '$5',
 });
 
 const List = styled(NavigationMenu.List, {
