@@ -95,7 +95,12 @@ const Album: React.FC<AlbumProps> = (props) => {
                 to={`/albums/${props.album.id}`}
                 state={{ albumId: props.album.id }}
               >
-                <Title>{album.title}</Title>
+                <Title>
+                  {album.title}{' '}
+                  {!isEditing ? (
+                    <Subtitle> {`@${album?.subtitle}`} </Subtitle>
+                  ) : null}
+                </Title>
               </Link>
             ) : (
               <Input
@@ -105,9 +110,7 @@ const Album: React.FC<AlbumProps> = (props) => {
               />
             )}
 
-            {!isEditing ? (
-              <Subtitle> {`@${album?.subtitle}`} </Subtitle>
-            ) : (
+            {!isEditing ? null : (
               <Input
                 value={album.subtitle}
                 name="subtitle"
