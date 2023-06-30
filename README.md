@@ -8,23 +8,23 @@ React | Typescript | Radix UI | Stitches,js
 
 ## Project structure
 
-/src - Project's main code.
+src - Project's main code.
 
-/components - List of components that are used accross the project.
+components - List of components that are used accross the project.
 
-/cards - All the card components for displaying single post, album or todo.
+cards - All the card components for displaying single post, album or todo.
 
-/hooks - Helper hooks for extracting common logic away from the components.
+hooks - Helper hooks for extracting common logic away from the components.
 
-/pages - Two available pages, `Home` and `Album`.
+pages - Two available pages, `Home` and `Album`.
 
-/routes - Config for converting pages to routes.
+routes - Config for converting pages to routes.
 
-/theme - Theme config and useful method exports.
+theme - Theme config and useful method exports.
 
-/types - General types used in the project.
+types - General types used in the project.
 
-/utils - Common logics extracted into the method.
+utils - Common logics extracted into the method.
 
 ## Packages
 
