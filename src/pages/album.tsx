@@ -16,8 +16,8 @@ import useSWR from 'swr';
 
 // Album page component
 const Album: React.FC<{}> = () => {
-  const { state } = useLocation();
   const navigate = useNavigate();
+  const { state } = useLocation();
   const { albumId } = state;
   const url = useUrl(`albums/${albumId}/photos`, false);
 
@@ -75,16 +75,15 @@ const Album: React.FC<{}> = () => {
 
 const Container = styled('div', {
   position: 'relative',
-  mx: '$4',
+  mx: 'calc($4 * 4)',
   mt: '$4',
 });
 
 const Grid = styled('div', {
   display: 'grid',
   gridTemplateRows: 'repeat(4, 1fr)',
-  gridTemplateColumns: 'repeat(4, 20rem)',
-  gap: '$2',
-  placeItems: 'center',
+  gridTemplateColumns: 'repeat(4, minmax(10rem, 1fr))',
+  gap: 'calc($4 * 2)',
   justifyContent: 'center',
 });
 
