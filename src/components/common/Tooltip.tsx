@@ -7,7 +7,7 @@ type TooltipProps = React.PropsWithChildren & {
 
 const Tooltip: React.FC<TooltipProps> = ({ text, children }) => {
   return (
-    <RadixTooltip.Provider>
+    <RadixTooltip.Provider delayDuration={1500}>
       <RadixTooltip.Root>
         <RadixTooltip.Trigger asChild>{children}</RadixTooltip.Trigger>
         <RadixTooltip.Portal>
