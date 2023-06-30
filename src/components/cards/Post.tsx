@@ -113,7 +113,10 @@ const Post: React.FC<PostProps> = (props) => {
                 onChange={handleDataChange}
               />
             ) : (
-              <Title>{post.title}</Title>
+              <Title>
+                {post.title}{' '}
+                {!isEditing ? <Subtitle>{`@${post.subtitle}`}</Subtitle> : null}
+              </Title>
             )}
             {isEditing ? (
               <Input
@@ -121,9 +124,7 @@ const Post: React.FC<PostProps> = (props) => {
                 name="subtitle"
                 onChange={handleDataChange}
               />
-            ) : (
-              <Subtitle>{`@${post.subtitle}`}</Subtitle>
-            )}
+            ) : null}
           </Row>
           <Row css={{ gap: '$1' }}>
             <Favorite postId={props.post.id} />
