@@ -121,14 +121,14 @@ const Album: React.FC<AlbumProps> = (props) => {
           </Row>
         </Row>
         <Actions>
+          {isEditing && (
+            <Button title="Discard" type="dangerous" onClick={handleDiscard} />
+          )}
           <Button
             title={!isEditing ? 'Edit' : 'Save'}
             type={!isEditing ? 'primary' : 'success'}
             onClick={!isEditing ? toggleIsEditing : handleSave}
           />
-          {isEditing && (
-            <Button title="Discard" type="dangerous" onClick={handleDiscard} />
-          )}
         </Actions>
       </Box>
       {props.checkbox}
