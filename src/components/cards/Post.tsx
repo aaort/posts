@@ -239,7 +239,7 @@ const Favorite: React.FC<IconActionButtonProps> = ({ postId }) => {
 };
 
 export const IconButtonBox = styled(IconButton, {
-  p: '$1',
+  p: '.3rem',
   '&[aria-label="delete-icon-button"]:hover': {
     backgroundColor: '$error',
     color: '$background',
