@@ -7,6 +7,7 @@ import AlbumsFilters from './lists/components/filters/AlbumsFilters';
 import PostsFilters from './lists/components/filters/PostsFilters';
 import TodosFilters from './lists/components/filters/TodosFilters';
 import type {
+  AlbumsFilter,
   PostsFilter,
   TodosFilter,
 } from './lists/components/filters/types';
@@ -28,7 +29,7 @@ const TabsContainer: React.FC<{}> = () => {
     { type: 'byFavorite', order: 'ascending' },
   ]);
 
-  const [albumsFilters, setAlbumsFilters] = useState<PostsFilter[]>([
+  const [albumsFilters, setAlbumsFilters] = useState<AlbumsFilter[]>([
     { type: 'byName', order: 'ascending' },
     { type: 'byId', order: 'ascending' },
     { type: 'byFavorite', order: 'ascending' },
