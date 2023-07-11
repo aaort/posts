@@ -88,7 +88,7 @@ const Album: React.FC<AlbumProps> = (props) => {
   return (
     <Wrapper>
       <Box>
-        <Row css={{ justifyContent: 'space-between' }}>
+        <Row css={{ justifyContent: 'space-between', flexWrap: 'wrap' }}>
           <Row css={{ gap: '$1' }}>
             {!isEditing ? (
               <Link

@@ -50,7 +50,7 @@ const Todo: React.FC<TodoProps> = ({ todo: initialTodo, checkbox }) => {
 
   return (
     <Wrapper>
-      <Container>
+      <Container css={{ flexWrap: isEditing ? 'wrap' : 'no-wrap' }}>
         {!isEditing ? (
           <Title css={taskCss}>{todo.title}</Title>
         ) : (
@@ -96,6 +96,7 @@ const Container = styled(Row, {
   width: '100%',
   maxWidth: '80%',
   justifyContent: 'space-between',
+  gap: '$2',
   backgroundColor: '$gray3',
   padding: '$2 $3',
   borderRadius: '$medium',

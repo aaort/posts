@@ -101,7 +101,7 @@ const Post: React.FC<PostProps> = (props) => {
     <Wrapper>
       <Box>
         <Row css={{ justifyContent: 'space-between' }}>
-          <Row css={{ gap: '$1' }}>
+          <Row css={{ gap: '$1', flexWrap: 'wrap' }}>
             {isEditing ? (
               <Input
                 value={post.title}
