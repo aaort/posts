@@ -100,11 +100,7 @@ const Post: React.FC<PostProps> = (props) => {
   return (
     <Wrapper>
       <Box>
-        <Row
-          css={{
-            justifyContent: 'space-between',
-          }}
-        >
+        <Row css={{ justifyContent: 'space-between' }}>
           <Row css={{ gap: '$1' }}>
             {isEditing ? (
               <Input
