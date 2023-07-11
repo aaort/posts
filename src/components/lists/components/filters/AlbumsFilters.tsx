@@ -1,11 +1,10 @@
+import { Label, Row, Select } from '@/components/common';
 import { Order } from '@/types';
-import { Label, Select, Row } from '@/components/common';
 import { Dispatch, SetStateAction, useState } from 'react';
 import {
   AlbumsFilter,
   AlbumsFilterType,
   AlbumsFilterVisibility,
-  Filter,
 } from './types';
 
 type PostsFiltersProps = {
