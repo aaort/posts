@@ -46,6 +46,7 @@ const List = styled(NavigationMenu.List, {
   borderRadius: '50rem',
   display: 'flex',
   p: 0,
+  mx: '$2',
   gap: 0,
   justifyContent: 'space-evenly',
   listStyle: 'none',
