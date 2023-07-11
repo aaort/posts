@@ -37,6 +37,7 @@ const Root = styled(NavigationMenu.Root, {
 });
 
 const HeaderRow = styled(Row, {
+  flexWrap: 'wrap',
   justifyContent: 'center',
   gap: '$5',
 });
