@@ -1,5 +1,4 @@
-// Types of data returned from API calls
-
+// Types of data returned from API
 type Common = {
   id: number;
 };
@@ -36,7 +35,7 @@ type Todo = Pick<Post, 'title' | 'userId'> & {
 
 type Album = Omit<Post, 'body'> & {};
 
-// Custom types used in the project
+// Custom types
 type Tab = 'posts' | 'albums' | 'todos';
 
 type Limit = '10' | '20' | '50' | '100';

@@ -7,6 +7,7 @@ const swrOptions: SWRConfiguration = {
 };
 
 function App() {
+  // Apply global styles
   globalStyles();
   return (
     <SWRConfig value={swrOptions}>
