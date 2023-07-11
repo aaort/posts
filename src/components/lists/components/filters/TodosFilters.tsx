@@ -1,7 +1,8 @@
-import { Label, Row, Select } from '@/components/common';
+import { Label, Select } from '@/components/common';
 import { Order } from '@/types';
 import { Dispatch, SetStateAction, useState } from 'react';
-import { TodosFilterType, TodosFilter, TodosFilterVisibility } from './types';
+import Wrapper from './Wrapper';
+import { TodosFilter, TodosFilterType, TodosFilterVisibility } from './types';
 
 type TodosFiltersProps = {
   filters: TodosFilter[];
@@ -37,7 +38,7 @@ const TodosFilters: React.FC<TodosFiltersProps> = ({ filters, setFilters }) => {
     handleFiltersChange('byCompleted', value);
 
   return (
-    <Row css={{ gap: '$3' }}>
+    <Wrapper>
       <Label text="Name:" name="name">
         <Select<Order>
           isOpen={filtersVisibility.byName}
@@ -56,7 +57,7 @@ const TodosFilters: React.FC<TodosFiltersProps> = ({ filters, setFilters }) => {
           defaultValue={orders[0]}
         />
       </Label>
-    </Row>
+    </Wrapper>
   );
 };
 

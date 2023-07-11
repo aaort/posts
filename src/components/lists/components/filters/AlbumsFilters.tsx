@@ -1,6 +1,7 @@
-import { Label, Row, Select } from '@/components/common';
+import { Label, Select } from '@/components/common';
 import { Order } from '@/types';
 import { Dispatch, SetStateAction, useState } from 'react';
+import Wrapper from './Wrapper';
 import {
   AlbumsFilter,
   AlbumsFilterType,
@@ -47,7 +48,7 @@ const AlbumsFilters: React.FC<PostsFiltersProps> = ({
     handleFiltersChange('byFavorite', order);
 
   return (
-    <Row css={{ gap: '$3' }}>
+    <Wrapper>
       <Label text="Name:" name="name">
         <Select<Order>
           isOpen={filtersVisibility.byName}
@@ -75,7 +76,7 @@ const AlbumsFilters: React.FC<PostsFiltersProps> = ({
           defaultValue={orders[0]}
         />
       </Label>
-    </Row>
+    </Wrapper>
   );
 };
 
