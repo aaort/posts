@@ -10,7 +10,7 @@ React | Typescript | Radix UI | Stitches,js
 
 src - Project's main code.
 
-components - List of components that are used accross the project.
+components - List of components that are used across the project.
 
 cards - All the card components for displaying single post, album or todo.
 
@@ -26,16 +26,16 @@ types - General types used in the project.
 
 utils - Common logics extracted into the method.
 
-## Packages
+## Built with
 
-Radix UI - Collection of unstyled components like alert dialog, checkbox, dialog, icons, navigation menu, label, select and tooltip
+- [Radix UI](https://radix-ui.com)
 
-Stitches.js - Styling engine that is used in Radix UI as well, used for theming and creating custom styled components
+- [Stitches.js](https://stitches.dev)
 
-React-Router-Dom - Routing between pages
+- [React-router-dom](https://reactrouter.com)
 
-SWR - Data fetching and caching
+- [SWR](https://swr.vercel.app/)
 
-React-Loader-spinner - Used for displaying loading spinner while processing asynchronous operations.
+- [React-loader-spinner](https://mhnpd.github.io/react-loader-spinner/)
 
-Craco - Used for proper integration with import path aliases with React and typescript.
+- [Craco](https://craco.js.org/)
